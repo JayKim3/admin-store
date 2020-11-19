@@ -1,4 +1,5 @@
 @import 'reset.css';
+@import 'popup.css';
 
 .main-header {
     width: 100%;
@@ -52,3 +53,4 @@
 .main-header .main-header__right .main-header__right--partner-btn:hover {
     background-color: aqua;
 }
+

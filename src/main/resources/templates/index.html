@@ -5,6 +5,9 @@
     <title>Admin Store</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/popup.js}"></script>
 </head>
 <body>
     <header class="main-header">
@@ -21,5 +24,102 @@
             </div>
         </div>
     </header>
+    <div class="overlay">
+        <div class="partner-popup-wrapper">
+            <div style="display: flex; justify-content:right; padding: 20px; background-color:red">
+                <span class="top-cancel-btn">X</span>
+            </div>
+            <form>
+                <div class="partner-popup-row">
+                    <div class="partner-popup-row__left">
+                        <img />
+                        <span>App Store Name</span>
+                    </div>
+                    <div class="partner-popup-row__right">
+                        <input placeholder="App store Name 입력"/>
+                    </div>
+                </div>
+                <div class="partner-popup-row">
+                    <div class="partner-popup-row__left">
+                        <img />
+                        <span>Account</span>
+                    </div>
+                    <div class="partner-popup-row__right">
+                        <input placeholder="Account 입력"/>
+                    </div>
+                </div>
+                <div class="partner-popup-row">
+                    <div class="partner-popup-row__left">
+                        <img />
+                        <span>Password</span>
+                    </div>
+                    <div class="partner-popup-row__right">
+                        <input placeholder="Password 입력"/>
+                    </div>
+                </div>
+                <div class="partner-popup-row">
+                    <div class="partner-popup-row__left">
+                        <img />
+                        <span>Password 재입력</span>
+                    </div>
+                    <div class="partner-popup-row__right">
+                        <input placeholder="Password 재입력"/>
+                    </div>
+                </div>
+                <div class="partner-popup-row">
+                    <div class="partner-popup-row__left">
+                        <img />
+                        <span>Category</span>
+                    </div>
+                    <div class="partner-popup-row__right">
+                        <select name="category">
+                            <option value="none">=== 선택 ===</option>
+                            <option value="korean">컴퓨터-전자제품</option>
+                            <option value="english">의류</option>
+                            <option value="chinese">멀티샵</option>
+                            <option value="spanish">인테리어</option>
+                            <option value="spanish">음식</option>
+                            <option value="spanish">스포츠</option>
+                            <option value="spanish">쇼핑몰</option>
+                            <option value="spanish">면세점</option>
+                            <option value="spanish">화장</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="partner-popup-row">
+                    <div class="partner-popup-row__left">
+                        <img />
+                        <span>CEO Name</span>
+                    </div>
+                    <div class="partner-popup-row__right">
+                        <input placeholder="CEO 이름 입력"/>
+                    </div>
+                </div>
+                <div class="partner-popup-row">
+                    <div class="partner-popup-row__left">
+                        <img />
+                        <span>Call Center Number</span>
+                    </div>
+                    <div class="partner-popup-row__right">
+                        <input placeholder="Call Center Number"/>
+                    </div>
+                </div>
+                <div class="partner-popup-row">
+                    <div class="partner-popup-row__left">
+                        <img />
+                        <span>Business Number</span>
+                    </div>
+                    <div class="partner-popup-row__right">
+                        <input placeholder="Business Number"/>
+                    </div>
+                </div>
+                <div class="partner-popup-btn-wrapper">
+                    <button type="submit" class="add-btn">Add</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
 </body>
 </html>
