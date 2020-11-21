@@ -89,4 +89,9 @@ public class UserRepositoryMysql implements UserRepository{
             preparedStatement.setLong(1, id);
         });
     }
+
+    @Override
+    public int userCountAll() {
+        return jdbcTemplate.queryForObject("select count(*) from user", Integer.class);
+    }
 }

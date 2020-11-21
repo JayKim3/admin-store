@@ -88,6 +88,10 @@ public class UserApiService implements CrudInterface<UserApiRequest, UserApiResp
         return null;
     }
 
+    public int userCountAll() {
+        return userRepositoryMysql.userCountAll();
+    }
+
     private Header<UserApiResponse> response(User user) {
         UserApiResponse userApiResponse = UserApiResponse.builder()
                 .id(user.getId())

@@ -14,4 +14,6 @@ public interface UserRepository {
     List<User> findAll();
 
     void deleteById(Long id);
+
+    int userCountAll();
 }

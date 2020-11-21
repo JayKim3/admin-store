@@ -94,5 +94,12 @@ public class UserRepositoryMysqlTest extends AdminStoreApplicationTests {
         final Optional<User> deleteUser = Optional.ofNullable(userRepositoryMysql.findById(1004L));
         assertThat(deleteUser).isPresent();
     }
+
+    @Test
+    public void userCountAll() {
+        int userCount = userRepositoryMysql.userCountAll();
+        System.out.println(userCount);
+        assertThat(userCount).isNotNull();
+    }
 }
 

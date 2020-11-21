@@ -1,13 +1,13 @@
 $(document).ready(function() {
     $('.cancel-btn, .top-cancel-btn').on("click", function(){
-        $('.overlay').css('background', 'white');
+        $('main').css('background', 'white');
         $('.partner-popup-wrapper').css('display', 'none');
-    })
+    });
 
     $('.main-header__right--partner-btn').on("click", function() {
-        $('.overlay').css('background', 'rgba(0,0,0,.5)');
+        $('main').css('background', 'rgba(0,0,0,.5)');
         $('.partner-popup-wrapper').css('display', 'block');
-    })
+    });
 })
 
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
