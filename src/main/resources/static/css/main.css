@@ -1,0 +1,77 @@
+main {
+    display: flex;
+    overflow-y: hidden;
+}
+
+main nav {
+    width: 20%;
+    height: 100vh;
+    background-color: #30343c;
+}
+.dashboard {
+    width: 80%;
+    height: 100vh;
+    padding: 0 80px;
+    background-color: #f6f6f6;
+}
+
+.dashboard header {
+    margin: 40px 0 20px 0;
+}
+
+.dashboard .dashboard__header svg {
+    font-size: 30px;
+    margin-right: 20px;
+
+}
+
+.dashboard .dashboard__header span {
+    font-size: 30px;
+}
+
+.dashboard .card-wrapper {
+    margin-top: 20px;
+    display: flex;
+}
+
+.dashboard .card-wrapper .card {
+    width: 340px;
+    height: 256px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 20px;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+
+.dashboard .card-wrapper .card svg {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.dashboard .card-wrapper .card .card-title {
+    color: #FFFFFF;
+    font-size: 30px;
+    margin: 20px 0;
+}
+
+.dashboard .card-wrapper .card .card-count {
+    color: #FFFFFF;
+    font-size: 25px;
+    margin: 20px 0;
+    letter-spacing: 5px;
+}
+
+.purple {
+    background-color: #b779f6;
+}
+
+.blue {
+    background-color: #699fe6;
+}
+
+.orange {
+    background-color: #ffac88;
+}

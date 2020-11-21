@@ -6,15 +6,24 @@
     /*background-color:rgba(0,0,0,.5)*/
 }
 
-.top-cancel-btn {
+.top-cancel-wrapper {
+    display: flex;
+    justify-content:right;
+    padding: 20px;
+    background-color: #30343c;
+}
+
+.top-cancel-wrapper .top-cancel-btn {
     margin-left: auto;
     cursor: pointer;
+    font-size: 20px;
+    color: white;
 }
 
 .partner-popup-wrapper {
     display: none;
     width: 800px;
-    height: 750px;
+    height: 800px;
     background-color: white;
     position: absolute;
     left: 50%;
@@ -35,7 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 60px;
     border-bottom: none;
 }
 
@@ -69,4 +78,18 @@
     width: 400px;
     height: 30px;
     padding: 0 10px;
+}
+
+.partner-popup-row__address .partner-popup-row__address--row {
+    display: flex;
+    align-items: center;
+}
+
+.partner-popup-row__address .partner-popup-row__address--row input {
+    margin: 5px 5px 5px 0;
+}
+
+.partner-popup-row__address .partner-popup-row__address--row .search-btn {
+    width: 100px;
+    cursor: pointer;
 }

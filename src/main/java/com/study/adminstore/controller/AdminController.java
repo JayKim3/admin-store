@@ -9,6 +9,7 @@ public class AdminController {
 
     @GetMapping("/")
     public String thymeleafTest( Model model) {
+        // Todo: Category(3), User count(2), Partner(1) 정보 Setting
         model.addAttribute("name", "ksj");
         return "index";
     }

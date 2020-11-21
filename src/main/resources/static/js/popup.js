@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.cancel-btn').on("click", function(){
+    $('.cancel-btn, .top-cancel-btn').on("click", function(){
         $('.overlay').css('background', 'white');
         $('.partner-popup-wrapper').css('display', 'none');
     })

@@ -1,13 +1,17 @@
 package com.study.adminstore.controller.api;
 
 import com.study.adminstore.ifs.CrudInterface;
+import com.study.adminstore.model.entity.User;
 import com.study.adminstore.model.network.Header;
 import com.study.adminstore.model.network.response.UserApiResponse;
 import com.study.adminstore.model.network.request.UserApiRequest;
 import com.study.adminstore.service.UserApiService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -27,18 +31,28 @@ public class UserApiController implements CrudInterface<UserApiRequest, UserApiR
     @Override
     @GetMapping("{id}")
     public Header read(@PathVariable(name = "id") Long id) {
-        return null;
+        log.info("read id : {}", id);
+        return userApiService.read(id);
     }
 
     @Override
     @PutMapping("")
     public Header<UserApiResponse> update(@RequestBody Header<UserApiRequest> userApiRequest) {
-        return null;
+        return userApiService.update(userApiRequest);
     }
 
     @Override
     @DeleteMapping("{id}")
     public Header delete(@PathVariable(name = "id") Long id) {
-        return null;
+        log.info("delete id : {}", id);
+        return userApiService.delete(id);
     }
+
+    @GetMapping("/list")
+    public String list(Model model) {
+        List<User> userList = userApiService.findAll();
+        model.addAttribute("userList", userList);
+        return "index";
+    }
+
 }
