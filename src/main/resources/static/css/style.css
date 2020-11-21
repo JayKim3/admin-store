@@ -2,6 +2,10 @@
 @import 'popup.css';
 @import 'main.css';
 
+body {
+    position: relative;
+}
+
 .main-header {
     width: 100%;
     height: 80px;
@@ -39,7 +43,7 @@
 }
 
 .main-header .main-header__right .main-header__right--partner-btn {
-    margin: 0 20px;
+    margin: 0 20px 0 10px;
     padding: 10px 15px;
     background-color: skyblue;
     border: 0;
@@ -53,3 +57,18 @@
     background-color: aqua;
 }
 
+
+.main-header .main-header__right .main-header__right--category-btn {
+    margin: 0 10px;
+    padding: 10px 15px;
+    background-color: #b779f6;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.main-header .main-header__right .main-header__right--category-btn:hover {
+    background-color: #c48dfc;
+}

@@ -10,7 +10,7 @@
     <script type="text/javascript" th:src="@{/js/popup.js}"></script>
 </head>
 <script>
-    function valueCheck() {
+    function partnerValueCheck() {
         // Validation
         // 해당 파일에서 꼭 해야 하는 건지 ?
         console.log("add btn");
@@ -25,6 +25,7 @@
             </a>
         </div>
         <div class="main-header__right">
+            <button class="main-header__right--category-btn">카테고리 추가</button>
             <button class="main-header__right--partner-btn">파트너 추가</button>
             <div class="main-header__right--sign">
                 <span>Log in</span>
@@ -32,7 +33,10 @@
             </div>
         </div>
     </header>
-    <th:block th:include="@{/partner-popup}"></th:block>
+    <div class="overlay">
+        <th:block th:include="@{/partner-popup}"></th:block>
+        <th:block th:include="@{/category-popup}"></th:block>
+    </div>
     <main>
         <nav>KSJ</nav>
         <div class="dashboard">
