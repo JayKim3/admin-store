@@ -4,6 +4,7 @@
 
 body {
     position: relative;
+    overflow-y: hidden;
 }
 
 .main-header {

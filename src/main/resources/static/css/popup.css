@@ -1,22 +1,21 @@
 .overlay{
     position: absolute;
-    z-index:999;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     /*background-color:rgba(0,0,0,.5)*/
 }
 
 .top-cancel-wrapper {
     display: flex;
     justify-content:right;
-    padding: 20px;
+    padding: 10px;
     background-color: #30343c;
 }
 
 .top-cancel-wrapper .top-cancel-btn {
     margin-left: auto;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
     color: white;
 }
 
@@ -25,7 +24,7 @@
 .partner-popup-wrapper {
     display: none;
     width: 800px;
-    height: 800px;
+    height: 670px;
     background-color: white;
     position: absolute;
     left: 50%;
@@ -35,14 +34,14 @@
     box-shadow: 0 0 30px 5px black;
 }
 
-.partner-popup-row {
+.popup-row {
     display: flex;
     padding: 20px;
     border-bottom: 1px solid gray;
     align-items: center;
 }
 
-.partner-popup-btn-wrapper {
+.popup-btn-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +49,7 @@
     border-bottom: none;
 }
 
-.partner-popup-btn-wrapper button {
+.popup-btn-wrapper button {
     width: 100px;
     padding: 10px;
     margin: 50px;
@@ -60,49 +59,53 @@
     border-radius: 4px;
 }
 
-.partner-popup-btn-wrapper .add-btn {
+.popup-btn-wrapper .add-btn {
     background-color: skyblue;
 }
 
-.partner-popup-btn-wrapper .cancel-btn {
+.popup-btn-wrapper .cancel-btn {
     background-color: red;
 }
 
-.partner-popup-row .partner-popup-row__left {
+.popup-row .popup-row__left {
     width: 30%;
 }
 
-.partner-popup-row .partner-popup-row__right {
+.popup-row .popup-row__left svg {
+    width: 15px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+.popup-row .popup-row__right {
     width: 70%;
 }
 
-.partner-popup-wrapper .partner-popup-row__right input {
+.popup-wrapper .popup-row__right input {
     width: 400px;
     height: 30px;
     padding: 0 10px;
 }
 
-.partner-popup-row__address .partner-popup-row__address--row {
+.popup-row__address .popup-row__address--row {
     display: flex;
     align-items: center;
 }
 
-.partner-popup-row__address .partner-popup-row__address--row input {
+.popup-row__address .popup-row__address--row input {
     margin: 5px 5px 5px 0;
 }
 
-.partner-popup-row__address .partner-popup-row__address--row .search-btn {
+.popup-row__address .popup-row__address--row .search-btn {
     width: 100px;
     cursor: pointer;
 }
 
 /* Category Popup CSS */
-
-
 .category-popup-wrapper {
     display: none;
     width: 400px;
-    height: 400px;
+    height: 220px;
     background-color: white;
     position: absolute;
     left: 50%;
