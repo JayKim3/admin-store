@@ -1,5 +1,6 @@
 package com.study.adminstore.service;
 
+import com.study.adminstore.ifs.CountInterface;
 import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.network.Header;
 import com.study.adminstore.model.network.request.CategoryApiRequest;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class CategoryApiService implements CrudInterface<CategoryApiRequest, CategoryApiResponse> {
+public class CategoryApiService implements CrudInterface<CategoryApiRequest, CategoryApiResponse>, CountInterface {
 
     @Autowired
     private CategoryRepositoryMysql categoryRepositoryMysql;
@@ -37,7 +38,8 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
         return null;
     }
 
-    public int categoryCountAll() {
+    @Override
+    public int countAll() {
         return categoryRepositoryMysql.categoryCountAll();
     }
 }

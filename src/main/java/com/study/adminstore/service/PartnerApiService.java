@@ -1,5 +1,6 @@
 package com.study.adminstore.service;
 
+import com.study.adminstore.ifs.CountInterface;
 import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.entity.Partner;
 import com.study.adminstore.model.network.Header;
@@ -10,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PartnerApiService implements CrudInterface<PartnerApiRequest, PartnerApiResponse> {
+public class PartnerApiService implements CrudInterface<PartnerApiRequest, PartnerApiResponse>, CountInterface {
 
     @Autowired
     PartnerRepositoryMysql partnerRepositoryMysql;
@@ -38,7 +39,8 @@ public class PartnerApiService implements CrudInterface<PartnerApiRequest, Partn
         return null;
     }
 
-    public int partnerCountAll() {
+    @Override
+    public int countAll() {
         return partnerRepositoryMysql.partnerCountAll();
     }
 }

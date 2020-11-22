@@ -1,5 +1,6 @@
 package com.study.adminstore.service;
 
+import com.study.adminstore.ifs.CountInterface;
 import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.entity.User;
 import com.study.adminstore.model.network.Header;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserApiService implements CrudInterface<UserApiRequest, UserApiResponse> {
+public class UserApiService implements CrudInterface<UserApiRequest, UserApiResponse>, CountInterface {
 
     @Autowired
     private UserRepositoryMysql userRepositoryMysql;
@@ -84,13 +85,15 @@ public class UserApiService implements CrudInterface<UserApiRequest, UserApiResp
         }).orElseGet(()->Header.ERROR("데이터 없음"));
     }
 
+    @Override
+    public int countAll() {
+        return userRepositoryMysql.userCountAll();
+    }
+
     public List<User> findAll() {
         return null;
     }
 
-    public int userCountAll() {
-        return userRepositoryMysql.userCountAll();
-    }
 
     private Header<UserApiResponse> response(User user) {
         UserApiResponse userApiResponse = UserApiResponse.builder()

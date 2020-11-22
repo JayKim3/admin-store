@@ -8,8 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.annotation.PostConstruct;
+
 @Controller
 public class AdminController {
+
+    private int userCount;
+    private int partnerCount;
+    private int categoryCount;
 
     @Autowired
     private UserApiService userApiService;
@@ -20,13 +26,15 @@ public class AdminController {
     @Autowired
     private CategoryApiService categoryApiService;
 
+    @PostConstruct
+    public void init() {
+        this.userCount = userApiService.countAll();
+        this.partnerCount = partnerApiService.countAll();
+        this.categoryCount = categoryApiService.countAll();
+    }
+
     @GetMapping("/")
     public String thymeleafTest(Model model) {
-        // Todo: Category(3), User count(2), Partner(1) 정보 Setting
-        int userCount = userApiService.userCountAll();
-        int partnerCount = partnerApiService.partnerCountAll();
-        int categoryCount = categoryApiService.categoryCountAll();
-
         model.addAttribute("userCount", userCount);
         model.addAttribute("partnerCount", partnerCount);
         model.addAttribute("categoryCount", categoryCount);

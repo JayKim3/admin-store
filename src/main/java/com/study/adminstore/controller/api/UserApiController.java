@@ -1,5 +1,6 @@
 package com.study.adminstore.controller.api;
 
+import com.study.adminstore.controller.CrudController;
 import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.entity.User;
 import com.study.adminstore.model.network.Header;
@@ -11,48 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/user")
-public class UserApiController implements CrudInterface<UserApiRequest, UserApiResponse> {
+public class UserApiController extends CrudController<UserApiRequest, UserApiResponse> {
 
     @Autowired
     private UserApiService userApiService;
 
-    @Override
-    @PostMapping("") // -> /api/user
-    public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> userApiRequest) {
-        log.info("{}", userApiRequest);
-        return userApiService.create(userApiRequest);
+    @PostConstruct
+    public void init() {
+        this.baseService = userApiService;
     }
-
-    @Override
-    @GetMapping("{id}")
-    public Header read(@PathVariable(name = "id") Long id) {
-        log.info("read id : {}", id);
-        return userApiService.read(id);
-    }
-
-    @Override
-    @PutMapping("")
-    public Header<UserApiResponse> update(@RequestBody Header<UserApiRequest> userApiRequest) {
-        return userApiService.update(userApiRequest);
-    }
-
-    @Override
-    @DeleteMapping("{id}")
-    public Header delete(@PathVariable(name = "id") Long id) {
-        log.info("delete id : {}", id);
-        return userApiService.delete(id);
-    }
-
-    @GetMapping("/list")
-    public String list(Model model) {
-        List<User> userList = userApiService.findAll();
-        model.addAttribute("userList", userList);
-        return "index";
-    }
-
 }

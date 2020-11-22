@@ -3,8 +3,27 @@
         <span class="top-cancel-btn">X</span>
     </div>
     <form method="post" action="/api/category" onsubmit="return categoryValueCheck()">
-        <div class="">
-
+        <div class="partner-popup-row">
+            <div class="partner-popup-row__left">
+                <img />
+                <span>Type</span>
+            </div>
+            <div class="partner-popup-row__right">
+                <input placeholder="Type 입력"/>
+            </div>
+        </div>
+        <div class="partner-popup-row">
+            <div class="partner-popup-row__left">
+                <img />
+                <span>Title</span>
+            </div>
+            <div class="partner-popup-row__right">
+                <input placeholder="Title 입력"/>
+            </div>
+        </div>
+        <div class="partner-popup-btn-wrapper">
+            <button type="submit" class="add-btn">Add</button>
+            <button type="button" class="cancel-btn">Cancel</button>
         </div>
     </form>
 </div>
