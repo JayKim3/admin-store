@@ -1,15 +1,16 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <div class="category-popup-wrapper">
     <div class="top-cancel-wrapper">
         <span class="top-cancel-btn">X</span>
     </div>
-    <form method="post" action="/api/category" onsubmit="return categoryValueCheck()">
+    <form method="post" th:action="@{/api/category}" onsubmit="return categoryValueCheck()">
         <div class="popup-row">
             <div class="popup-row__left">
                 <i class="fas fa-sort"></i>
                 <span>Type</span>
             </div>
             <div class="popup-row__right">
-                <input placeholder="Type 입력"/>
+                <input name="type" placeholder="Type 입력"/>
             </div>
         </div>
         <div class="popup-row">
@@ -18,7 +19,7 @@
                 <span>Title</span>
             </div>
             <div class="popup-row__right">
-                <input placeholder="Title 입력"/>
+                <input name="title" placeholder="Title 입력"/>
             </div>
         </div>
         <div class="popup-btn-wrapper">

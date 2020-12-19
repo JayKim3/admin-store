@@ -27,4 +27,12 @@ public class Category {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if( o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return type.equals(category.type) && title.equals(category.title);
+    }
 }

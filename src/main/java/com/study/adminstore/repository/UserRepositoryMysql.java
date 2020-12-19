@@ -18,7 +18,7 @@ public class UserRepositoryMysql implements UserRepository{
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public User create( User user) {
+    public User create(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection-> {
             PreparedStatement ps = connection.prepareStatement("insert into user(account, password, status, email, phone_number, registered_at, unregistered_at, created_at, created_by, updated_at, updated_by) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);

@@ -7,13 +7,17 @@ import com.study.adminstore.model.network.Header;
 import com.study.adminstore.model.network.response.UserApiResponse;
 import com.study.adminstore.model.network.request.UserApiRequest;
 import com.study.adminstore.repository.UserRepositoryMysql;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class UserApiService implements CrudInterface<UserApiRequest, UserApiResponse>, CountInterface {
 
@@ -25,16 +29,21 @@ public class UserApiService implements CrudInterface<UserApiRequest, UserApiResp
         // request data
         // user create
         // UserApiResponse return
-         UserApiRequest userApiRequest = req.getData();
+
+        UserApiRequest userApiRequest = req.getData();
 
          User user = User.builder()
                 .account(userApiRequest.getAccount())
                 .password(userApiRequest.getPassword())
-                .status("REGISTERED")
+                .status(userApiRequest.getStatus())
                 .phoneNumber(userApiRequest.getPhoneNumber())
                 .email(userApiRequest.getEmail())
                 .registeredAt(LocalDateTime.now())
                 .unregisteredAt(LocalDateTime.now())
+                .createdAt(LocalDateTime.now())
+                .createdBy("KSJ")
+                .updatedAt(LocalDateTime.now())
+                .updatedBy("KSJ")
                 .build();
 
         User newUser = userRepositoryMysql.create(user);

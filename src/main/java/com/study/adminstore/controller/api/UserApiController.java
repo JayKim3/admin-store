@@ -18,13 +18,29 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/user")
-public class UserApiController extends CrudController<UserApiRequest, UserApiResponse> {
+public class UserApiController implements CrudInterface<UserApiRequest, UserApiResponse> {
 
     @Autowired
     private UserApiService userApiService;
 
-    @PostConstruct
-    public void init() {
-        this.baseService = userApiService;
+    @Override
+    @PostMapping("")
+    public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> req) {
+        return userApiService.create(req);
+    }
+
+    @Override
+    public Header<UserApiResponse> read(Long id) {
+        return null;
+    }
+
+    @Override
+    public Header<UserApiResponse> update(Header<UserApiRequest> req) {
+        return null;
+    }
+
+    @Override
+    public Header delete(Long id) {
+        return null;
     }
 }

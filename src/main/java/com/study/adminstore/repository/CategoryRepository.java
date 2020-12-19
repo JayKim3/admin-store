@@ -7,6 +7,8 @@ import java.util.List;
 public interface CategoryRepository {
     Category create(Category category);
 
+    Category findById(Long id);
+
     List<Category> findAll();
 
     Category update(Category category);

@@ -14,7 +14,21 @@
         // Validation
         // 해당 파일에서 꼭 해야 하는 건지 ?
         console.log("add btn");
-        return false;
+    }
+
+    function categoryValueCheck() {
+        // Validation
+        const type = jQuery('input[name=type]').val();
+        const title = jQuery('input[name=title]').val();
+        // LocalDateTime, resultCode, description
+
+        if(type === "" || title === "") console.log("type or title input");
+        // transaction_time -> 오른쪽과 같은 형태로 2019-07-31T22:57:56.692
+        // resultCode, description -> OK ? 강의 다시보고 알맞은 값 넣기
+        // data -> 전달받은 데이터 넣기
+        // 전달할때 데이터를 어떤식으로 파싱해서 넘겨야하는지 ?
+
+        return true;
     }
 </script>
 <body>
