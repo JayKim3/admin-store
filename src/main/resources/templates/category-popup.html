@@ -1,9 +1,8 @@
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <div class="category-popup-wrapper">
     <div class="top-cancel-wrapper">
         <span class="top-cancel-btn">X</span>
     </div>
-    <form method="post" th:action="@{/api/category}" onsubmit="return categoryValueCheck()">
+    <form>
         <div class="popup-row">
             <div class="popup-row__left">
                 <i class="fas fa-sort"></i>
@@ -23,7 +22,7 @@
             </div>
         </div>
         <div class="popup-btn-wrapper">
-            <button type="submit" class="add-btn">Add</button>
+            <button id="category-add" type="button" class="add-btn">Add</button>
             <button type="button" class="cancel-btn">Cancel</button>
         </div>
     </form>
