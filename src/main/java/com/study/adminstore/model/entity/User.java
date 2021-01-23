@@ -2,8 +2,11 @@ package com.study.adminstore.model.entity;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.springframework.data.annotation.*;
 
+import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.time.LocalDateTime;
 
 @Data
@@ -12,9 +15,12 @@ import java.time.LocalDateTime;
 @ToString(exclude = {"orderGroupList"})
 @Builder
 @Accessors(chain = true) // 객체를 체이닝형태로 생성하거나 수정 가능
+@Entity
 public class User {
     // Java -> Camel Case, DB -> Snake Case
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String account;

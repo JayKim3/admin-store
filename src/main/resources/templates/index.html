@@ -18,6 +18,9 @@
 $(document).ready(function(){
     $('#category-add').on('click', function(){
         // Validation
+        // 해당 카테고리 이미 존재한 카테고리인지 ?
+
+
         const type = $('input[name=type]').val();
         const title = $('input[name=title]').val();
         const nowDate = new Date().toISOString();
@@ -51,9 +54,10 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
                 if(data) {
-                    alert('카테고리가 성공적으로 추가 되었습니다.');
-                    $('.overlay').css('backgroundColor', 'rgba(1,0,0,0)');
-                    $('.category-popup-wrapper').css('display', 'none');
+                    const type = data.data.type;
+                    alert(type + ' 가 성공적으로 추가 되었습니다.');
+                    // setTimeout 설정해주기
+                    window.location.href= "/";
                 }
             },
             error: function (e) {

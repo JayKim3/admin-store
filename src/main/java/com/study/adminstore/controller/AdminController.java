@@ -13,31 +13,20 @@ import javax.annotation.PostConstruct;
 @Controller
 public class AdminController {
 
-    private int userCount;
-    private int partnerCount;
-    private int categoryCount;
-
     @Autowired
-    private UserApiService userApiService;
-
-    @Autowired
-    private PartnerApiService partnerApiService;
-
-    @Autowired
-    private CategoryApiService categoryApiService;
+    CategoryApiService categoryApiService;
 
     @PostConstruct
     public void init() {
-        this.userCount = userApiService.countAll();
-        this.partnerCount = partnerApiService.countAll();
-        this.categoryCount = categoryApiService.countAll();
+//        this.userCount = userApiService.countAll();
+//        this.partnerCount = partnerApiService.countAll();
     }
 
     @GetMapping("/")
     public String thymeleafTest(Model model) {
-        model.addAttribute("userCount", userCount);
-        model.addAttribute("partnerCount", partnerCount);
-        model.addAttribute("categoryCount", categoryCount);
+//        model.addAttribute("userCount", userCount);
+//        model.addAttribute("partnerCount", partnerCount);
+        model.addAttribute("categoryCount", categoryApiService.count());
         return "index";
     }
 }
