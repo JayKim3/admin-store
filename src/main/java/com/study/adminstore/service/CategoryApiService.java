@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -20,19 +21,23 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
     CategoryRepository categoryRepository;
 
     @Override
-    public Header<CategoryApiResponse> create(Header<CategoryApiRequest> req) {
+    public Header<CategoryApiResponse> create(final Header<CategoryApiRequest> req) {
         // request data
         // category create
         // CategoryApiResponse return
 
-        CategoryApiRequest categoryApiRequest = req.getData();
+        final CategoryApiRequest categoryApiRequest = req.getData();
 
-        String type = categoryApiRequest.getType();
-        String title = categoryApiRequest.getTitle();
+        final String parentType = categoryApiRequest.getParentType();
+        final String type = categoryApiRequest.getType();
+        final String title = categoryApiRequest.getTitle();
 
-        if(type.equals("") || title.equals("")) return Header.ERROR("failed");
+        System.out.println(categoryApiRequest);
+        
+        if(parentType.equals("") || type.equals("") || title.equals("")) return Header.ERROR("failed");
 
-        Category category = Category.builder()
+        final Category category = Category.builder()
+                .parentType(categoryApiRequest.getParentType())
                 .type(categoryApiRequest.getType())
                 .title(categoryApiRequest.getTitle())
                 .createdAt(LocalDateTime.now())
@@ -49,19 +54,19 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
     }
 
     @Override
-    public Header<CategoryApiResponse> read(Long id) {
+    public Header<CategoryApiResponse> read(final Long id) {
         System.out.println(id);
-        Optional<Category> optional = categoryRepository.findById(id);
+        final Optional<Category> optional = categoryRepository.findById(id);
 
         return optional.map(category-> response(category))
                 .orElseGet(()->Header.ERROR("Category Id Not Found"));
     }
 
     @Override
-    public Header<CategoryApiResponse> update(Header<CategoryApiRequest> req) {
+    public Header<CategoryApiResponse> update(final Header<CategoryApiRequest> req) {
 
-        CategoryApiRequest categoryApiRequest = req.getData();
-        Optional<Category> optional = categoryRepository.findById(categoryApiRequest.getId());
+        final CategoryApiRequest categoryApiRequest = req.getData();
+        final Optional<Category> optional = categoryRepository.findById(categoryApiRequest.getId());
 
         return optional.map(category -> {
             category.setType(categoryApiRequest.getType())
@@ -75,8 +80,8 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
     }
 
     @Override
-    public Header delete(Long id) {
-        Optional<Category> optional = categoryRepository.findById(id);
+    public Header delete(final Long id) {
+        final Optional<Category> optional = categoryRepository.findById(id);
 
         return optional.map(category-> {
             categoryRepository.delete(category);
@@ -90,8 +95,15 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
         return categoryRepository.count();
     }
 
-    private Header<CategoryApiResponse> response(Category category) {
-        CategoryApiResponse categoryApiResponse = CategoryApiResponse.builder()
+    public Header<CategoryApiResponse> findAll() {
+        final List<Category> categories = categoryRepository.findAll();
+        System.out.println(categories);
+        return response((Category) categories);
+    }
+
+    private Header<CategoryApiResponse> response(final Category category) {
+        final CategoryApiResponse categoryApiResponse = CategoryApiResponse.builder()
+                .parentType(category.getParentType())
                 .type(category.getType())
                 .title(category.getTitle())
                 .build();

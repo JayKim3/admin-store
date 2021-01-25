@@ -1,8 +1,6 @@
 package com.study.adminstore.controller;
 
 import com.study.adminstore.service.CategoryApiService;
-import com.study.adminstore.service.PartnerApiService;
-import com.study.adminstore.service.UserApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -20,8 +20,10 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
+
+    private String parentType;
 
     private String type;
 
@@ -35,24 +37,19 @@ public class Category {
 
     private String updatedBy;
 
-    @ManyToOne
-    @JoinColumn(name = "PARENT_ID")
-    private Category parent;
-
-    @OneToMany(mappedBy = "parent")
-    private List<Category> child = new ArrayList<>();
-
     @ManyToMany
     @JoinTable(name = "CATEGORY_ITEM",
                 joinColumns = @JoinColumn(name = "CATEGORY_ID"),
                 inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
     )
 
+    private List<Item> items = new ArrayList<>();
+
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if(this == o) return true;
         if( o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
+        final Category category = (Category) o;
         return type.equals(category.type) && title.equals(category.title);
     }
 }

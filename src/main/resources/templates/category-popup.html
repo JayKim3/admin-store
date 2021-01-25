@@ -1,3 +1,5 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <div class="category-popup-wrapper">
     <div class="top-cancel-wrapper">
         <span class="top-cancel-btn">X</span>
@@ -6,10 +8,28 @@
         <div class="popup-row">
             <div class="popup-row__left">
                 <i class="fas fa-sort"></i>
-                <span>Type</span>
+                <span>Category(대)</span>
+            </div>
+            <div class="popup-row__right parent-category">
+                <div value="" class="selected-category-option">선택</div>
+                <ul name="parentType" class="hide" placeholder="Type(대) 선택">
+                    <li>홈데코</li>
+                    <li>가구</li>
+                    <li>침구</li>
+                    <li>가전</li>
+                    <li>생활용품</li>
+                    <li>반려동물</li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="popup-row">
+            <div class="popup-row__left">
+                <i class="fas fa-sort"></i>
+                <span>Category(소)</span>
             </div>
             <div class="popup-row__right">
-                <input name="type" placeholder="Type 입력"/>
+                <input name="type" placeholder="Type(소) 입력"/>
             </div>
         </div>
         <div class="popup-row">
@@ -25,5 +45,29 @@
             <button id="category-add" type="button" class="add-btn">Add</button>
             <button type="button" class="cancel-btn">Cancel</button>
         </div>
+    </form>
+</div>
+
+<div class="category-result-popup-wrapper">
+    <div class="top-cancel-wrapper">
+        <span class="top-cancel-btn">X</span>
+    </div>
+    <form>
+        <table class="category-table">
+            <th>id</th>
+            <th>parentType</th>
+            <th>type</th>
+            <th>title</th>
+            <th>created_at</th>
+            <th>updated_at</th>
+            <tr th:each="category: ${categoryList}">
+                <td th:text="${category.id}"></td>
+                <td th:text="${category.parentType}"></td>
+                <td th:text="${category.type}"></td>
+                <td th:text="${category.title}"></td>
+                <td th:text="${category.createdAt}"></td>
+                <td th:text="${category.updatedAt}"></td>
+            </tr>
+        </table>
     </form>
 </div>

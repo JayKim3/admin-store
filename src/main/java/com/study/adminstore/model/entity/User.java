@@ -20,7 +20,7 @@ public class User {
     // Java -> Camel Case, DB -> Snake Case
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     private String account;

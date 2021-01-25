@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PartnerApiResponse {
-
+public class StoreApiResponse {
     private Long id;
 
     private String account;
@@ -25,13 +24,11 @@ public class PartnerApiResponse {
 
     private String address;
 
-    private String BusinessNumber;
+    private String businessNumber;
 
     private String ceoName;
 
     private LocalDateTime registeredAt;
 
     private LocalDateTime unregisteredAt;
-
-    private Long categoryId;
 }

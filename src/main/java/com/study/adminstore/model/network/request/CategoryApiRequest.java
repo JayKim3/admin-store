@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class CategoryApiRequest {
     private Long id;
 
+    private String parentType;
+
     private String type;
 
     private String title;

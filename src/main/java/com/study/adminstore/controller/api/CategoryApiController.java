@@ -19,25 +19,31 @@ public class CategoryApiController implements CrudInterface<CategoryApiRequest, 
 
     @Override
     @PostMapping("")
-    public Header<CategoryApiResponse> create(@RequestBody Header<CategoryApiRequest> req) {
+    public Header<CategoryApiResponse> create(@RequestBody final Header<CategoryApiRequest> req) {
         return categoryApiService.create(req);
     }
 
     @Override
     @GetMapping("{id}")
-    public Header<CategoryApiResponse> read(@PathVariable Long id) {
+    public Header<CategoryApiResponse> read(@PathVariable final Long id) {
+        System.out.println("id" + id);
         return categoryApiService.read(id);
     }
 
     @Override
     @PutMapping("")
-    public Header<CategoryApiResponse> update(@RequestBody Header<CategoryApiRequest> req) {
+    public Header<CategoryApiResponse> update(@RequestBody final Header<CategoryApiRequest> req) {
         return categoryApiService.update(req);
     }
 
     @Override
     @DeleteMapping("{id}")
-    public Header delete(@PathVariable Long id) {
+    public Header delete(@PathVariable final Long id) {
         return categoryApiService.delete(id);
+    }
+
+    @GetMapping("/findAll")
+    public Header<CategoryApiResponse> findAll() {
+        return categoryApiService.findAll();
     }
 }

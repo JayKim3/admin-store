@@ -16,11 +16,13 @@
         console.log("add btn");
     }
 $(document).ready(function(){
+    const parentCategoryUl = $('.parent-category ul');
+
     $('#category-add').on('click', function(){
         // Validation
         // 해당 카테고리 이미 존재한 카테고리인지 ?
 
-
+        const parentType = $('.selected-category-option').val();
         const type = $('input[name=type]').val();
         const title = $('input[name=title]').val();
         const nowDate = new Date().toISOString();
@@ -30,17 +32,19 @@ $(document).ready(function(){
 
         const request = {
             "transaction_time" : nowDate,
-            "resultCode" : "OK",
+            "resultCode" : "SUCCESS",
             "description" : "category insert OK"
         };
 
         const data = {};
-        if (type === "" || title === "") {
+
+        if (parentType === "" || type === "" || title === "") {
             alert("type or title input plz");
             return;
         }
 
         else {
+            data.parent_type = parentType;
             data.type = type;
             data.title = title;
             request.data = data;
@@ -54,8 +58,9 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
                 if(data) {
+                    const parentType = data.data.parent_type;
                     const type = data.data.type;
-                    alert(type + ' 가 성공적으로 추가 되었습니다.');
+                    alert(parentType +'[' + type + ']가 성공적으로 추가 되었습니다.');
                     // setTimeout 설정해주기
                     window.location.href= "/";
                 }
@@ -65,6 +70,25 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('.selected-category-option').on('click', function() {
+        if(parentCategoryUl.hasClass('hide')) {
+            parentCategoryUl.removeClass('hide');
+            parentCategoryUl.addClass('show');
+        } else {
+            parentCategoryUl.addClass('hide');
+            parentCategoryUl.removeClass('show');
+        }
+    });
+
+    $('.parent-category ul li').on('click', function() {
+        parentCategoryUl.removeClass('show');
+        parentCategoryUl.addClass('hide');
+        $('.selected-category-option').html($(this).text());
+        $('.selected-category-option').val($(this).text());
+
+    });
+
 })
 </script>
 <body>
@@ -104,12 +128,29 @@ $(document).ready(function(){
                 <div class="card blue">
                     <i class="fas fa-users"></i>
                     <span class="card-title">User Total</span>
-                    <span class="card-count" th:text="${userCount}">1004</span>
+                    <span class="card-count" th:text="${userCount}"></span>
                 </div>
-                <div class="card orange">
+                <div class="card orange category-total">
                     <i class="far fa-object-group"></i>
                     <span class="card-title">Category Total</span>
-                    <span class="card-count" th:text="${categoryCount}">10</span>
+                    <span class="card-count" th:text="${categoryCount}"></span>
+                </div>
+            </div>
+            <div class="card-wrapper">
+                <div class="card orange">
+                    <i class="fas fa-handshake"></i>
+                    <span class="card-title">item Total</span>
+                    <span class="card-count" th:text="${itemCount}"></span>
+                </div>
+                <div class="card blue">
+                    <i class="far fa-object-group"></i>
+                    <span class="card-title">Order Total</span>
+                    <span class="card-count" th:text="${orderCount}"></span>
+                </div>
+                <div class="card purple">
+                    <i class="far fa-object-group"></i>
+                    <span class="card-title">Number of visitors per day</span>
+                    <span class="card-count" th:text="${visitCount}"></span>
                 </div>
             </div>
         </div>

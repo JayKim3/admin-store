@@ -2,11 +2,6 @@
 @import 'popup.css';
 @import 'main.css';
 
-body {
-    position: relative;
-    overflow-y: hidden;
-}
-
 .main-header {
     width: 100%;
     height: 80px;

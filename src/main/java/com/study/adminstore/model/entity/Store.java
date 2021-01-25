@@ -1,6 +1,9 @@
 package com.study.adminstore.model.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
@@ -15,22 +18,30 @@ import java.time.LocalDateTime;
 @Builder
 @Accessors(chain = true)
 @Entity
-public class Partner {
-
+public class Store {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
+    // 계정
     private String account;
 
+    // 비밀번호
+    private String password;
+
+    // 상점 이름
     private String name;
 
+    // 상점 상태
     private String status;
 
+    // 상점 주소
     private String address;
 
+    // 사업자 번호
     private String businessNumber;
 
+    // CEO 이름
     private String ceoName;
 
     private LocalDateTime registeredAt;
@@ -44,6 +55,4 @@ public class Partner {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
-
-    // Partner : Category -> N : 1
 }

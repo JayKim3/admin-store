@@ -2,6 +2,10 @@ main {
     width: 100%;
     height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f6f6f6;
+    box-sizing: border-box;
 }
 
 main nav {
@@ -10,14 +14,12 @@ main nav {
     background-color: #30343c;
 }
 .dashboard {
-    width: 80%;
-    height: 100vh;
+    width: 100%;
     padding: 0 80px;
-    background-color: #f6f6f6;
 }
 
 .dashboard header {
-    margin: 40px 0 20px 0;
+    margin: 20px 0;
 }
 
 .dashboard .dashboard__header svg {
@@ -33,7 +35,18 @@ main nav {
 .dashboard .card-wrapper {
     margin-top: 20px;
     display: flex;
+    cursor: pointer;
 }
+
+.dashboard .card-wrapper .category-total {
+    transition: background-color 2s ease-out;
+}
+
+.dashboard .card-wrapper .category-total:hover {
+    bakground-color: red;
+    color: black;
+}
+
 
 .dashboard .card-wrapper .card {
     width: 340px;
@@ -44,6 +57,8 @@ main nav {
     margin: 0 20px;
     padding: 30px;
     border-radius: 5px;
+    z-index: 10;
+    cursor: pointer;
 }
 
 
