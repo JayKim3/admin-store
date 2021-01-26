@@ -21,10 +21,11 @@ public class AdminController {
     }
 
     @GetMapping("/")
-    public String thymeleafTest(Model model) {
+    public String thymeleafTest(final Model model) {
 //        model.addAttribute("userCount", userCount);
 //        model.addAttribute("partnerCount", partnerCount);
         model.addAttribute("categoryCount", categoryApiService.count());
+        model.addAttribute("categoryList", categoryApiService.findAll());
         return "index";
     }
 }

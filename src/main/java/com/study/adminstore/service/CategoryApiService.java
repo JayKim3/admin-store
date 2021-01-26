@@ -95,10 +95,9 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
         return categoryRepository.count();
     }
 
-    public Header<CategoryApiResponse> findAll() {
+    public List<Category> findAll() {
         final List<Category> categories = categoryRepository.findAll();
-        System.out.println(categories);
-        return response((Category) categories);
+        return categories;
     }
 
     private Header<CategoryApiResponse> response(final Category category) {

@@ -53,13 +53,15 @@
         <span class="top-cancel-btn">X</span>
     </div>
     <form>
-        <table class="category-table">
+        <table class="category-table" th:fragment="categoryList">
             <th>id</th>
             <th>parentType</th>
             <th>type</th>
             <th>title</th>
             <th>created_at</th>
             <th>updated_at</th>
+            <th class="th-blue">Update</th>
+            <th class="th-red">Delete</th>
             <tr th:each="category: ${categoryList}">
                 <td th:text="${category.id}"></td>
                 <td th:text="${category.parentType}"></td>
@@ -67,6 +69,8 @@
                 <td th:text="${category.title}"></td>
                 <td th:text="${category.createdAt}"></td>
                 <td th:text="${category.updatedAt}"></td>
+                <td><button type="button" th:onclick="update()">수정</button></td>
+                <td><button type="button">삭제</button></td>
             </tr>
         </table>
     </form>

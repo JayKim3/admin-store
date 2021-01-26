@@ -2,14 +2,18 @@ package com.study.adminstore.controller.api;
 
 import com.study.adminstore.controller.CrudController;
 import com.study.adminstore.ifs.CrudInterface;
+import com.study.adminstore.model.entity.Category;
 import com.study.adminstore.model.network.Header;
 import com.study.adminstore.model.network.request.CategoryApiRequest;
 import com.study.adminstore.model.network.response.CategoryApiResponse;
 import com.study.adminstore.service.CategoryApiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.awt.print.Pageable;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/category")
@@ -43,7 +47,8 @@ public class CategoryApiController implements CrudInterface<CategoryApiRequest, 
     }
 
     @GetMapping("/findAll")
-    public Header<CategoryApiResponse> findAll() {
+    public List<Category> findAll() {
+//        if(pageable == null) pageable = 5;
         return categoryApiService.findAll();
     }
 }

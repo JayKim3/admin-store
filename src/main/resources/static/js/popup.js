@@ -17,22 +17,14 @@ $(document).ready(function() {
     })
 
     $('.category-total').on('click', function(){
-        $.ajax({
-            type: "GET",
-            contentType: "application/json",
-            url: "/api/category/findAll",
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(e) {
-                console.log("ERROR : ", e);
-            }
-        });
-
         $('.overlay').css({'backgroundColor':'rgba(0,0,0,0.5)','zIndex' : 99});
         $('.category-result-popup-wrapper').css('display', 'block');
-    })
+    });
 });
+
+function update() {
+    console.log("1234ß");
+}
 
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 function sample4_execDaumPostcode() {
