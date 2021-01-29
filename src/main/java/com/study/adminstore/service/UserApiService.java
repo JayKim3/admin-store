@@ -3,13 +3,20 @@ package com.study.adminstore.service;
 import com.study.adminstore.ifs.CountInterface;
 import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.entity.User;
+import com.study.adminstore.model.entity.UserInfo;
 import com.study.adminstore.model.network.Header;
+import com.study.adminstore.model.network.request.UserInfoApiRequest;
 import com.study.adminstore.model.network.response.UserApiResponse;
 import com.study.adminstore.model.network.request.UserApiRequest;
-import com.study.adminstore.repository.UserRepositoryMysql;
+import com.study.adminstore.model.network.response.UserInfoApiResponse;
+import com.study.adminstore.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,93 +26,29 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class UserApiService implements CrudInterface<UserApiRequest, UserApiResponse>, CountInterface {
+public class UserApiService implements UserDetailsService {
 
     @Autowired
-    private UserRepositoryMysql userRepositoryMysql;
+    private UserRepository userRepository;
+    public UserInfoApiResponse create(final UserInfoApiRequest req) {
+        final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        final UserInfoApiRequest userInfoApiRequest = req;
+        userInfoApiRequest.setPassword(encoder.encode(userInfoApiRequest.getPassword()));
 
-    @Override
-    public Header<UserApiResponse> create(Header<UserApiRequest> req) {
-        // request data
-        // user create
-        // UserApiResponse return
-
-        UserApiRequest userApiRequest = req.getData();
-
-         User user = User.builder()
-                .account(userApiRequest.getAccount())
-                .password(userApiRequest.getPassword())
-                .status(userApiRequest.getStatus())
-                .phoneNumber(userApiRequest.getPhoneNumber())
-                .email(userApiRequest.getEmail())
-                .registeredAt(LocalDateTime.now())
-                .unregisteredAt(LocalDateTime.now())
-                .createdAt(LocalDateTime.now())
-                .createdBy("KSJ")
-                .updatedAt(LocalDateTime.now())
-                .updatedBy("KSJ")
-                .build();
-
-        User newUser = userRepositoryMysql.create(user);
-
-        return response(newUser);
+        return userRepository.save(UserInfo.builder()
+        .email(req.getEmail())
+        .auth(req.getAuth())
+        .password(req.getPassword()).build()).getCode();
     }
 
     @Override
-    public Header<UserApiResponse> read(Long id) {
-        // id -> repository getOne, getById
-
-        return Optional.ofNullable(userRepositoryMysql.findById(id))
-                .map(user-> response(user))
-                .orElseGet(()->Header.ERROR("데이터 없음"));
+    public UserInfo loadUserByUsername(final String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException((email)));
     }
 
-    @Override
-    public Header<UserApiResponse> update(Header<UserApiRequest> req) {
-        // 1. data
-        UserApiRequest userApiRequest = req.getData();
-        // 2. id -> user
-        Optional<User> optional = Optional.ofNullable(userRepositoryMysql.findById(userApiRequest.getId()));
-
-        return optional.map(user-> {
-            // 3. update
-            user.setAccount(userApiRequest.getAccount())
-                    .setPassword(userApiRequest.getPassword())
-                    .setStatus(userApiRequest.getStatus())
-                    .setPhoneNumber(userApiRequest.getPhoneNumber())
-                    .setEmail(userApiRequest.getEmail())
-                    .setRegisteredAt(userApiRequest.getRegisteredAt())
-                    .setUnregisteredAt(userApiRequest.getUnregisteredAt());
-            // 4. userApiResponse
-            return user;
-        })
-            .map(user-> userRepositoryMysql.update(user))
-            .map(updateUser-> response(updateUser))
-            .orElseGet(()->Header.ERROR("데이터 없음"));
-    }
-
-    @Override
-    public Header delete(Long id) {
-        Optional<User> optional = Optional.ofNullable(userRepositoryMysql.findById(id));
-
-        return optional.map((user)->{
-                userRepositoryMysql.deleteById(id);
-                return Header.OK();
-        }).orElseGet(()->Header.ERROR("데이터 없음"));
-    }
-
-    @Override
-    public int countAll() {
-        return userRepositoryMysql.userCountAll();
-    }
-
-    public List<User> findAll() {
-        return null;
-    }
-
-
-    private Header<UserApiResponse> response(User user) {
-        UserApiResponse userApiResponse = UserApiResponse.builder()
+    private Header<UserApiResponse> response(final User user) {
+        final UserApiResponse userApiResponse = UserApiResponse.builder()
                 .id(user.getId())
                 .account(user.getAccount())
                 .password(user.getPassword())

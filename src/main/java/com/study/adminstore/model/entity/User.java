@@ -36,7 +36,7 @@ public class User {
     private LocalDateTime registeredAt;
 
     private LocalDateTime unregisteredAt;
-    
+
     private LocalDateTime createdAt;
 
     private String createdBy;
