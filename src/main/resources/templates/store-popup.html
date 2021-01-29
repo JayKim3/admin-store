@@ -1,15 +1,15 @@
-<div class="partner-popup-wrapper">
+<div class="store-popup-wrapper">
     <div class="top-cancel-wrapper">
-        <span class="top-can    cel-btn">X</span>
+        <span class="top-cancel-btn">X</span>
     </div>
-    <form method="post" action="/api/partner" onsubmit="return partnerValueCheck()">
+    <form onsubmit="return storeValueCheck()">
         <div class="popup-row">
             <div class="popup-row__left">
                 <i class="fas fa-store"></i>
                 <span>App Store Name</span>
             </div>
             <div class="popup-row__right">
-                <input placeholder="App store Name 입력"/>
+                <input name="app_store" placeholder="App store Name 입력"/>
             </div>
         </div>
         <div class="popup-row">
@@ -18,7 +18,7 @@
                 <span>Account</span>
             </div>
             <div class="popup-row__right">
-                <input placeholder="Account 입력"/>
+                <input name="store_account" placeholder="Account 입력"/>
             </div>
         </div>
         <div class="popup-row">
@@ -27,7 +27,7 @@
                 <span>Password</span>
             </div>
             <div class="popup-row__right">
-                <input placeholder="Password 입력"/>
+                <input type="password" name="password1" placeholder="Password 입력"/>
             </div>
         </div>
         <div class="popup-row">
@@ -36,29 +36,29 @@
                 <span>Password 재입력</span>
             </div>
             <div class="popup-row__right">
-                <input placeholder="Password 재입력"/>
+                <input type="password"  name="password2" placeholder="Password 재입력"/>
             </div>
         </div>
-        <div class="popup-row">
-            <div class="popup-row__left">
-                <i class="fas fa-sitemap"></i>
-                <span>Category</span>
-            </div>
-            <div class="popup-row__right">
-                <select name="category">
-                    <option value="none">=== 선택 ===</option>
-                    <option value="korean">컴퓨터-전자제품</option>
-                    <option value="english">의류</option>
-                    <option value="chinese">멀티샵</option>
-                    <option value="spanish">인테리어</option>
-                    <option value="spanish">음식</option>
-                    <option value="spanish">스포츠</option>
-                    <option value="spanish">쇼핑몰</option>
-                    <option value="spanish">면세점</option>
-                    <option value="spanish">화장</option>
-                </select>
-            </div>
-        </div>
+<!--        <div class="popup-row">-->
+<!--            <div class="popup-row__left">-->
+<!--                <i class="fas fa-sitemap"></i>-->
+<!--                <span>Category</span>-->
+<!--            </div>-->
+<!--            <div class="popup-row__right">-->
+<!--                <select name="category">-->
+<!--                    <option value="none">=== 선택 ===</option>-->
+<!--                    <option value="korean">컴퓨터-전자제품</option>-->
+<!--                    <option value="english">의류</option>-->
+<!--                    <option value="chinese">멀티샵</option>-->
+<!--                    <option value="spanish">인테리어</option>-->
+<!--                    <option value="spanish">음식</option>-->
+<!--                    <option value="spanish">스포츠</option>-->
+<!--                    <option value="spanish">쇼핑몰</option>-->
+<!--                    <option value="spanish">면세점</option>-->
+<!--                    <option value="spanish">화장</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
         <div class="popup-row">
             <div class="popup-row__left">
                 <i class="fas fa-map-marker-alt"></i>
@@ -67,12 +67,12 @@
             <div class="popup-row__right">
                 <div class="popup-row__address">
                     <div class="popup-row__address--row">
-                        <input type="text" id="sample4_postcode" placeholder="우편번호">
+                        <input type="text" id="sample4_postcode" placeholder="우편번호" readonly>
                         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="search-btn"><br>
                     </div>
                     <div class="popup-row__address--row">
-                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소" readonly>
+                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소" readonly>
                     </div>
                     <span id="guide" style="color:#999;display:none"></span>
                     <div class="popup-row__address--row">
@@ -85,10 +85,10 @@
         <div class="popup-row">
             <div class="popup-row__left">
                 <img />
-                <span>CEO Name</span>
+                <span>CEO NAME</span>
             </div>
             <div class="popup-row__right">
-                <input placeholder="CEO 이름 입력"/>
+                <input name="ceo_name" placeholder="CEO 이름 입력"/>
             </div>
         </div>
         <div class="popup-row">
@@ -97,7 +97,7 @@
                 <span>Business Number</span>
             </div>
             <div class="popup-row__right">
-                <input placeholder="Business Number"/>
+                <input name="business_number" placeholder="Business Number"/>
             </div>
         </div>
         <div class="popup-btn-wrapper">

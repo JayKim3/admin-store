@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 
 <div class="category-popup-wrapper">
     <div class="top-cancel-wrapper">
@@ -69,8 +69,8 @@
                 <td th:text="${category.title}"></td>
                 <td th:text="${category.createdAt}"></td>
                 <td th:text="${category.updatedAt}"></td>
-                <td><button type="button" th:onclick="update()">수정</button></td>
-                <td><button type="button">삭제</button></td>
+                <td><button type="button" th:onclick="categoryUpdate()">수정</button></td>
+                <td><button type="button" th:onclick="'javascript:categoryDelete(' + ${category.id} + ')'">삭제</button></td>
             </tr>
         </table>
     </form>

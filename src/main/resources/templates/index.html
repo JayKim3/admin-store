@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Admin Store</title>
@@ -10,11 +10,6 @@
     <script type="text/javascript" th:src="@{/js/popup.js}"></script>
 </head>
 <script>
-    function partnerValueCheck() {
-        // Validation
-        // 해당 파일에서 꼭 해야 하는 건지 ?
-        console.log("add btn");
-    }
 $(document).ready(function(){
     const parentCategoryUl = $('.parent-category ul');
 
@@ -86,7 +81,6 @@ $(document).ready(function(){
         parentCategoryUl.addClass('hide');
         $('.selected-category-option').html($(this).text());
         $('.selected-category-option').val($(this).text());
-
     });
 
 })
@@ -100,7 +94,7 @@ $(document).ready(function(){
         </div>
         <div class="main-header__right">
             <button class="main-header__right--category-btn">카테고리 추가</button>
-            <button class="main-header__right--partner-btn">파트너 추가</button>
+            <button class="main-header__right--store-btn">파트너 추가</button>
             <div class="main-header__right--sign">
                 <span>Log in</span>
                 <i class="fas fa-sign-in-alt"></i>
@@ -108,7 +102,7 @@ $(document).ready(function(){
         </div>
     </header>
     <div class="overlay">
-        <th:block th:include="@{/partner-popup}"></th:block>
+        <th:block th:include="@{/store-popup}"></th:block>
         <th:block th:include="@{/category-popup}"></th:block>
     </div>
     <main>
@@ -122,8 +116,8 @@ $(document).ready(function(){
             <div class="card-wrapper">
                 <div class="card purple">
                     <i class="fas fa-handshake"></i>
-                    <span class="card-title">Partner Total</span>
-                    <span class="card-count" th:text="${partnerCount}"></span>
+                    <span class="card-title">store Total</span>
+                    <span class="card-count" th:text="${storeCount}"></span>
                 </div>
                 <div class="card blue">
                     <i class="fas fa-users"></i>

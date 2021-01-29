@@ -19,12 +19,12 @@
     color: white;
 }
 
-/* Partner Popup CSS */
+/* store Popup CSS */
 
-.partner-popup-wrapper {
+.store-popup-wrapper {
     display: none;
     width: 800px;
-    height: 670px;
+    height: 620px;
     background-color: white ;
     position: absolute;
     left: 50%;

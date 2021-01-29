@@ -1,14 +1,14 @@
 $(document).ready(function() {
     $('.cancel-btn, .top-cancel-btn').on("click", function(){
         $('.overlay').css({'backgroundColor':'rgba(1,0,0,0)', 'zIndex' : 0});
-        $('.partner-popup-wrapper').css('display', 'none');
+        $('.store-popup-wrapper').css('display', 'none');
         $('.category-popup-wrapper').css('display', 'none');
         $('.category-result-popup-wrapper').css('display', 'none');
     });
 
-    $('.main-header__right--partner-btn').on("click", function() {
+    $('.main-header__right--store-btn').on("click", function() {
         $('.overlay').css({'backgroundColor':'rgba(0,0,0,0.5)','zIndex' : 99});
-        $('.partner-popup-wrapper').css('display', 'block');
+        $('.store-popup-wrapper').css('display', 'block');
     });
 
     $('.main-header__right--category-btn').on("click", function() {
@@ -22,8 +22,120 @@ $(document).ready(function() {
     });
 });
 
-function update() {
+function categoryUpdate() {
     console.log("1234ß");
+}
+
+function categoryDelete(id) {
+    $.ajax({
+        type: "DELETE",
+        url: "/api/category/" + id,
+        success: function(data) {
+            if(data) {
+                alert("삭제되었습니다.");
+                window.location.href= "/";
+            }
+        },
+        error: function(e) {
+            console.log("ERROR : ", e);
+        }
+    });
+}
+
+function storeValueCheck() {
+    const appStoreName = jQuery('input[name=app_store]').val();
+    const storeAccount = jQuery('input[name=store_account]').val();
+    const password1 = jQuery('input[name=password1]').val();
+    const password2 = jQuery('input[name=password2]').val();
+
+    const sample4_postcode = jQuery('#sample4_postcode').val();
+    const sample4_roadAddress = jQuery('#sample4_roadAddress').val();
+    const sample4_jibunAddress = jQuery('#sample4_jibunAddress').val();
+    const sample4_detailAddress = jQuery('#sample4_detailAddress').val();
+    const sample4_extraAddress = jQuery("#sample4_extraAddress").val();
+
+    const ceoName = jQuery('input[name=ceo_name]').val();
+    const businessNumber = jQuery('input[name=business_number]').val();
+
+    let address = "";
+    const data= {};
+
+    console.log(appStoreName, storeAccount, password1, password2, ceoName, businessNumber);
+
+    if(!appStoreName) {
+        alert('스토어 이름을 입력해주세요.');
+        return false;
+    }
+
+    if(!storeAccount) {
+        alert('스토어 계정 아이디를 입력해주세요.');
+        return false;
+    }
+
+    if(!password1 || !password2) {
+        alert('패스워드를 입력해주세요.');
+        return false;
+    }
+
+    if(password1 !== password2) {
+        alert('두 패스워드가 일치하지 않습니다.')
+        return false;
+    }
+
+    if(!sample4_postcode) {
+        alert('우편번호를 입력해주세요.');
+        return false;
+    } else {
+        address = sample4_postcode + "_" + sample4_roadAddress + "_" +
+            sample4_jibunAddress + "_" + sample4_detailAddress + "_" +
+            sample4_extraAddress;
+    }
+
+    if(!ceoName) {
+        alert('Ceo Name을 입력해주세요.');
+        return false;
+    }
+
+    if(!businessNumber) {
+        alert('사업자 번호를 입력해주세요.');
+        return false;
+    }
+
+
+    const nowDate = new Date().toISOString();
+    const request = {
+        "transaction_time" : nowDate,
+        "resultCode" : "SUCCESS",
+        "description" : "store insert OK"
+    };
+
+    data.account = storeAccount;
+    data.password = password1;
+    data.name = appStoreName;
+    data.status = 'Y';
+    data.address = address;
+    data.business_number = businessNumber;
+    data.ceo_name = ceoName;
+    request.data = data;
+
+    console.log(request);
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/api/store",
+        data: JSON.stringify(request),
+        dataType: 'json',
+        success: function(data) {
+            if(data) {
+                alert('성공적으로 추가되었습니다.');
+                window.location.href = "/";
+            }
+        },
+        error: function(e) {
+            console.log("ERROR : ", e);
+        }
+    })
 }
 
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.

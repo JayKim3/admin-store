@@ -1,0 +1,81 @@
+body {
+    background-color: #6668e7;
+    box-sizing: border-box;
+}
+
+.sign-wrapper {
+    width: 360px;
+    height: 680px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 50px;
+}
+
+.sign-wrapper .sign-wrapper__inner {
+    dispaly: flex;
+    flex-direction: column;
+}
+
+.sign-wrapper__title {
+    margin: 40px 0;
+}
+
+.sign-wrapper__title h1 {
+    color: #6668e7;
+    font-size: 32px;
+    margin: 0;
+}
+
+.sign-wrapper__title p {
+    line-height: 1.5;
+    font-size: 12px;
+    opacity: .6;
+    color: #6668e7;
+    margin: 0;
+    padding: 0;
+}
+
+.sign-wrapper__input {
+    display: inline-block;
+    margin: 20px 0;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.sign-wrapper__remember {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-wrapper__button {
+    margin-top: 70px;
+}
+
+.sign-wrapper__button button {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 40px;
+    border-radius: 24px;
+    border: none;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #6668e7;
+    color: #fff;
+    font-size: 20px;
+}
+
+.sign-wrapper__button p {
+    font-size: 12px;
+    text-align: center;
+}

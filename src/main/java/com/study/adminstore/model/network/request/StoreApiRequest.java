@@ -28,8 +28,4 @@ public class StoreApiRequest {
     private String businessNumber;
 
     private String ceoName;
-
-    private LocalDateTime registeredAt;
-
-    private LocalDateTime unregisteredAt;
 }

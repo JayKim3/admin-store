@@ -17,15 +17,20 @@ public class AdminController {
     @PostConstruct
     public void init() {
 //        this.userCount = userApiService.countAll();
-//        this.partnerCount = partnerApiService.countAll();
+//        this.storeCount = storeApiService.countAll();
     }
 
     @GetMapping("/")
     public String thymeleafTest(final Model model) {
 //        model.addAttribute("userCount", userCount);
-//        model.addAttribute("partnerCount", partnerCount);
+//        model.addAttribute("storeCount", storeCount);
         model.addAttribute("categoryCount", categoryApiService.count());
         model.addAttribute("categoryList", categoryApiService.findAll());
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String login(final Model model) {
+        return "login";
     }
 }
