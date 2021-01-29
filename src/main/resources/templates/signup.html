@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -12,23 +13,25 @@
             <h1>Sign In</h1>
             <p>어리석은 자는 멀리서 행복을 찾고, <br/>현명한 자는 자신의 발치에서 행복을 키워간다</p>
         </div>
-        <div class="sign-wrapper__input">
-            <input type="text" placeholder="Enter your email address"/>
-        </div>
-        <div class="sign-wrapper__input">
-            <input type="text" placeholder="Pick your username" />
-        </div>
-        <div class="sign-wrapper__input">
-            <input type="text" placeholder="Enter your password" />
-        </div>
-        <div class="sign-wrapper__input">
-            <input type="text" placeholder="Re-enter your password" />
-        </div>
-        <div class="sign-wrapper__button">
-            <button>Sign Up</button>
-            <p>Don't have an account?</p>
-            <span>Sign In</span>
-        </div>
+        <form th:action="@{/api/user/signup}" method="POST">
+            <div class="sign-wrapper__input">
+                <input type="text" placeholder="Enter your email address"/>
+            </div>
+            <div class="sign-wrapper__input">
+                <input type="text" placeholder="Pick your username" />
+            </div>
+            <div class="sign-wrapper__input">
+                <input type="text" placeholder="Enter your password" />
+            </div>
+            <div class="sign-wrapper__input">
+                <input type="text" placeholder="Re-enter your password" />
+            </div>
+            <div class="sign-wrapper__button">
+                <button type="submit">Sign Up</button>
+                <p>Don't have an account?</p>
+                <a href="/login"><span>Sign In</span></a>
+            </div>
+        </form>
     </div>
 </section>
 </body>
