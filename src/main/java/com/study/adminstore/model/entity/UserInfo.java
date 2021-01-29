@@ -15,10 +15,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-@NoArgsConstructor
-@ToString(exclude = {"orderGroupList"})
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@ToString(exclude = {"orderGroupList"})
 @Getter
-@Accessors(chain = true) // 객체를 체이닝형태로 생성하거나 수정 가능
+//@Accessors(chain = true) // 객체를 체이닝형태로 생성하거나 수정 가능
 @Entity
 public class UserInfo implements UserDetails {
     // Java -> Camel Case, DB -> Snake Case

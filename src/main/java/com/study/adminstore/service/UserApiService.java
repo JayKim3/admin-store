@@ -10,6 +10,7 @@ import com.study.adminstore.model.network.response.UserApiResponse;
 import com.study.adminstore.model.network.request.UserApiRequest;
 import com.study.adminstore.model.network.response.UserInfoApiResponse;
 import com.study.adminstore.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +26,21 @@ import java.util.List;
 import java.util.Optional;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class UserApiService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-    public UserInfoApiResponse create(final UserInfoApiRequest req) {
+
+    public Long create(final UserInfoApiRequest userInfoApiRequest) {
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        final UserInfoApiRequest userInfoApiRequest = req;
         userInfoApiRequest.setPassword(encoder.encode(userInfoApiRequest.getPassword()));
 
         return userRepository.save(UserInfo.builder()
-        .email(req.getEmail())
-        .auth(req.getAuth())
-        .password(req.getPassword()).build()).getCode();
+        .email(userInfoApiRequest.getEmail())
+        .auth(userInfoApiRequest.getAuth())
+        .password(userInfoApiRequest.getPassword()).build()).getId();
     }
 
     @Override
@@ -47,18 +49,18 @@ public class UserApiService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException((email)));
     }
 
-    private Header<UserApiResponse> response(final User user) {
-        final UserApiResponse userApiResponse = UserApiResponse.builder()
-                .id(user.getId())
-                .account(user.getAccount())
-                .password(user.getPassword())
-                .email(user.getEmail())
-                .phoneNumber(user.getPhoneNumber())
-                .status(user.getStatus())
-                .registeredAt(user.getRegisteredAt())
-                .unregisteredAt(user.getUnregisteredAt())
-                .build();
-
-        return Header.OK(userApiResponse);
-    }
+//    private Header<UserApiResponse> response(final User user) {
+//        final UserApiResponse userApiResponse = UserApiResponse.builder()
+//                .id(user.getId())
+//                .account(user.getAccount())
+//                .password(user.getPassword())
+//                .email(user.getEmail())
+//                .phoneNumber(user.getPhoneNumber())
+//                .status(user.getStatus())
+//                .registeredAt(user.getRegisteredAt())
+//                .unregisteredAt(user.getUnregisteredAt())
+//                .build();
+//
+//        return Header.OK(userApiResponse);
+//    }
 }

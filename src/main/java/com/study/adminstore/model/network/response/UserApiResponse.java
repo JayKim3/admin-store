@@ -1,20 +1,19 @@
 package com.study.adminstore.model.network.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
+@Getter
+@Setter
 public class UserApiResponse {
-    private Long id;
+//    private Long id;
 
-    private String account;
+//    private String account;
 
     private String password;
 
@@ -22,9 +21,9 @@ public class UserApiResponse {
 
     private String email;
 
-    private String phoneNumber;
-
-    private LocalDateTime registeredAt;
-
-    private LocalDateTime unregisteredAt;
+//    private String phoneNumber;
+//
+//    private LocalDateTime registeredAt;
+//
+//    private LocalDateTime unregisteredAt;
 }
