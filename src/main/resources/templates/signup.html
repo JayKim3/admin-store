@@ -12,10 +12,11 @@
 <section class="sign-wrapper">
     <div class="sign-wrapper__inner">
         <div class="sign-wrapper__title">
-            <h1>Sign In</h1>
+            <h1>Sign Up</h1>
             <p>어리석은 자는 멀리서 행복을 찾고, <br/>현명한 자는 자신의 발치에서 행복을 키워간다</p>
         </div>
-        <form onsubmit="return signgupCheck()">
+        <form onsubmit="signupCheck()">
+<!--        <form th:action="@{/user}" method="post">-->
             <div class="sign-wrapper__input">
                 <input type="text" name="email" placeholder="Enter your email address"/>
             </div>
@@ -31,6 +32,10 @@
             <div class="sign-wrapper__input">
                 <input type="text" name="phone_number" placeholder="Write your phoneNumber" />
             </div>
+<!--            <div class="sign-wrapper__input">-->
+<!--                <input type="radio" name="auth" value="ROLE_ADMIN,ROLE_USER"> admin-->
+<!--                <input type="radio" name="auth" value="ROLE_USER" checked="checked"> user <br>-->
+<!--            </div>-->
             <div class="sign-wrapper__button">
                 <button type="submit">Sign Up</button>
                 <p>Don't have an account?</p>

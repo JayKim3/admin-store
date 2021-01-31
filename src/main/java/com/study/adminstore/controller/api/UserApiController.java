@@ -9,30 +9,29 @@ import com.study.adminstore.model.network.response.UserApiResponse;
 import com.study.adminstore.model.network.request.UserApiRequest;
 import com.study.adminstore.model.network.response.UserInfoApiResponse;
 import com.study.adminstore.service.UserApiService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
-@Slf4j
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserApiController {
 
     @Autowired
     private UserApiService userApiService;
 
-    @PostMapping("/signup")
+    @PostMapping("")
     public String create(final UserInfoApiRequest userInfoApiRequest) {
         System.out.println(userInfoApiRequest);
-        userApiService.create(userInfoApiRequest);
+//        userApiService.create(userInfoApiRequest);
         return "redirect:/login";
     }
 

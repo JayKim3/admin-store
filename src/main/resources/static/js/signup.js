@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 });
 
-function signgupCheck() {
+function signupCheck() {
     const email = jQuery('input[name=email]').val();
     const account = jQuery('input[name=account]').val();
     const password1 = jQuery('input[name=password1]').val();
@@ -47,18 +47,16 @@ function signgupCheck() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/api/user/signup",
+        url: "/user",
         data: JSON.stringify(data),
-        dataType: 'json',
         success: function(data) {
             if(data) {
+                console.log(data);
                 alert('성공적으로 추가되었습니다.');
-                window.location.href = "/";
             }
         },
         error: function(e) {
             console.log("ERROR : ", e);
         }
     })
-
 }
