@@ -30,13 +30,14 @@ public class UserApiController {
     private UserApiService userApiService;
 
     @PostMapping("/signup")
-    public String create(UserInfoApiRequest userInfoApiRequest) {
+    public String create(final UserInfoApiRequest userInfoApiRequest) {
+        System.out.println(userInfoApiRequest);
         userApiService.create(userInfoApiRequest);
         return "redirect:/login";
     }
 
     @GetMapping("/logout")
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+    public String logoutPage(final HttpServletRequest request, final HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/";
     }

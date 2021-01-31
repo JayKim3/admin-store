@@ -15,9 +15,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 //@ToString(exclude = {"orderGroupList"})
 @Getter
+@Builder
 //@Accessors(chain = true) // 객체를 체이닝형태로 생성하거나 수정 가능
 @Entity
 public class UserInfo implements UserDetails {
@@ -48,15 +50,6 @@ public class UserInfo implements UserDetails {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
-
-    @Builder
-    public UserInfo(final String account, final String email, final String password, final String auth, final String phoneNumber) {
-//        this.account = account;
-        this.email = email;
-        this.password = password;
-        this.auth = auth;
-//        this.phoneNumber = phoneNumber;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

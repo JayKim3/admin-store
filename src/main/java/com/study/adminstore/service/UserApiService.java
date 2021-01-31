@@ -39,6 +39,7 @@ public class UserApiService implements UserDetailsService {
 
         return userRepository.save(UserInfo.builder()
         .email(userInfoApiRequest.getEmail())
+        .account(userInfoApiRequest.getAccount())
         .auth(userInfoApiRequest.getAuth())
         .password(userInfoApiRequest.getPassword()).build()).getId();
     }
