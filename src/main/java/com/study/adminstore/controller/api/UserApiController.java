@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserApiController {
 
@@ -29,7 +29,7 @@ public class UserApiController {
     private UserApiService userApiService;
 
     @PostMapping("")
-    public String create(final UserInfoApiRequest userInfoApiRequest) {
+    public String create(@RequestBody final UserInfoApiRequest userInfoApiRequest) {
         System.out.println(userInfoApiRequest);
 //        userApiService.create(userInfoApiRequest);
         return "redirect:/login";
