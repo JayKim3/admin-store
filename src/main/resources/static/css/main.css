@@ -3,7 +3,6 @@ main {
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
     background-color: #f6f6f6;
     box-sizing: border-box;
 }
@@ -15,7 +14,7 @@ main nav {
 }
 .dashboard {
     width: 100%;
-    padding: 0 80px;
+    padding: 40px 80px;
 }
 
 .dashboard header {

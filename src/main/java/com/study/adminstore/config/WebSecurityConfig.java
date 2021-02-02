@@ -1,6 +1,6 @@
 package com.study.adminstore.config;
 
-import com.study.adminstore.service.UserApiService;
+import com.study.adminstore.service.MemberApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserApiService userApiService;
+    private final MemberApiService memberApiService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userApiService).passwordEncoder(passwordEncoder()) ;
+        auth.userDetailsService(memberApiService).passwordEncoder(passwordEncoder()) ;
     }
 }
 

@@ -14,16 +14,17 @@
                 <p>어리석은 자는 멀리서 행복을 찾고, <br/>현명한 자는 자신의 발치에서 행복을 키워간다</p>
             </div>
             <form th:action="@{/login}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <div class="sign-wrapper__input">
                     <i class="fas fa-user-circle"></i>
-                    <input type="text" placeholder="email"/>
+                    <input type="text" name="username" placeholder="username"/>
                 </div>
 
                 <div class="sign-wrapper__hr"></div>
 
                 <div class="sign-wrapper__input">
                     <i class="fas fa-key"></i>
-                    <input type="text" placeholder="password" />
+                    <input type="text" name="password" placeholder="password" />
                 </div>
 
                 <div class="sign-wrapper__hr"></div>

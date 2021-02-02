@@ -38,7 +38,7 @@ $(document).ready(function() {
                 if(data) {
                     console.log(data);
                     alert('성공적으로 추가되었습니다.');
-                    window.location.href="/";
+                    window.location.href="/login";
                 }
             },
             error: function(e) {

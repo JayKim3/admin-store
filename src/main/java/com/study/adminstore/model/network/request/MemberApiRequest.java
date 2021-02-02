@@ -1,4 +1,4 @@
-package com.study.adminstore.model.network.response;
+package com.study.adminstore.model.network.request;
 
 
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserInfoApiResponse {
+public class MemberApiRequest {
     private Long id;
     private String email;
     private String account;

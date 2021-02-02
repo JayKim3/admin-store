@@ -21,7 +21,7 @@
 }
 
 .main-header .main-header__right {
-    width: 30%;
+    width: 40%;
     margin-left: auto;
     display: flex;
     justify-content: center;
@@ -48,7 +48,7 @@
     color: #FFFFFF;
     cursor: pointer;
 }
-
+a
 .main-header .main-header__right .main-header__right--store-btn:hover {
     background-color: aqua;
 }

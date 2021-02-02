@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Admin Store</title>
@@ -90,6 +90,8 @@ $(document).ready(function(){
         <div class="main-header__left">
             <a href="#">
                 <h2>Admin Store</h2>
+                ID : <span sec:authentication="name"></span> <br>
+                소유 권한 : <span sec:authentication="authorities"></span> <br>
             </a>
         </div>
         <div class="main-header__right">
