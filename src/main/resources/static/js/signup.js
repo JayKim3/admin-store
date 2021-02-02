@@ -1,7 +1,6 @@
 $(document).ready(function() {
-    $(".signup-btn").on("click", function(e){
+    $("form").on("submit", function(e){
         e.preventDefault();
-        // const $form = $(this).closest("form");
         const email = jQuery('input[name=email]').val();
         const account = jQuery('input[name=account]').val();
         const password1 = jQuery('input[name=password1]').val();
@@ -22,7 +21,7 @@ $(document).ready(function() {
         data.account = account;
         data.password = password1;
         data.phone_number = phoneNumber;
-        data.auth = "USER";
+        data.auth = "USER"; // auth Check
 
         $.ajax( {
 

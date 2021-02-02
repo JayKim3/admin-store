@@ -11,6 +11,8 @@ import com.study.adminstore.model.network.response.StoreApiResponse;
 import com.study.adminstore.repository.StoreRepository;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,8 +24,8 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
     StoreRepository storeRepository;
 
     @Override
-    public Header<StoreApiResponse> create(final Header<StoreApiRequest> req) {
-        final StoreApiRequest storeApiRequest = req.getData();
+    public ResponseEntity<StoreApiResponse> create(final StoreApiRequest req) {
+        final StoreApiRequest storeApiRequest = req;
 
         final String account = storeApiRequest.getAccount();
         final String password = storeApiRequest.getPassword();
@@ -34,7 +36,8 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
         final String ceoName = storeApiRequest.getCeoName();
 
         if(account.equals("") || password.equals("") || name.equals("") || status.equals("") || address.equals("") || businessNumber.equals("") || ceoName.equals("")) {
-            return Header.ERROR("data not fill");
+//            return Header.ERROR("data not fill");
+            System.out.println("data not fill");
         }
 
         final Store store = Store.builder()
@@ -55,21 +58,21 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
 
         storeRepository.save(store);
 
-        return response(store);
+        return new ResponseEntity<StoreApiResponse>(response(store), HttpStatus.OK);
     }
 
     @Override
-    public Header<StoreApiResponse> read(final Long id) {
+    public ResponseEntity<StoreApiResponse> read(final Long id) {
         return null;
     }
 
     @Override
-    public Header<StoreApiResponse> update(final Header<StoreApiRequest> req) {
+    public ResponseEntity<StoreApiResponse> update(final StoreApiRequest req) {
         return null;
     }
 
     @Override
-    public Header delete(final Long id) {
+    public ResponseEntity<StoreApiResponse> delete(final Long id) {
         return null;
     }
 
@@ -78,7 +81,7 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
         return 0;
     }
 
-    private Header<StoreApiResponse> response(final Store store) {
+    private StoreApiResponse response(final Store store) {
         final StoreApiResponse storeApiResponse = StoreApiResponse.builder()
                 .account(store.getAccount())
                 .password(store.getPassword())
@@ -89,6 +92,6 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
                 .ceoName(store.getCeoName())
                 .build();
 
-        return Header.OK(storeApiResponse);
+        return storeApiResponse;
     }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 </head>
 <body>
     <section class="sign-wrapper">
@@ -14,22 +15,34 @@
             </div>
             <form th:action="@{/login}" method="post">
                 <div class="sign-wrapper__input">
+                    <i class="fas fa-user-circle"></i>
                     <input type="text" placeholder="email"/>
                 </div>
+
+                <div class="sign-wrapper__hr"></div>
+
                 <div class="sign-wrapper__input">
+                    <i class="fas fa-key"></i>
                     <input type="text" placeholder="password" />
                 </div>
+
+                <div class="sign-wrapper__hr"></div>
+
                 <div class="sign-wrapper__remember">
                     <div>
                         <input type="radio" id="remember"/>
                         <label for="remember">Remember Me</label>
                     </div>
-                    <p>forgot password?</p>
+                    <a href="/find">
+                        <span>forgot password?</span>
+                    </a>
                 </div>
                 <div class="sign-wrapper__button">
                     <button>Sign In</button>
                     <p>Don't have an account?</p>
-                    <a href="/signup"><p><span>Sign Up</span> here</p></a>
+                    <a href="/signup">
+                        <span>Sign Up</span> here
+                    </a>
                 </div>
             </form>
         </div>

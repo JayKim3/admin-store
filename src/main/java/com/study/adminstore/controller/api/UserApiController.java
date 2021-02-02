@@ -1,16 +1,8 @@
 package com.study.adminstore.controller.api;
 
-import com.study.adminstore.controller.CrudController;
-import com.study.adminstore.ifs.CrudInterface;
-import com.study.adminstore.model.entity.User;
-import com.study.adminstore.model.network.Header;
 import com.study.adminstore.model.network.request.UserInfoApiRequest;
-import com.study.adminstore.model.network.response.UserApiResponse;
-import com.study.adminstore.model.network.request.UserApiRequest;
-import com.study.adminstore.model.network.response.UserInfoApiResponse;
 import com.study.adminstore.service.UserApiService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -31,7 +23,7 @@ public class UserApiController {
     @PostMapping("")
     public String create(@RequestBody final UserInfoApiRequest userInfoApiRequest) {
         System.out.println(userInfoApiRequest);
-//        userApiService.create(userInfoApiRequest);
+        userApiService.create(userInfoApiRequest);
         return "redirect:/login";
     }
 
