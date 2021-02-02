@@ -2,11 +2,12 @@ package com.study.adminstore.service;
 
 import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.entity.Category;
-import com.study.adminstore.model.network.Header;
 import com.study.adminstore.model.network.request.CategoryApiRequest;
 import com.study.adminstore.model.network.response.CategoryApiResponse;
 import com.study.adminstore.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,12 +22,12 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
     CategoryRepository categoryRepository;
 
     @Override
-    public Header<CategoryApiResponse> create(final Header<CategoryApiRequest> req) {
+    public ResponseEntity<CategoryApiResponse> create(final CategoryApiRequest req) {
         // request data
         // category create
         // CategoryApiResponse return
 
-        final CategoryApiRequest categoryApiRequest = req.getData();
+        final CategoryApiRequest categoryApiRequest = req;
 
         final String parentType = categoryApiRequest.getParentType();
         final String type = categoryApiRequest.getType();
@@ -34,7 +35,7 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
 
         System.out.println(categoryApiRequest);
         
-        if(parentType.equals("") || type.equals("") || title.equals("")) return Header.ERROR("failed");
+        if(parentType.equals("") || type.equals("") || title.equals("")) System.out.println("failed");
 
         final Category category = Category.builder()
                 .parentType(categoryApiRequest.getParentType())
@@ -50,22 +51,19 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
 
         categoryRepository.save(category);
 
-        return response(category);
+        return new ResponseEntity<CategoryApiResponse>(response(category), HttpStatus.OK);
     }
 
     @Override
-    public Header<CategoryApiResponse> read(final Long id) {
-        System.out.println(id);
-        final Optional<Category> optional = categoryRepository.findById(id);
-
-        return optional.map(category-> response(category))
-                .orElseGet(()->Header.ERROR("Category Id Not Found"));
+    public ResponseEntity<CategoryApiResponse> read(final Long id) {
+        final Optional<Category> category = categoryRepository.findById(id);
+        return new ResponseEntity<CategoryApiResponse>(CategoryApiResponse.builder().build(), HttpStatus.OK);
     }
 
     @Override
-    public Header<CategoryApiResponse> update(final Header<CategoryApiRequest> req) {
+    public ResponseEntity<CategoryApiResponse> update(final CategoryApiRequest req) {
 
-        final CategoryApiRequest categoryApiRequest = req.getData();
+        final CategoryApiRequest categoryApiRequest = req;
         final Optional<Category> optional = categoryRepository.findById(categoryApiRequest.getId());
 
         return optional.map(category -> {
@@ -75,20 +73,19 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
                     .setCreatedBy("KSJ");
             return category;
         }).map(newCategory-> categoryRepository.save(newCategory))
-                .map(newCategory->response(newCategory))
-                .orElseGet(()->Header.ERROR("update failed"));
+                .map(newCategory-> new ResponseEntity<CategoryApiResponse>(CategoryApiResponse.builder().build(), HttpStatus.OK))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
-    public Header delete(final Long id) {
+    public ResponseEntity<CategoryApiResponse> delete(final Long id) {
         final Optional<Category> optional = categoryRepository.findById(id);
 
         return optional.map(category-> {
             categoryRepository.delete(category);
-            return Header.OK();
+            return new ResponseEntity(HttpStatus.OK);
         })
-                .orElseGet(()->Header.ERROR("Category Id Not Found"));
-
+                .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     public Long count() {
@@ -100,13 +97,13 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
         return categories;
     }
 
-    private Header<CategoryApiResponse> response(final Category category) {
+    private CategoryApiResponse response(final Category category) {
         final CategoryApiResponse categoryApiResponse = CategoryApiResponse.builder()
                 .parentType(category.getParentType())
                 .type(category.getType())
                 .title(category.getTitle())
                 .build();
 
-        return Header.OK(categoryApiResponse);
+        return categoryApiResponse;
     }
 }
