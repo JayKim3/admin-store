@@ -34,7 +34,7 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         memberApiRequest.setPassword(encoder.encode(memberApiRequest.getPassword()));
 
-        Member member = Member.builder()
+        final Member member = Member.builder()
             .account(memberApiRequest.getAccount())
             .password(memberApiRequest.getPassword())
             .auth(memberApiRequest.getAuth())
@@ -55,25 +55,25 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> read(Long id) {
+    public ResponseEntity<MemberApiResponse> read(final Long id) {
         return null;
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> update(MemberApiRequest memberApiRequest) {
+    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest memberApiRequest) {
         return null;
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> delete(Long id) {
+    public ResponseEntity<MemberApiResponse> delete(final Long id) {
         return null;
     }
 
     @Override
     public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
-        Member member = memberRepository.findByEmail(email);
+        final Member member = memberRepository.findByEmail(email);
 
-        List<GrantedAuthority> authorities = new ArrayList<>();
+        final List<GrantedAuthority> authorities = new ArrayList<>();
 
         if(("admin@gmail.com").equals(email)) {
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getAuth()));

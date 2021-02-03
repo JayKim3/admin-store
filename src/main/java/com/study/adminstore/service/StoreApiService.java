@@ -2,14 +2,10 @@ package com.study.adminstore.service;
 
 import com.study.adminstore.ifs.CountInterface;
 import com.study.adminstore.ifs.CrudInterface;
-import com.study.adminstore.model.entity.Category;
 import com.study.adminstore.model.entity.Store;
-import com.study.adminstore.model.network.Header;
 import com.study.adminstore.model.network.request.StoreApiRequest;
-import com.study.adminstore.model.network.response.CategoryApiResponse;
 import com.study.adminstore.model.network.response.StoreApiResponse;
 import com.study.adminstore.repository.StoreRepository;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

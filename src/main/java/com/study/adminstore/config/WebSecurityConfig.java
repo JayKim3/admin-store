@@ -34,17 +34,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 //            .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/", "/login", "/signup", "/user", "/find").permitAll()
-//                .antMatchers("/user").hasRole("USER")
-                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers( "/login", "/signup", "/user", "/find").permitAll()
+                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/admin", "/category"  ).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()
                         .loginPage("/login")
                         .defaultSuccessUrl("/")
+                        .failureUrl("/login?error=true")
                 .and()
                     .logout()
-                      .logoutSuccessUrl("/")
+                      .logoutUrl("/logout")
+                      .logoutSuccessUrl("/login")
                       .invalidateHttpSession(true);
     }
 

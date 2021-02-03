@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Admin Store</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">  </script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" th:src="@{/js/popup.js}"></script>
 </head>
@@ -25,11 +25,8 @@ $(document).ready(function(){
         // resultCode, description -> OK ? 강의 다시보고 알맞은 값 넣기
         // data -> 전달받은 데이터 넣기
 
-        const request = {
-            "transaction_time" : nowDate,
-            "resultCode" : "SUCCESS",
-            "description" : "category insert OK"
-        };
+        const token = $("meta[name='_csrf']").attr("content");
+        const header = $("meta[name='_csrf_header']").attr("content");
 
         const data = {};
 
@@ -42,15 +39,18 @@ $(document).ready(function(){
             data.parent_type = parentType;
             data.type = type;
             data.title = title;
-            request.data = data;
         }
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/api/category",
-            data: JSON.stringify(request),
-            dataType: 'json',
+            url: "/category",
+            data: JSON.stringify(data),
+
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+
             success: function (data) {
                 if(data) {
                     const parentType = data.data.parent_type;
@@ -98,7 +98,11 @@ $(document).ready(function(){
             <button class="main-header__right--category-btn">카테고리 추가</button>
             <button class="main-header__right--store-btn">파트너 추가</button>
             <div class="main-header__right--sign">
-                <a href="/login"><span>Log in</span></a>
+                <a sec:authorize="!isAuthenticated()" href="/login"><span>Log in</span></a>
+                <a href="#" sec:authorize="isAuthenticated()" onclick="document.getElementById('logout-form').submit();">Log out</a>
+                <form id="logout-form" th:action="@{/logout}" method="POST">
+                 <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+                </form>
                 <i class="fas fa-sign-in-alt"></i>
             </div>
         </div>

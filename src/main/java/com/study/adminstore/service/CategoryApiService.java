@@ -22,12 +22,12 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
     CategoryRepository categoryRepository;
 
     @Override
-    public ResponseEntity<CategoryApiResponse> create(final CategoryApiRequest req) {
+    public ResponseEntity<CategoryApiResponse> create(final CategoryApiRequest request) {
         // request data
         // category create
         // CategoryApiResponse return
 
-        final CategoryApiRequest categoryApiRequest = req;
+        final CategoryApiRequest categoryApiRequest = request;
 
         final String parentType = categoryApiRequest.getParentType();
         final String type = categoryApiRequest.getType();
