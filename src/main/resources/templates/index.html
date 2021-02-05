@@ -2,6 +2,8 @@
 <html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Admin Store</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -20,10 +22,6 @@ $(document).ready(function(){
         const parentType = $('.selected-category-option').val();
         const type = $('input[name=type]').val();
         const title = $('input[name=title]').val();
-        const nowDate = new Date().toISOString();
-        // transaction_time -> 오른쪽과 같은 형태로 2019-07-31T22:57:56.692
-        // resultCode, description -> OK ? 강의 다시보고 알맞은 값 넣기
-        // data -> 전달받은 데이터 넣기
 
         const token = $("meta[name='_csrf']").attr("content");
         const header = $("meta[name='_csrf_header']").attr("content");
@@ -53,8 +51,8 @@ $(document).ready(function(){
 
             success: function (data) {
                 if(data) {
-                    const parentType = data.data.parent_type;
-                    const type = data.data.type;
+                    const parentType = data.parent_type;
+                    const type = data .type;
                     alert(parentType +'[' + type + ']가 성공적으로 추가 되었습니다.');
                     // setTimeout 설정해주기
                     window.location.href= "/";
@@ -88,15 +86,17 @@ $(document).ready(function(){
 <body>
     <header class="main-header">
         <div class="main-header__left">
-            <a href="#">
+            <a href="/">
                 <h2>Admin Store</h2>
-                ID : <span sec:authentication="name"></span> <br>
-                소유 권한 : <span sec:authentication="authorities"></span> <br>
             </a>
+            <div class="main-header__account">
+                 <p>ID : <span sec:authentication="name"></span></p>
+                 <p>소유 권한 : <span sec:authentication="authorities"></span></p>
+            </div>
         </div>
         <div class="main-header__right">
-            <button class="main-header__right--category-btn">카테고리 추가</button>
-            <button class="main-header__right--store-btn">파트너 추가</button>
+            <button class="main-header__right--category-btn" sec:authorize="hasAuthority('ROLE_ADMIN')">카테고리 추가</button>
+            <button class="main-header__right--store-btn" sec:authorize="hasAuthority('ROLE_ADMIN')">파트너 추가</button>
             <div class="main-header__right--sign">
                 <a sec:authorize="!isAuthenticated()" href="/login"><span>Log in</span></a>
                 <a href="#" sec:authorize="isAuthenticated()" onclick="document.getElementById('logout-form').submit();">Log out</a>

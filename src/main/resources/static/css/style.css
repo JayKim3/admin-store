@@ -11,13 +11,20 @@
 }
 
 .main-header .main-header__left {
-    width: 150px;
+    width: 500px;
+    display: flex;
     font-size: 20px;
+    margin: 0 20px;
     text-align: center;
 }
 
-.main-header .main-header__left h2 {
+.main-header .main-header__account {
+    color: #ffffff;
+}
+
+.main-header .main-header__left a {
     font-size: 20px;
+    margin-right: 20px;
 }
 
 .main-header .main-header__right {
