@@ -28,7 +28,7 @@ public class AdminController {
 //        model.addAttribute("storeCount", storeCount);
         model.addAttribute("categoryCount", categoryApiService.count());
         model.addAttribute("categoryList", categoryApiService.findAll());
-        return "index";
+        return "master";
     }
 
     @GetMapping("/login")

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+</head>
+<header class="main-header">
+    <div class="main-header__left">
+        <a href="/">
+            <h2>Admin Store</h2>
+        </a>
+        <div class="main-header__account">
+            <p>ID : <span sec:authentication="name"></span></p>
+            <p>소유 권한 : <span sec:authentication="authorities"></span></p>
+        </div>
+    </div>
+    <div class="main-header__right">
+        <button class="main-header__right--category-btn" sec:authorize="hasAuthority('ROLE_ADMIN')">카테고리 추가</button>
+        <button class="main-header__right--store-btn" sec:authorize="hasAuthority('ROLE_ADMIN')">파트너 추가</button>
+        <div class="main-header__right--sign">
+            <a sec:authorize="!isAuthenticated()" href="/login"><span>Log in</span></a>
+            <a href="#" sec:authorize="isAuthenticated()" onclick="document.getElementById('logout-form').submit();">Log out</a>
+            <form id="logout-form" th:action="@{/logout}" method="POST">
+                <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+            </form>
+            <i class="fas fa-sign-in-alt"></i>
+        </div>
+    </div>
+</header>
+</html>

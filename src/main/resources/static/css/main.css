@@ -3,15 +3,40 @@ main {
     height: 100vh;
     display: flex;
     justify-content: center;
-    background-color: #f6f6f6;
+    background-color: #21202E;
     box-sizing: border-box;
 }
 
 main nav {
     width: 20%;
     height: 100vh;
-    background-color: #30343c;
+    background-color: #2D2C3F;
 }
+
+main nav .nav-logo {
+    width: 100%;
+    height: 200px;
+    background-color: red;
+}
+
+main nav .nav-profile {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    width: 100%;
+    height: 100px;
+    background-color: orange;
+}
+
+main nav .nav-menu ul li {
+    padding-left: 30px;
+    height: 30px;
+    margin: 20px 0;
+    color: #5A5869;
+    outline : none;
+    cursor: pointer;
+}
+
 .dashboard {
     width: 100%;
     padding: 40px 80px;
@@ -24,11 +49,17 @@ main nav {
 .dashboard .dashboard__header svg {
     font-size: 30px;
     margin-right: 20px;
-
+    color: #ffffff;
 }
 
 .dashboard .dashboard__header span {
     font-size: 30px;
+    color: #ffffff;
+}
+
+.dashboard .dashboard__header p{
+    margin-top: 15px;
+    color: #636170;
 }
 
 .dashboard .card-wrapper {
@@ -53,11 +84,46 @@ main nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 20px;
     padding: 30px;
     border-radius: 5px;
     z-index: 10;
     cursor: pointer;
+    background-color: #2D2C3F;
+}
+
+.dashboard .card-wrapper .big-card-row {
+    width: 780px;
+    height: 256px;
+    border-radius: 5px;
+    margin-left: 20px;
+    padding: 30px;
+    z-index: 10;
+    cursor: pointer;
+    background-color: #2D2C3F;
+}
+
+.dashboard .card-wrapper .big-card-column {
+    width: 340px;
+    height: 512px;
+    padding: 30px;
+    border-radius: 5px;
+    z-index: 10;
+    cursor: pointer;
+    background-color: #2D2C3F;
+}
+
+.dashboard .card-wrapper .small-card-row {
+    width: 340px;
+    height: 128px;
+    padding: 30px;
+    border-radius: 5px;
+    z-index: 10;
+    cursor: pointer;
+    background-color: #2D2C3F;
+}
+
+.dashboard .card-wrapper .card:nth-child(2) {
+    margin: 0 20px;
 }
 
 
@@ -66,7 +132,7 @@ main nav {
     margin-bottom: 10px;
 }
 
-.dashboard .card-wrapper .card .card-title {
+.dashboard .card-wrapper .card-title {
     color: #FFFFFF;
     font-size: 30px;
     margin: 20px 0;

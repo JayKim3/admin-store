@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <th:block th:include="@{/header}"></th:block>
+    <main>
+        <nav>
+            <div class="nav-logo"></div>
+            <div class="nav-profile">Profile</div>
+            <div class="nav-menu">
+                <ul>
+                    <a href="/admin"><li>DashBoard</li></a>
+                    <a href=""><li>Users</li></a>
+                    <a href=""><li>Management</li></a>
+                    <a><li>Settings</li></a>
+                </ul>
+            </div>
+        </nav>
+        <div class="dashboard">
+            <header class="dashboard__header">
+                <i class="fas fa-chart-line"></i>
+                <span>DashBoard</span>
+                <p>February 7th 2021 - Sunday</p>
+            </header>
+            <div class="card-wrapper">
+                <div class="card">
+                    <span class="card-title">Active Users</span>
+                </div>
+                <div class="big-card-row">
+                    <span class="card-title">By Country</span>
+                </div>
+            </div>
+            <div class="card-wrapper">
+                <div class="big-card-column">
+                    <span class="card-title">Time spent per day</span>
+                </div>
+                <div style="display: flex; flex-direction: column">
+                    <div style="display: flex;">
+                        <div class="small-card-row">
+
+                        </div>
+                        <div class="small-card-row">
+
+                        </div>
+                    </div>
+                    <div>
+                        <div>test</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" th:src="@{/js/nav.js}"></script>
+</body>
+</html>
