@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <th:block th:include="@{/header}"></th:block>
+    <main>
+        <nav>
+            <div class="nav-logo"></div>
+            <div class="nav-profile">Profile</div>
+            <div class="nav-menu">
+                <ul>
+                    <a href="/admin"><li>DashBoard</li></a>
+                    <a href="/admin/user"><li>Users</li></a>
+                    <a href="/admin/order"><li>Orders</li></a>
+                    <a href="/admin/setting"><li>Settings</li></a>
+                </ul>
+            </div>
+        </nav>
+        <div class="setting">
+            <header class="setting__header">
+                <i class="fas fa-cog"></i>
+                <span>Setting</span>
+                <p>February 7th 2021 - Sunday</p>
+            </header>
+            <div class="setting__content">
+                <div class="setting__box">
+                    <div class="setting__inner">
+                        <i class="far fa-envelope"></i>
+                        <p>Email</p>
+                        <span>testUser1@gmail.com</span>
+                    </div>
+                    <div class="setting__inner">
+                        <i class="fas fa-user-circle"></i>
+                        <p>Account</p>
+                        <span>testUser1</span>
+                    </div>
+                    <div class="setting__inner">
+                        <i class="fas fa-phone"></i>
+                        <p>PhoneNumber</p>
+                        <span>010-3574-6706</span>
+                    </div>
+                </div>
+                <div class="setting__box">
+                    <div class="setting__inner">
+                        <i class="far fa-bell"></i>
+                        <p>Notifications</p>
+                        <span>On</span>
+                    </div>
+                    <div class="setting__inner">
+                        <i class="fas fa-unlock"></i>
+                        <p>Privacy</p>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="setting__box">
+                    <div class="setting__inner">
+                        <i class="fas fa-globe"></i>
+                        <p>Langauge</p>
+                        <span>English</span>
+                    </div>
+                    <div class="setting__inner">
+<!--                        <i class="far fa-sun"></i>-->
+                        <i class="far fa-moon"></i>
+                        <p>Dark Mode</p>
+                        <span>On</span>
+                    </div>
+                    <div class="setting__inner">
+                        <i class="far fa-question-circle"></i>
+                        <p>Help</p>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

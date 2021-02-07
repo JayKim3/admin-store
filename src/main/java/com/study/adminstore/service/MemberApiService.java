@@ -8,6 +8,10 @@ import com.study.adminstore.model.network.response.MemberApiResponse;
 import com.study.adminstore.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,6 +37,8 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
     public ResponseEntity<MemberApiResponse> create(final MemberApiRequest memberApiRequest) {
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         memberApiRequest.setPassword(encoder.encode(memberApiRequest.getPassword()));
+
+        System.out.println(memberApiRequest);
 
         final Member member = Member.builder()
             .account(memberApiRequest.getAccount())
@@ -82,6 +88,13 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
         }
 
         return new User(member.getEmail(), member.getPassword(), authorities);
+    }
+
+    public List<Member> findAll() {
+        final Pageable pageable = PageRequest.of(0, 8  , Sort.by(Sort.Direction.ASC, "id"));
+        final Page<Member> all = memberRepository.findAll(pageable);
+        final List<Member> members = all.getContent();
+        return members;
     }
 
     private MemberApiResponse response(final Member member) {

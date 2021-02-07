@@ -1,6 +1,8 @@
 @import 'reset.css';
 @import 'popup.css';
 @import 'main.css';
+@import 'user.css';
+@import 'setting.css';
 
 .main-header {
     width: 100%;
@@ -18,8 +20,19 @@
     text-align: center;
 }
 
+.main-header .main-header__left h2 {
+    width: 120px;
+}
+
 .main-header .main-header__account {
+    display: flex;
     color: #ffffff;
+}
+
+.main-header .main-header__account p{
+    min-width: 250px;
+    display: flex;
+    align-items: center;
 }
 
 .main-header .main-header__left a {
@@ -36,17 +49,19 @@
 }
 
 .main-header .main-header__right .main-header__right--sign {
+    display: flex;
     color: #FFFFFF;
+    font-size: 20px;
     cursor: pointer;
 }
 
 .main-header .main-header__right .main-header__right--sign svg {
     display: inline-block;
-    margin-bottom: -1px;
+    margin-left: 10px;
 }
 
 .main-header .main-header__right .main-header__right--store-btn {
-    margin: 0 20px 0 10px;
+    margin: 0 10px;
     padding: 10px 15px;
     background-color: skyblue;
     border: 0;

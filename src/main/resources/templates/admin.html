@@ -5,8 +5,9 @@
     <title>Admin Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/chart.js}"></script>
 </head>
 <body>
     <th:block th:include="@{/header}"></th:block>
@@ -17,9 +18,9 @@
             <div class="nav-menu">
                 <ul>
                     <a href="/admin"><li>DashBoard</li></a>
-                    <a href=""><li>Users</li></a>
-                    <a href=""><li>Management</li></a>
-                    <a><li>Settings</li></a>
+                    <a href="/admin/user"><li>Users</li></a>
+                    <a href="/admin/order"><li>Orders</li></a>
+                    <a href="/admin/setting"><li>Settings</li></a>
                 </ul>
             </div>
         </nav>
@@ -31,27 +32,42 @@
             </header>
             <div class="card-wrapper">
                 <div class="card">
-                    <span class="card-title">Active Users</span>
+                    <canvas id="activeChart" width="400" height="300"></canvas>
                 </div>
                 <div class="big-card-row">
                     <span class="card-title">By Country</span>
+                    <span>서비스 준비중 ...</span>
                 </div>
             </div>
-            <div class="card-wrapper">
+            <div class="card-wrapper margin-top20">
                 <div class="big-card-column">
-                    <span class="card-title">Time spent per day</span>
+                    <canvas id="timePieChart" width="400" height="300"></canvas>
                 </div>
                 <div style="display: flex; flex-direction: column">
-                    <div style="display: flex;">
+                    <div class="card-wrapper">
                         <div class="small-card-row">
-
+                            <span class="card-title">New Followers</span>
+                            <div class="small-card-row__new">
+                                <div>
+                                    <span>191K</span>
+                                </div>
+                                <canvas id="followerChart" height="80"></canvas>
+                            </div>
                         </div>
                         <div class="small-card-row">
-
+                            <span class="card-title">New Users</span>
+                            <div class="small-card-row__new">
+                                <div>
+                                    <span>3784</span>
+                                </div>
+                                <canvas id="newUserChart" height="80"></canvas>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div>test</div>
+                    <div class="card-wrapper margin-top20">
+                        <div class="big-card-row">
+                            <canvas id="YearlyChart" height="100"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

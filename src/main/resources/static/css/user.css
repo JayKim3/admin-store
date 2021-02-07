@@ -1,0 +1,97 @@
+/******************** Admin User ***********************/
+
+.user-management {
+    width: 100%;
+    padding: 40px 80px;
+}
+
+.user-management .user-management__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.user-management .user-management__button-wrapper {
+    display: flex;
+}
+
+.user-management .user-management__header .user-management__button-wrapper button {
+    width: 130px;
+    height: 40px;
+    border-radius: 4px;
+    margin: 0 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.user-management .user-management__header .user-management__button-wrapper button svg {
+    margin-right: 20px;
+}
+
+.user-management .user-management__header span {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.user-management .user-management__header p{
+    margin-top: 15px;
+    color: #636170;
+}
+
+.user-management table {
+    width: 100%;
+    color: #ffffff;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.user-management table th {
+    height: 50px;
+    font-size: 20px;
+}
+
+.user-management table .user-tr {
+    width: 100%;
+    height: 75px;
+}
+
+.user-management table .user-tr:hover {
+    background-color: #e9fbff;
+    cursor: pointer;
+}
+
+.user-management table .user-tr td {
+    vertical-align: middle;
+    color: #636170;
+}
+
+.user-management table .user-tr td img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-management table input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+.user-management table input[type="checkbox"] + label {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    position: relative; /* allows to position the custom boxes */
+    cursor: pointer;
+    border: 1px solid skyblue;
+    border-radius: 4px;
+}
+
+.user-management table input[id="user_checkbox"]:checked + label {
+    background-color: red;
+}

@@ -21,13 +21,13 @@ $(document).ready(function() {
         data.account = account;
         data.password = password1;
         data.phone_number = phoneNumber;
-        data.auth = "USER"; // auth Check
+        data.auth = "ROLE_USER"; // auth Check
 
         $.ajax( {
 
             type: "POST",
             contentType: "application/json",
-            url: "/user",
+            url: "/admin/user",
             data: JSON.stringify(data),
 
             beforeSend: function(xhr) {
