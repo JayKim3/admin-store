@@ -29,7 +29,7 @@ function categoryUpdate() {
 function categoryDelete(id) {
     $.ajax({
         type: "DELETE",
-        url: "/api/category/" + id,
+        url: "/category/" + id,
         success: function(data) {
             if(data) {
                 alert("삭제되었습니다.");
@@ -101,14 +101,6 @@ function storeValueCheck() {
         return false;
     }
 
-
-    const nowDate = new Date().toISOString();
-    const request = {
-        "transaction_time" : nowDate,
-        "resultCode" : "SUCCESS",
-        "description" : "store insert OK"
-    };
-
     data.account = storeAccount;
     data.password = password1;
     data.name = appStoreName;
@@ -116,15 +108,12 @@ function storeValueCheck() {
     data.address = address;
     data.business_number = businessNumber;
     data.ceo_name = ceoName;
-    request.data = data;
-
-    console.log(request);
 
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "/api/store",
-        data: JSON.stringify(request),
+        data: JSON.stringify(data),
         dataType: 'json',
         success: function(data) {
             if(data) {

@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/category")
 public class CategoryApiController implements CrudInterface<CategoryApiRequest, CategoryApiResponse> {
     @Autowired
     private CategoryApiService categoryApiService;
 
     @Override
     @PostMapping("")
-    public ResponseEntity<CategoryApiResponse> create(@RequestBody final CategoryApiRequest req) {
-        return categoryApiService.create(req);
+    public ResponseEntity<CategoryApiResponse> create(@RequestBody final CategoryApiRequest request) {
+        return categoryApiService.create(request);
     }
 
     @Override

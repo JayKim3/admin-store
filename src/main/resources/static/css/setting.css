@@ -1,0 +1,59 @@
+/******************** Admin Setting ***********************/
+
+.setting {
+    width: 100%;
+    padding: 40px 80px;
+}
+
+.setting .setting__header svg {
+    font-size: 30px;
+    margin-right: 20px;
+    color: #ffffff;
+}
+
+.setting .setting__header span {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.setting .setting__header p{
+    margin-top: 15px;
+    color: #636170;
+}
+
+.setting .setting__content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.setting .setting__content .setting__box {
+    margin: 40px 0;
+}
+
+.setting .setting__content .setting__box .setting__inner{
+    width: 400px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+.setting .setting__content .setting__box .setting__inner svg {
+    font-size: 20px;
+    margin-right: 20px;
+    color: #ffffff;
+}
+
+.setting .setting__content .setting__box .setting__inner p {
+    width: 200px;
+    color: #ffffff;
+    margin-right: 100px;
+}
+
+.setting .setting__content .setting__box .setting__inner span {
+    display: inline-block;
+    text-align: right;
+    width: 300px;
+    color: #93929f;
+}

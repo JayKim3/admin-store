@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class MemberApiController implements CrudInterface<MemberApiRequest, MemberApiResponse> {
 
     @Autowired
@@ -29,24 +30,31 @@ public class MemberApiController implements CrudInterface<MemberApiRequest, Memb
         return "redirect:/";
     }
 
+    @GetMapping("")
+    public String userload(final Model model) {
+        System.out.println("user");
+        model.addAttribute("members", memberApiService.findAll());
+        return "admin/user";
+    }
+
     @PostMapping("")
     @Override
-    public ResponseEntity<MemberApiResponse> create(@RequestBody MemberApiRequest memberApiRequest) {
+    public ResponseEntity<MemberApiResponse> create(@RequestBody final MemberApiRequest memberApiRequest) {
         return memberApiService.create(memberApiRequest);
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> read(Long id) {
+    public ResponseEntity<MemberApiResponse> read(final Long id) {
         return null;
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> update(MemberApiRequest userApiRequest) {
+    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest userApiRequest) {
         return null;
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> delete(Long id) {
+    public ResponseEntity<MemberApiResponse> delete(final Long id) {
         return null;
     }
 }

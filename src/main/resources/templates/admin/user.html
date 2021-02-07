@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/pagination.min.js}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
+</head>
+<body>
+    <th:block th:include="@{/header}"></th:block>
+    <main>
+        <nav>
+            <div class="nav-logo"></div>
+            <div class="nav-profile">Profile</div>
+            <div class="nav-menu">
+                <ul>
+                    <a href="/admin"><li>DashBoard</li></a>
+                    <a href="/admin/user"><li>Users</li></a>
+                    <a href="/admin/order"><li>Orders</li></a>
+                    <a href="/admin/setting"><li>Settings</li></a>
+                </ul>
+            </div>
+        </nav>
+        <div class="user-management">
+            <header class="user-management__header">
+                <div>
+                    <span>User Management</span>
+                    <p>February 7th 2021 - Sunday</p>
+                </div>
+                <div class="user-management__button-wrapper">
+                    <div>
+                        <button><i class="far fa-edit"></i>Edit</button>
+                    </div>
+                    <div>
+                        <button><i class="far fa-trash-alt"></i>Remove</button>
+                    </div>
+                </div>
+            </header>
+            <table>
+                <th>Id</th>
+                <th>Image</th>
+                <th>User Email</th>
+                <th>Account</th>
+                <th>auth</th>
+                <th>phoneNumber</th>
+                <th>Created_at</th>
+                <th>
+                    <input type="checkbox" id="user_all_checkbox" />
+                    <label for="user_all_checkbox"></label>
+                </th>
+                <tr class="user-tr" th:each="member: ${members}">
+                    <td th:text="${member.id}"></td>
+                    <td>
+                        <img src="/img/iu3.jpg">
+                    </td>
+                    <td th:text="${member.email}"></td>
+                    <td th:text="${member.account}"></td>
+                    <td th:text="${member.auth}"></td>
+                    <td th:text="${member.phoneNumber}"></td>
+                    <td th:text="${member.createdAt}"></td>
+                    <td>
+                        <input type="checkbox" id="user_checkbox" />
+                        <label for="user_checkbox"></label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="pagination"></div>
+    </main>
+    <script type="text/javascript" th:src="@{/js/nav.js}"></script>
+</body>
+
