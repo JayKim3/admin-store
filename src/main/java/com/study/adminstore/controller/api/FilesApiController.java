@@ -1,7 +1,10 @@
 package com.study.adminstore.controller.api;
 
 import com.study.adminstore.model.entity.Files;
+import com.study.adminstore.model.entity.Member;
 import com.study.adminstore.service.FilesApiService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,28 +17,17 @@ import java.io.File;
 @RequestMapping("/files")
 public class FilesApiController {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     FilesApiService filesApiService;
 
     @PostMapping
     public String fileInsert(final HttpServletRequest request, @RequestPart final MultipartFile files) throws Exception {
-        System.out.println(files);
-
-        final Files file = new Files();
-
-        final String sourceFileName = files.getOriginalFilename();
-        final String fileUrl = "/Users/jaykim/IdeaProjects/admin-store/src/main/resources/static/images/";
-        String destinationFileName;
-
-        final File destinationFile = new File(fileUrl + sourceFileName);
-
-        destinationFile.getParentFile().mkdirs();
-        files.transferTo(destinationFile); // 업로드할 파일 destinationFile로 지정
-
-        file.setFilename(sourceFileName);
-        file.setFileOriName(sourceFileName);
-        file.setFileurl(fileUrl);
-
+        logger.info("files : " + files);
+        filesApiService.save(files);
         return "redirect:/mypage";
     }
+
+
  }
