@@ -17,7 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = {"orderGroupList"})
-@Getter
 @Builder
 @Accessors(chain = true) // 객체를 체이닝형태로 생성하거나 수정 가능
 @Entity
@@ -53,8 +52,7 @@ public class Member {
     // User : OrderGroup -> 1 : N
 
     // Files : Member -> 1 : 1
-    @OneToOne
-    @JoinColumn(name = "files_id")
+    @OneToOne(mappedBy="member")
     private Files files;
 
 }

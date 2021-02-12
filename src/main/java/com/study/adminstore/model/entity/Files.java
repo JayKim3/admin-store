@@ -18,4 +18,7 @@ public class Files {
     private String fileurl;
 
     // Files : Member -> 1 : 1
+    @OneToOne
+    @JoinColumn(name="user_id")
+    private Member member;
 }
