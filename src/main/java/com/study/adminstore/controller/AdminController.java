@@ -1,6 +1,7 @@
 package com.study.adminstore.controller;
 
 import com.study.adminstore.service.CategoryApiService;
+import com.study.adminstore.service.MemberApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,9 @@ public class AdminController {
     @Autowired
     CategoryApiService categoryApiService;
 
+    @Autowired
+    private MemberApiService memberApiService;
+
     @PostConstruct
     public void init() {
 //        this.userCount = userApiService.countAll();
@@ -29,6 +33,13 @@ public class AdminController {
         model.addAttribute("categoryCount", categoryApiService.count());
         model.addAttribute("categoryList", categoryApiService.findAll());
         return "master";
+    }
+
+    @GetMapping("/user")
+    public String userload(final Model model) {
+        System.out.println("user");
+        model.addAttribute("members", memberApiService.findAll());
+        return "admin/user";
     }
 
     @GetMapping("/login")

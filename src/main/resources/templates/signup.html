@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css" />
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" th:src="@{/js/signup.js}"></script>
-    <link rel="stylesheet" href="../static/css/signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 </head>
 <body>
@@ -18,10 +17,11 @@
             <h1>Sign Up</h1>
             <p>어리석은 자는 멀리서 행복을 찾고, <br/>현명한 자는 자신의 발치에서 행복을 키워간다</p>
         </div>
-        <form th:action="@{/user}" method="post">
+        <form th:action="@{/signup}" method="post">
             <div class="sign-wrapper__input">
                 <i class="far fa-envelope"></i>
                 <input type="text" name="email" placeholder="Enter your email address" required/>
+                <button type="button" class="duplicatie-btn">중복확인</button>
             </div>
             <div class="sign-wrapper__hr"></div>
             <div class="sign-wrapper__input">
