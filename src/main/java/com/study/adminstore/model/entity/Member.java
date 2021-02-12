@@ -6,10 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -54,4 +51,10 @@ public class Member {
     private String updatedBy;
 
     // User : OrderGroup -> 1 : N
+
+    // Files : Member -> 1 : 1
+    @OneToOne
+    @JoinColumn(name = "files_id")
+    private Files files;
+
 }

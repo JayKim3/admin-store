@@ -12,6 +12,16 @@
     padding-right: 30px;
 }
 
+.user-management .user-management__header span {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.user-management .user-management__header p{
+    margin-top: 15px;
+    color: #636170;
+}
+
 .user-management .user-management__button-wrapper {
     display: flex;
 }
@@ -28,16 +38,6 @@
 
 .user-management .user-management__header .user-management__button-wrapper button svg {
     margin-right: 20px;
-}
-
-.user-management .user-management__header span {
-    font-size: 30px;
-    color: #ffffff;
-}
-
-.user-management .user-management__header p{
-    margin-top: 15px;
-    color: #636170;
 }
 
 .user-management table {

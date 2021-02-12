@@ -11,6 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -18,6 +23,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final MemberApiService memberApiService;
+    private final DataSource dataSource;
+    private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -34,21 +41,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 //            .csrf().disable()
             .authorizeRequests()
-                .antMatchers( "/login", "/signup", "/find", "/master").permitAll()
-//                .antMatchers("/user").hasRole("USER")
+                .antMatchers( "/login", "/signup", "/emailCheck", "/user", "/find", "/master").permitAll()
+                .antMatchers("/mypage").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/admin", "/category").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()
                         .loginPage("/login")
-                        .defaultSuccessUrl("/admin")
+                        .defaultSuccessUrl("/")
                         .failureUrl("/login?error=true")
+                        .successHandler(authenticationSuccessHandler)
                 .and()
                     .logout()
                       .logoutUrl("/logout")
                       .logoutSuccessUrl("/login")
-                      .invalidateHttpSession(true);
+                      .invalidateHttpSession(true)
+                .and()
+                    .sessionManagement()
+                    .maximumSessions(1); // 최대 접속수를 1개로 제한한다.
+
+        http.rememberMe()
+            .userDetailsService(memberApiService)
+            .tokenRepository(tokenRepository());
+        // username, 토큰, 시리즈를 조합한 토큰 정보를 DB에 저장(rememberMe 쿠키랑 일치하는 지 확인하기 위함)
     }
+
+    @Bean
+    public PersistentTokenRepository tokenRepository() {
+        final JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+        return jdbcTokenRepository;
+    }
+
 
     @Override
     public void configure(final AuthenticationManagerBuilder auth) throws Exception {

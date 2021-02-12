@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>MyPage</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../static/css/mypage.css">
 </head>
 <body>
-    My Page...
+    <th:block th:include="@{/header}"></th:block>
+    <main>
+        <nav>
+            <div class="nav-logo"></div>
+            <a href="/mypage">
+                <div class="nav-profile">Profile</div>
+            </a>
+            <div class="nav-menu">
+                <ul>
+                    <a href="/admin"><li>DashBoard</li></a>
+                    <a href="/admin/user"><li>Users</li></a>
+                    <a href="/admin/order"><li>Orders</li></a>
+                    <a href="/admin/setting"><li>Settings</li></a>
+                </ul>
+            </div>
+        </nav>
+        <div class="mypage">
+            <header class="mypage__header">
+                <span>My Page</span>
+                <p>February 7th 2021 - Sunday</p>
+            </header>
+            <div class="mypage__content">
+                <div class="mypage__profile">
+                    <img src="/img/iu3.jpg">
+                    <form th:action="@{/files}" method="post" enctype="multipart/form-data">
+                        <input type="file" name="files">
+                        <button type="submit">Upload</button>
+                    </form>
+                </div>
+
+                <div class="mypage__inner">
+                    <i class="far fa-envelope"></i>
+                    <p>Email</p>
+                    <span>testUser1@gmail.com</span>
+                </div>
+                <div class="mypage__inner">
+                    <i class="fas fa-user-circle"></i>
+                    <p>Account</p>
+                    <span>testUser1</span>
+                </div>
+                <div class="mypage__inner">
+                    <i class="fas fa-phone"></i>
+                    <p>PhoneNumber</p>
+                    <span>010-3574-6706</span>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
