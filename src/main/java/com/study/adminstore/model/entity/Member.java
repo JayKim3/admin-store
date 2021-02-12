@@ -8,10 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -24,6 +21,7 @@ public class Member {
     // Java -> Camel Case, DB -> Snake Case
 
     @Id
+    @Column(name = "member_id")
     @GeneratedValue
     private Long id;
 
@@ -49,10 +47,9 @@ public class Member {
 
     private String updatedBy;
 
-    // User : OrderGroup -> 1 : N
+    // Member : OrderGroup -> 1 : N
 
     // Files : Member -> 1 : 1
     @OneToOne(mappedBy="member")
     private Files files;
-
 }

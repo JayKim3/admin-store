@@ -9,12 +9,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 @RequiredArgsConstructor
@@ -25,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final MemberApiService memberApiService;
     private final DataSource dataSource;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
+    private final CustomLogoutSuccessHandler customLogoutSuccessHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -54,8 +59,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout()
                       .logoutUrl("/logout")
-                      .logoutSuccessUrl("/login")
-                      .invalidateHttpSession(true)
+                      .logoutSuccessHandler(customLogoutSuccessHandler)
+                      .invalidateHttpSession(false)
                 .and()
                     .sessionManagement()
                     .maximumSessions(1); // 최대 접속수를 1개로 제한한다.
