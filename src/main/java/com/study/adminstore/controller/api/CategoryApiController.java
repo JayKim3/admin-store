@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/category")
 public class CategoryApiController implements CrudInterface<CategoryApiRequest, CategoryApiResponse> {
+
     @Autowired
     private CategoryApiService categoryApiService;
 

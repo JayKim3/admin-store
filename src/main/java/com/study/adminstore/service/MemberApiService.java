@@ -90,6 +90,15 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
         return new User(member.getEmail(), member.getPassword(), authorities);
     }
 
+    public String duplicateEmailCheck(final String email) {
+
+        if(!memberRepository.existsByEmail(email)) {
+            return "JOIN";
+        } else {
+            return "EXIST";
+        }
+    }
+
     public List<Member> findAll() {
         final Pageable pageable = PageRequest.of(0, 8  , Sort.by(Sort.Direction.ASC, "id"));
         final Page<Member> all = memberRepository.findAll(pageable);

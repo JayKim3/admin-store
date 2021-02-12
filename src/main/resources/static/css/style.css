@@ -1,8 +1,10 @@
 @import 'reset.css';
+@import 'login.css';
 @import 'popup.css';
 @import 'main.css';
 @import 'user.css';
 @import 'setting.css';
+@import 'mypage.css';
 
 .main-header {
     width: 100%;

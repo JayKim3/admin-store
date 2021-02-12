@@ -1,0 +1,63 @@
+/******************** Mypage ***********************/
+
+.mypage {
+    width: 100%;
+    padding: 40px 80px;
+}
+
+.mypage .mypage__header span {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.mypage .mypage__header p{
+    margin-top: 15px;
+    color: #636170;
+}
+
+.mypage .mypage__content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.mypage .mypage__content .mypage__profile {
+    width: 100%;
+    height: 200px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+}
+
+.mypage .mypage__content .mypage__profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.mypage .mypage__content .mypage__inner {
+    width: 400px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+.mypage .mypage__content .mypage__inner svg {
+    font-size: 20px;
+    margin-right: 20px;
+    color: #ffffff;
+}
+
+.mypage .mypage__content .mypage__inner p {
+    width: 200px;
+    color: #ffffff;
+    margin-right: 100px;
+}
+
+.mypage .mypage__content .mypage__inner span {
+    display: inline-block;
+    text-align: right;
+    width: 300px;
+    color: #93929f;
+}

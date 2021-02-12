@@ -61,6 +61,22 @@ body {
     color: #B06AB3;
 }
 
+.sign-wrapper__input .duplicatie-btn {
+    height: 20px;
+    position: absolute;
+    right: 50px;
+    border: none;
+    outline: none;
+    background-color: skyblue;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.sign-wrapper__input .duplicatie-btn:hover {
+
+}
+
 .sign-wrapper__remember {
     width: 100%;
     margin: 40px 0 120px 0;
