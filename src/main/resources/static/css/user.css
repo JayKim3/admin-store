@@ -1,5 +1,4 @@
 /******************** Admin User ***********************/
-
 .user-management {
     width: 100%;
     padding: 40px 80px;
@@ -94,4 +93,19 @@
 
 .user-management table input[id="user_checkbox"]:checked + label {
     background-color: red;
+}
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.pagination-wrapper .pagination__ul {
+    display: flex;
+}
+
+.pagination-wrapper .pagination__ul li {
+    margin: 0 20px;
+    cursor: pointer;
 }

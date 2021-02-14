@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,10 +39,10 @@ public class AdminController {
         return "master";
     }
 
-    @GetMapping("/user")
-    public String userload(final Model model) {
-        System.out.println("user");
-        model.addAttribute("members", memberApiService.findAll());
+    @GetMapping("/user/{page}")
+    public String userload(@PathVariable final int page, final Model model) {
+        model.addAttribute("members", memberApiService.findAll(page));
+        model.addAttribute("pages", 10);
         return "admin/user";
     }
 

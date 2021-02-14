@@ -98,8 +98,8 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
         }
     }
 
-    public List<Member> findAll() {
-        final Pageable pageable = PageRequest.of(0, 8  , Sort.by(Sort.Direction.ASC, "id"));
+    public List<Member> findAll(final int page) {
+        final Pageable pageable = PageRequest.of(page, 8  , Sort.by(Sort.Direction.ASC, "id"));
         final Page<Member> all = memberRepository.findAll(pageable);
         final List<Member> members = all.getContent();
         return members;
@@ -111,6 +111,11 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
 
     public List<Member> currentYearlyUser() {
         return memberRepository.findCurrentYearlyUser();
+    }
+
+    public Member findByEmail(final String email) {
+        final Member member = memberRepository.findByEmail(email);
+        return member;
     }
 
     private MemberApiResponse response(final Member member) {

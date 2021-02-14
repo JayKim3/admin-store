@@ -7,19 +7,17 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/pagination.min.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
 </head>
 <body>
     <th:block th:include="@{/header}"></th:block>
     <main>
         <nav>
             <div class="nav-logo"></div>
-            <div class="nav-profile">Profile</div>
+            <a th:href="@{'/mypage/' + ${#authentication.name}}"><div class="nav-profile">Profile</div></a>
             <div class="nav-menu">
                 <ul>
                     <a href="/admin"><li>DashBoard</li></a>
-                    <a href="/admin/user"><li>Users</li></a>
+                    <a href="/admin/user/0"><li>Users</li></a>
                     <a href="/admin/order"><li>Orders</li></a>
                     <a href="/admin/setting"><li>Settings</li></a>
                 </ul>
@@ -68,9 +66,18 @@
                     </td>
                 </tr>
             </table>
+            <div class="pagination-wrapper">
+                <div id="pagination">
+                    <ul class="pagination__ul">
+                        <th:block th:each="i: ${#numbers.sequence(0, 9)}">
+                            <a th:href="@{'/admin/user/' + ${i}}"><li th:text="${i+1}"></li></a>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div id="pagination"></div>
     </main>
     <script type="text/javascript" th:src="@{/js/nav.js}"></script>
+    <script type="text/javascript" th:src="@{/js/user.js}"></script>
 </body>
 
