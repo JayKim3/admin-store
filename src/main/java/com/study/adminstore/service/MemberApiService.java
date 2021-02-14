@@ -27,7 +27,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequiredArgsConstructor
 @Service
 public class MemberApiService implements UserDetailsService, CrudInterface<MemberApiRequest, MemberApiResponse> {
 
@@ -104,6 +103,14 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
         final Page<Member> all = memberRepository.findAll(pageable);
         final List<Member> members = all.getContent();
         return members;
+    }
+
+    public List<Member> currentMonthUser() {
+        return memberRepository.findCurrentMonthUser();
+    }
+
+    public List<Member> currentYearlyUser() {
+        return memberRepository.findCurrentYearlyUser();
     }
 
     private MemberApiResponse response(final Member member) {

@@ -137,6 +137,7 @@ main nav .nav-menu ul li {
 }
 
 .dashboard .card-wrapper .small-card-row .small-card-row__new div span {
+    width: 45px;
     color: #ffffff;
     font-size: 20px;
 }

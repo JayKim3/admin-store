@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" th:src="@{/js/chart.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin.js}"></script>
 </head>
 <body>
     <th:block th:include="@{/header}"></th:block>
@@ -38,7 +39,7 @@
                 </div>
                 <div class="big-card-row">
                     <span class="card-title">By Country</span>
-                    <span>서비스 준비중 ...</span>
+                    <canvas id="countryChart" width="350" height="100"></canvas>
                 </div>
             </div>
             <div class="card-wrapper margin-top20">
@@ -60,7 +61,7 @@
                             <span class="card-title">New Users</span>
                             <div class="small-card-row__new">
                                 <div>
-                                    <span>3784</span>
+                                    <span class="user-count"></span>
                                 </div>
                                 <canvas id="newUserChart" height="80"></canvas>
                             </div>

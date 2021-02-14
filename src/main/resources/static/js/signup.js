@@ -47,7 +47,7 @@ $(document).ready(function() {
         data.phone_number = phoneNumber;
         data.auth = "ROLE_USER"; // auth Check
 
-        $.ajax( {
+        $.ajax({
 
             type: "POST",
             contentType: "application/json",
