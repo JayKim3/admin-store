@@ -15,7 +15,7 @@
     <main>
         <nav>
             <div class="nav-logo"></div>
-            <a href="/mypage">
+            <a th:href="@{'/mypage/' + ${#authentication.name}}">
                 <div class="nav-profile">Profile</div>
             </a>
             <div class="nav-menu">

@@ -2,6 +2,7 @@ package com.study.adminstore.service;
 
 import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.domain.Role;
+import com.study.adminstore.model.entity.Category;
 import com.study.adminstore.model.entity.Member;
 import com.study.adminstore.model.network.request.MemberApiRequest;
 import com.study.adminstore.model.network.response.MemberApiResponse;
@@ -26,6 +27,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MemberApiService implements UserDetailsService, CrudInterface<MemberApiRequest, MemberApiResponse> {
@@ -129,5 +131,15 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
                 .build();
 
         return memberApiResponse;
+    }
+
+    public ResponseEntity<Member> deleteById(final Long id) {
+        final Optional<Member> optional = memberRepository.findById(id);
+
+        return optional.map(member-> {
+            memberRepository.delete(member);
+            return new ResponseEntity(HttpStatus.OK);
+        })
+        .orElseGet(()->ResponseEntity.notFound().build());
     }
 }

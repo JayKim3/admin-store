@@ -32,9 +32,13 @@
     margin: 0 10px;
     outline: none;
     border: none;
+    color: #0095ff;
     cursor: pointer;
 }
 
+.user-management .user-management__header .user-management__button-wrapper button:hover {
+    background-color: #8f9bb3;
+}
 .user-management .user-management__header .user-management__button-wrapper button svg {
     margin-right: 20px;
 }
@@ -83,16 +87,16 @@
 
 .user-management table input[type="checkbox"] + label {
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     position: relative; /* allows to position the custom boxes */
     cursor: pointer;
     border: 1px solid skyblue;
     border-radius: 4px;
 }
 
-.user-management table input[id="user_checkbox"]:checked + label {
-    background-color: red;
+.user-management table input[type="checkbox"]:checked + label {
+    background: url("../img/user_checked.png") center center;
 }
 
 .pagination-wrapper {
