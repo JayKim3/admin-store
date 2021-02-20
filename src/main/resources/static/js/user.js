@@ -1,8 +1,6 @@
 $(document).ready(function() {
     // pagination 만들기
 
-
-
     $('input[id=user_all_checkbox]').on('click', function(e){
         if($(this).prop("checked")) {
             $('input[name=user_checkbox]').prop('checked', true);
@@ -35,7 +33,8 @@ $(document).ready(function() {
             success: function(data) {
                 if(data === 1 ) {
                     swal("성공적으로 삭제 되었습니다.");
-                    setTimeout(window.location.href= "/admin/user/0", 2000);
+                    setTimeout(function(){
+                        window.location.href= "/admin/user/0"}, 2000);
                 } else {
                     swal("예기치 못한 에러 발생");
                     window.location.href= "/"
@@ -46,5 +45,4 @@ $(document).ready(function() {
             }
         })
     })
-
 })
