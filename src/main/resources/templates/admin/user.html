@@ -5,21 +5,21 @@
     <title>Admin Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/pagination.min.js}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css"/>
 </head>
 <body>
     <th:block th:include="@{/header}"></th:block>
+    <th:block th:include="@{/popup/userModifyPopup}"></th:block>
     <main>
         <nav>
             <div class="nav-logo"></div>
-            <div class="nav-profile">Profile</div>
+            <a th:href="@{'/mypage/' + ${#authentication.name}}"><div class="nav-profile">Profile</div></a>
             <div class="nav-menu">
                 <ul>
                     <a href="/admin"><li>DashBoard</li></a>
-                    <a href="/admin/user"><li>Users</li></a>
+                    <a href="/admin/user/0"><li>Users</li></a>
                     <a href="/admin/order"><li>Orders</li></a>
                     <a href="/admin/setting"><li>Settings</li></a>
                 </ul>
@@ -33,10 +33,16 @@
                 </div>
                 <div class="user-management__button-wrapper">
                     <div>
-                        <button><i class="far fa-edit"></i>Edit</button>
+                        <button id="edit-btn">
+                            <i class="far fa-edit"></i>
+                            Edit
+                        </button>
                     </div>
                     <div>
-                        <button><i class="far fa-trash-alt"></i>Remove</button>
+                        <button id="delete-btn">
+                            <i class="far fa-trash-alt"></i>
+                            Remove
+                        </button>
                     </div>
                 </div>
             </header>
@@ -52,7 +58,7 @@
                     <input type="checkbox" id="user_all_checkbox" />
                     <label for="user_all_checkbox"></label>
                 </th>
-                <tr class="user-tr" th:each="member: ${members}">
+                <tr class="user-tr" th:each="member : ${members}">
                     <td th:text="${member.id}"></td>
                     <td>
                         <img src="/img/iu3.jpg">
@@ -63,14 +69,23 @@
                     <td th:text="${member.phoneNumber}"></td>
                     <td th:text="${member.createdAt}"></td>
                     <td>
-                        <input type="checkbox" id="user_checkbox" />
-                        <label for="user_checkbox"></label>
+                        <input type="checkbox" name="user_checkbox" th:id="${member.id}" />
+                        <label th:for="${member.id}"></label>
                     </td>
                 </tr>
             </table>
+            <div class="pagination-wrapper">
+                <div id="pagination">
+                    <ul class="pagination__ul">
+                        <th:block th:each="i: ${#numbers.sequence(0, 9)}">
+                            <a th:href="@{'/admin/user/' + ${i}}"><li th:text="${i+1}"></li></a>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div id="pagination"></div>
     </main>
     <script type="text/javascript" th:src="@{/js/nav.js}"></script>
+    <script type="text/javascript" th:src="@{/js/user.js}"></script>
 </body>
 

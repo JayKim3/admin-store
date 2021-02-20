@@ -1,0 +1,47 @@
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+    <div class="user-popup-wrapper">
+        <div class="user-profile">
+            <img src="/img/iu3.jpg"/>
+            <p class="user-info-email"></p>
+        </div>
+        <form class="user-modify-form">
+            <input type="hidden" name="user-info-id" />
+            <input type="hidden" name="user-info-password" />
+            <div class="popup-row">
+                <div class="popup-row__left">
+                    <i class="fas fa-user"></i>
+                    <span>Account</span>
+                </div>
+                <div class="popup-row__right">
+                    <input name="user-info-account" />
+                </div>
+            </div>
+            <div class="popup-row">
+                <div class="popup-row__left">
+                    <i class="fas fa-store"></i>
+                    <span>Auth</span>
+                </div>
+                <div class="popup-row__right">
+                <!-- Tolgge Button -->
+                    <input name="user-info-auth" />
+                </div>
+            </div>
+            <div class="popup-row">
+                <div class="popup-row__left">
+                    <i class="fas fa-phone"></i>
+                    <span>Phone Number</span>
+                </div>
+                <div class="popup-row__right">
+                    <input name="user-info-phoneNumber" />
+                </div>
+            </div>
+            <div class="user-popup-btn-wrapper">
+                <button type="submit" class="user-modifty-btn">Modify</button>
+                <button type="button" class="user-cancel-btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</html>

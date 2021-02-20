@@ -2,16 +2,21 @@ package com.study.adminstore.controller.api;
 
 import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.domain.Mail;
+import com.study.adminstore.model.entity.Member;
 import com.study.adminstore.model.network.request.MemberApiRequest;
 import com.study.adminstore.model.network.response.MemberApiResponse;
 import com.study.adminstore.service.EmailApiService;
 import com.study.adminstore.service.MemberApiService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
@@ -19,9 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-@RequiredArgsConstructor
 @Controller
 public class MemberApiController implements CrudInterface<MemberApiRequest, MemberApiResponse> {
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private MemberApiService memberApiService;
@@ -58,6 +64,12 @@ public class MemberApiController implements CrudInterface<MemberApiRequest, Memb
         return "find";
     }
 
+    @GetMapping("/mypage/{email}")
+    public String myPage(@PathVariable final String email, final Model model) {
+        model.addAttribute("member", memberApiService.findByEmail(email));
+        return "mypage";
+    }
+
     @PostMapping("/signup")
     @Override
     public ResponseEntity<MemberApiResponse> create(@RequestBody final MemberApiRequest memberApiRequest) {
@@ -79,7 +91,7 @@ public class MemberApiController implements CrudInterface<MemberApiRequest, Memb
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest userApiRequest) {
+    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest req) {
         return null;
     }
 
