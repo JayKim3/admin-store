@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -23,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-@RequiredArgsConstructor
 @Controller
 public class MemberApiController implements CrudInterface<MemberApiRequest, MemberApiResponse> {
 
@@ -91,7 +91,7 @@ public class MemberApiController implements CrudInterface<MemberApiRequest, Memb
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest userApiRequest) {
+    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest req) {
         return null;
     }
 

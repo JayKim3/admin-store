@@ -63,12 +63,29 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
 
     @Override
     public ResponseEntity<MemberApiResponse> read(final Long id) {
-        return null;
+        final Optional<Member> optional = memberRepository.findById(id);
+
+        return optional.map(member-> {
+            return new ResponseEntity(optional, HttpStatus.OK);
+        })
+                .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @Override
-    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest memberApiRequest) {
-        return null;
+    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest req) {
+        final MemberApiRequest memberApiRequest = req;
+        final Optional<Member> optional = memberRepository.findById(memberApiRequest.getId());
+
+        return optional.map(member-> {
+            member.setAccount(memberApiRequest.getAccount())
+                    .setAuth(memberApiRequest.getAuth())
+                    .setPhoneNumber(memberApiRequest.getPhoneNumber())
+                    .setUpdatedAt(LocalDateTime.now())
+                    .setUpdatedBy("UpdatedKSJ");
+            return member;
+        }).map(updateMember-> memberRepository.save(updateMember))
+                .map(updateMember-> new ResponseEntity<MemberApiResponse>(MemberApiResponse.builder().build(), HttpStatus.OK))
+                .orElseGet(()-> ResponseEntity.notFound().build());
     }
 
     @Override

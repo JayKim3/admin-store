@@ -11,6 +11,7 @@
 </head>
 <body>
     <th:block th:include="@{/header}"></th:block>
+    <th:block th:include="@{/popup/userModifyPopup}"></th:block>
     <main>
         <nav>
             <div class="nav-logo"></div>
@@ -32,7 +33,7 @@
                 </div>
                 <div class="user-management__button-wrapper">
                     <div>
-                        <button>
+                        <button id="edit-btn">
                             <i class="far fa-edit"></i>
                             Edit
                         </button>

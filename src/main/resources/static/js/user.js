@@ -45,4 +45,78 @@ $(document).ready(function() {
             }
         })
     })
+
+    $('#edit-btn').on('click', function() {
+        const cnt = $('input[name=user_checkbox]:checked').length;
+
+        if(cnt != 1) {
+            swal("해당 유저 한 명만 선택 후 수정버튼을 클릭해주세요");
+            return;
+        }
+
+        const id = $('input[name=user_checkbox]:checked').attr("id");
+        $('.user-popup-wrapper').css('display', 'block');
+
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/admin/user/modify/" + id,
+            success: function(data) {
+                const user = data.body;
+                // 전달받은 데이터 동적으로 화면 그려주기.
+                $('.user-info-email').text(user.email);
+                $('input[name=user-info-id]').val(user.id);
+                $('input[name=user-info-password]').val(user.password);
+                $('input[name=user-info-account]').val(user.account);
+                $('input[name=user-info-auth]').val(user.auth);
+                $('input[name=user-info-phoneNumber]').val(user.phone_number);
+            },
+            error: function(e) {
+                console.log("ERROR : ", e);
+            }
+        });
+    });
+
+    $('.user-modifty-btn').on('click', function(e) {
+        e.preventDefault();
+        const data = {};
+        const id = $('input[name=user-info-id]').val();
+        const password = $('input[name=user-info-password]').val();
+        const email = $('.user-info-email').text();
+        const account = $('input[name=user-info-account]').val();
+        const auth = $('input[name=user-info-auth]').val();
+        const phoneNumber = $('input[name=user-info-phoneNumber]').val();
+
+        // 방어코드 구현
+
+        data.id = id;
+        data.password = password;
+        data.email = email;
+        data.account = account;
+        data.auth = auth;
+        data.phone_number = phoneNumber;
+
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json",
+            url: "/admin/user/modify/",
+            data: JSON.stringify(data),
+            success: function(data) {
+                console.log(data);
+                if(data) {
+                    setTimeout(function (){
+                        swal("성공적으로 변경하였습니다.");
+                        $('.user-popup-wrapper').css('display', 'none');
+                    }, 1000);
+                }
+            },
+            error: function(e) {
+                console.log("ERROR : ", e);
+            }
+        });
+    });
+
+    $('.user-popup-wrapper .user-cancel-btn').on("click", function(){
+        $('.user-popup-wrapper').css('display', 'none');
+    });
 })

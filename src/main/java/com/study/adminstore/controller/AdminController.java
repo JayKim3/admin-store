@@ -1,9 +1,12 @@
 package com.study.adminstore.controller;
 
 import com.study.adminstore.model.entity.Member;
+import com.study.adminstore.model.network.request.MemberApiRequest;
+import com.study.adminstore.model.network.response.MemberApiResponse;
 import com.study.adminstore.service.CategoryApiService;
 import com.study.adminstore.service.MemberApiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,5 +76,18 @@ public class AdminController {
             result=0;
         }
         return result;
+    }
+
+    @GetMapping("/user/modify/{id}")
+    public ResponseEntity user(@PathVariable final Long id, final Model model) {
+        final ResponseEntity<MemberApiResponse> member = memberApiService.read(id);
+        return new ResponseEntity<>(member, HttpStatus.OK);
+    }
+
+    @PutMapping("/user/modify")
+    public ResponseEntity update(@RequestBody final MemberApiRequest memberApiRequest) {
+        System.out.println(memberApiRequest);
+        final ResponseEntity<MemberApiResponse> member = memberApiService.update(memberApiRequest);
+        return new ResponseEntity<>(member, HttpStatus.OK);
     }
 }
