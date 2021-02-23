@@ -1,6 +1,7 @@
 package com.study.adminstore.controller;
 
 import com.study.adminstore.model.entity.Member;
+import com.study.adminstore.model.entity.Visitor;
 import com.study.adminstore.model.network.request.MemberApiRequest;
 import com.study.adminstore.model.network.response.MemberApiResponse;
 import com.study.adminstore.service.CategoryApiService;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -63,6 +65,10 @@ public class AdminController {
     public List<Member> currentYearlyUser() {
         return memberApiService.currentYearlyUser();
     }
+
+    @GetMapping("/countryUser")
+    @ResponseBody
+    public ArrayList<String> currentCountryUser() { return memberApiService.currentCountryUser(); }
 
     @GetMapping("/user/delete")
     @ResponseBody

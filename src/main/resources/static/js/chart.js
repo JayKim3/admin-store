@@ -220,21 +220,45 @@ function loadUserYearlyData(monthNames) {
 }
 
 function loadCountryData() {
-    const CountryCtx = document.getElementById('countryChart').getContext('2d');
-    new Chart(CountryCtx, {
-        type: 'horizontalBar',
-        data: {
-            labels: ['KOREA', 'US', 'JAPEN', 'CHINA', "OTHER"],
-            datasets: [{
-                label: "Users",
-                data: [10, 3, 30, 23, 10],
-                backgroundColor: 'rgba(121, 94, 241, 1.0)',
-                fill: false,
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/admin/countryUser",
+    }).done(function (data) {
+        const CountryCtx = document.getElementById('countryChart').getContext('2d');
+        const countryLabel = ['KOREA', 'US', 'JAPEN', 'CHINA', "OTHER"];
+        const countryCount = [0, 0, 0, 0, 0];
+        for(let i = 0; i < data.length; i++) {
+            if(data[i] == 'Korea, Republic of') {
+                countryCount[0] += 1;
+            } else if(data[i] == 'United States of America') {
+                countryCount[1] += 1;
+            } else if(data[i] == 'Japen') {
+                countryCount[2] += 1;
+            } else if(data[i] == 'China') {
+                countryCount[3] += 1;
+            } else {
+                countryCount[4] += 1;
+            }
         }
-    });
+
+        console.log(countryLabel, countryCount);
+
+        new Chart(CountryCtx, {
+            type: 'horizontalBar',
+            data: {
+                labels: countryLabel,
+                datasets: [{
+                    label: "Country Users",
+                    data: countryCount,
+                    backgroundColor: 'rgba(121, 94, 241, 1.0)',
+                    fill: false,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+    })
 }

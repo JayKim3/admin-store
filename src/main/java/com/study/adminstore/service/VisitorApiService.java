@@ -1,5 +1,6 @@
 package com.study.adminstore.service;
 
+import com.maxmind.geoip.*;
 import com.study.adminstore.model.entity.Member;
 import com.study.adminstore.model.entity.Visitor;
 import com.study.adminstore.repository.MemberRepository;
@@ -14,8 +15,11 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Optional;
+
+import com.maxmind.geoip.LookupService;
 
 @Service
 public class VisitorApiService {
@@ -26,15 +30,33 @@ public class VisitorApiService {
     @Autowired
     MemberRepository memberRepository;
 
-    public void save(final HttpServletRequest request, final Authentication authentication) {
+    public void save(final HttpServletRequest request, final Authentication authentication) throws IOException {
         // request null 처리
         final WebAuthenticationDetails web = (WebAuthenticationDetails) authentication.getDetails();
 
         final Member member = memberRepository.findByEmail(authentication.getName());
 
+        String country = "";
+        String ip = web.getRemoteAddress();
+
+        try {
+            final LookupService geoip = new LookupService("/Users/jaykim/GeoLiteCity.dat", LookupService.GEOIP_MEMORY_CACHE);
+
+            if(ip.equals("127.0.0.1") || ip.equals("0:0:0:0:0:0:0:1")){
+                ip = "14.128.128.0";
+            }
+            
+            final Location location = geoip.getLocation(ip); // IP 입력
+            country = location.countryName;
+
+        } catch (final IOException e) {
+            System.out.println("IO Exception"); e.printStackTrace();
+        }
+
         final Visitor visitor = new Visitor().builder()
                 .sessionId(web.getSessionId())
-                .ip(web.getRemoteAddress())
+                .ip(ip)
+                .country(country)
                 .startVisit(new Date(request.getSession().getCreationTime()))
                 .endVisit(new Date(request.getSession().getLastAccessedTime()))
                 .agent(request.getHeader("User-Agent"))

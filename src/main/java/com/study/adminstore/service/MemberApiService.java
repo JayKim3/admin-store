@@ -4,9 +4,11 @@ import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.domain.Role;
 import com.study.adminstore.model.entity.Category;
 import com.study.adminstore.model.entity.Member;
+import com.study.adminstore.model.entity.Visitor;
 import com.study.adminstore.model.network.request.MemberApiRequest;
 import com.study.adminstore.model.network.response.MemberApiResponse;
 import com.study.adminstore.repository.MemberRepository;
+import com.study.adminstore.repository.VisitorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +26,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,9 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private VisitorRepository visitorRepository;
 
     public ResponseEntity<MemberApiResponse> create(final MemberApiRequest memberApiRequest) {
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -131,6 +137,8 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
     public List<Member> currentYearlyUser() {
         return memberRepository.findCurrentYearlyUser();
     }
+
+    public ArrayList<String> currentCountryUser() {return visitorRepository.findCurrentCountryUser();}
 
     public Member findByEmail(final String email) {
         final Member member = memberRepository.findByEmail(email);
