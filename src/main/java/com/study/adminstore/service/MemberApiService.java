@@ -140,6 +140,8 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
 
     public ArrayList<String> currentCountryUser() {return visitorRepository.findCurrentCountryUser();}
 
+    public ArrayList<Integer> currrentContinueTime() {return visitorRepository.findLoginContinueTime();}
+
     public Member findByEmail(final String email) {
         final Member member = memberRepository.findByEmail(email);
         return member;

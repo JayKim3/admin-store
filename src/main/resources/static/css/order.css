@@ -1,0 +1,21 @@
+.order {
+    width: 100%;
+    padding: 40px 80px;
+}
+
+.order .order__header span {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.order .order__header p {
+    margin-top: 15px;
+    color: #636170;
+}
+
+.order .order__content {
+    width: 100%;
+    color: #ffffff;
+    text-align: left;
+    margin-top: 50px;
+}

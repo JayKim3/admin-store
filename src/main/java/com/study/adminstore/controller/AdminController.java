@@ -70,6 +70,10 @@ public class AdminController {
     @ResponseBody
     public ArrayList<String> currentCountryUser() { return memberApiService.currentCountryUser(); }
 
+    @GetMapping("/continueTime")
+    @ResponseBody
+    public ArrayList<Integer> findLoginContinueTime() {return memberApiService.currrentContinueTime();}
+
     @GetMapping("/user/delete")
     @ResponseBody
     public int delete(@RequestParam(value = "deleteUserArray[]") final Long[] deleteUserArray) {

@@ -13,4 +13,7 @@ import java.util.Optional;
 public interface VisitorRepository extends JpaRepository<Visitor, Long> {
     @Query(value = "SELECT country FROM visitor", nativeQuery = true)
     ArrayList<String> findCurrentCountryUser();
+
+    @Query(value = "SELECT end_visit - start_visit as login_continue_time FROM visitor", nativeQuery = true)
+    ArrayList<Integer> findLoginContinueTime();
 }

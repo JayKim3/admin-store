@@ -1,0 +1,28 @@
+.common-nav {
+    width: 20%;
+    height: 100vh;
+    background-color: #2D2C3F;
+}
+
+.common-nav .nav-logo {
+    width: 100%;
+    height: 200px;
+}
+
+.common-nav .nav-profile {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    width: 100%;
+    height: 100px;
+    color: #8d3ada;
+}
+
+.common-nav .nav-menu ul li {
+    padding-left: 30px;
+    height: 30px;
+    margin: 20px 0;
+    color: #5A5869;
+    outline : none;
+    cursor: pointer;
+}

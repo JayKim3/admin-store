@@ -13,18 +13,7 @@
     <th:block th:include="@{/header}"></th:block>
     <th:block th:include="@{/popup/userModifyPopup}"></th:block>
     <main>
-        <nav>
-            <div class="nav-logo"></div>
-            <a th:href="@{'/mypage/' + ${#authentication.name}}"><div class="nav-profile">Profile</div></a>
-            <div class="nav-menu">
-                <ul>
-                    <a href="/admin"><li>DashBoard</li></a>
-                    <a href="/admin/user/0"><li>Users</li></a>
-                    <a href="/admin/order"><li>Orders</li></a>
-                    <a href="/admin/setting"><li>Settings</li></a>
-                </ul>
-            </div>
-        </nav>
+        <th:block th:include="@{/nav}"></th:block>
         <div class="user-management">
             <header class="user-management__header">
                 <div>
@@ -85,7 +74,6 @@
             </div>
         </div>
     </main>
-    <script type="text/javascript" th:src="@{/js/nav.js}"></script>
     <script type="text/javascript" th:src="@{/js/user.js}"></script>
 </body>
 

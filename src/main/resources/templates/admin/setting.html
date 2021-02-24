@@ -6,23 +6,11 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="../../static/css/setting.css">
 </head>
 <body>
     <th:block th:include="@{/header}"></th:block>
     <main>
-        <nav>
-            <div class="nav-logo"></div>
-            <div class="nav-profile">Profile</div>
-            <div class="nav-menu">
-                <ul>
-                    <a href="/admin"><li>DashBoard</li></a>
-                    <a href="/admin/user/0"><li>Users</li></a>
-                    <a href="/admin/order"><li>Orders</li></a>
-                    <a href="/admin/setting"><li>Settings</li></a>
-                </ul>
-            </div>
-        </nav>
+        <th:block th:include="@{/nav}"></th:block>
         <div class="setting">
             <header class="setting__header">
                 <i class="fas fa-cog"></i>

@@ -5,35 +5,9 @@ $(document).ready(function(){
     loadUserActiveData(monthNames);
     loadUserYearlyData(monthNames);
     loadCountryData();
+    loadUserTimeData();
 
-    const timeCtx = document.getElementById('timePieChart').getContext('2d');
     const followerCtx = document.getElementById('followerChart').getContext('2d');
-
-    const timePieChart = new Chart(timeCtx, {
-        type: 'pie',
-        data: {
-            labels: ["More than 1 hour", "Between 30 min and 1 hour", "Less than 30 min"],
-            datasets: [
-                {
-                    data: [64, 21, 15],
-                    backgroundColor: [
-                        'rgba(121, 94, 241, 1.0)',
-                        'rgba(238, 140, 203, 1.0)',
-                        "#36A2EB"
-                    ],
-                }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Time spent per day',
-                fontSize: 20,
-                fontColor: '#ffffff'
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-        }
-    })
 
     const followerChart = new Chart(followerCtx, {
         type: 'doughnut',
@@ -242,8 +216,6 @@ function loadCountryData() {
             }
         }
 
-        console.log(countryLabel, countryCount);
-
         new Chart(CountryCtx, {
             type: 'horizontalBar',
             data: {
@@ -260,5 +232,54 @@ function loadCountryData() {
                 responsive: true,
             }
         });
+    })
+}
+
+function loadUserTimeData() {
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/admin/continueTime",
+    }).done(function(data){
+    const timeCtx = document.getElementById('timePieChart').getContext('2d');
+    const timeLabel = ["More than 1 hour", "Between 30 min and 1 hour", "Less than 30 min"];
+    const timeCount = [0, 0, 0];
+
+    for(let i = 0; i < data.length; i++) {
+        if(data[i] >= 3600) {
+            timeCount[0] += 1;
+        } else if(data[i] >= 1800) {
+            timeCount[1] += 1;
+        } else {
+            timeCount[2] += 1;
+        }
+    }
+
+    new Chart(timeCtx, {
+        type: 'pie',
+        data: {
+            labels: timeLabel,
+            datasets: [
+                {
+                    data: timeCount,
+                    backgroundColor: [
+                        'rgba(121, 94, 241, 1.0)',
+                        'rgba(238, 140, 203, 1.0)',
+                        "#36A2EB"
+                    ],
+                }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Time spent per day',
+                fontSize: 20,
+                fontColor: '#ffffff'
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    })
     })
 }
