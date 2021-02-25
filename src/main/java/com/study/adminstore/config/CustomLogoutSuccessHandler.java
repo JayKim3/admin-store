@@ -16,8 +16,6 @@ import java.io.IOException;
 @Configuration
 public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     VisitorApiService visitorApiService;
 
@@ -26,8 +24,6 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler {
         if (authentication != null && authentication.getDetails() != null) {
             try {
                 visitorApiService.updateEndVisit(httpServletRequest);
-                logger.info("visitor_id : " + httpServletRequest.getSession().getAttribute("visitor_id"));
-
                 httpServletRequest.getSession().invalidate();
             } catch (final Exception e) {
                 e.printStackTrace();

@@ -1,14 +1,15 @@
 /******************** Admin User ***********************/
 .user-management {
     width: 100%;
-    padding: 40px 80px;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding: 0 80px
 }
 
 .user-management .user-management__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 30px;
 }
 
 .user-management .user-management__header span {
@@ -48,6 +49,7 @@
     color: #ffffff;
     text-align: left;
     margin-top: 50px;
+    margin-bottom: 15px;
 }
 
 .user-management table th {
@@ -58,6 +60,7 @@
 .user-management table .user-tr {
     width: 100%;
     height: 75px;
+    margin: 50px;
 }
 
 .user-management table .user-tr:hover {

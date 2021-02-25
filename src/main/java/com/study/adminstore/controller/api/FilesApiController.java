@@ -28,6 +28,4 @@ public class FilesApiController {
         filesApiService.save(files);
         return "redirect:/mypage";
     }
-
-
- }
+}

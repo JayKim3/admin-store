@@ -12,8 +12,8 @@ main {
     padding: 40px 80px;
 }
 
-.dashboard header {
-    margin: 20px 0;
+.dashboard .dashboard__header {
+    margin-bottom: 20px;
 }
 
 .dashboard .dashboard__header svg {

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Controller
-public class MemberApiController implements CrudInterface<MemberApiRequest, MemberApiResponse> {
+public class MemberApiController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -71,7 +71,6 @@ public class MemberApiController implements CrudInterface<MemberApiRequest, Memb
     }
 
     @PostMapping("/signup")
-    @Override
     public ResponseEntity<MemberApiResponse> create(@RequestBody final MemberApiRequest memberApiRequest) {
         System.out.println(memberApiRequest);
         return memberApiService.create(memberApiRequest);
@@ -80,23 +79,7 @@ public class MemberApiController implements CrudInterface<MemberApiRequest, Memb
     @PostMapping("/find")
     @ResponseBody
     public void emailSend(final String email) throws MessagingException {
-        System.out.println(email);
         final Mail mail = emailApiService.createMailAndChangePassword(email);
         emailApiService.sendMail(mail);
-    }
-
-    @Override
-    public ResponseEntity<MemberApiResponse> read(final Long id) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<MemberApiResponse> update(final MemberApiRequest req) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<MemberApiResponse> delete(final Long id) {
-        return null;
     }
 }
