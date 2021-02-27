@@ -21,14 +21,20 @@
     color: #636170;
 }
 
+.setting .setting__header .setting__weather {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
 .setting .setting__content {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .setting .setting__content .setting__box {
-    margin: 40px 0;
+    margin: 35px 0;
 }
 
 .setting .setting__content .setting__box .setting__inner{
@@ -56,6 +62,17 @@
     text-align: right;
     width: 300px;
     color: #93929f;
+}
+
+.setting .setting__content .setting__box .setting__inner .help-btn {
+    width: 60px;
+    height: 24px;
+    border-radius: 34px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: skyblue;
 }
 
 .setting .setting__box .setting__switch {
@@ -113,4 +130,20 @@ input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+}
+
+:root[color-theme='light'] {
+    --background: #fff;
+    --color: #21202E;
+    --boxColor: #21202E;
+}
+
+:root[color-theme='dark'] {
+    --background: #21202E;
+    --color: #fff;
+    --boxColor: #fff;
+}
+
+html {
+    background: var(--background);
 }

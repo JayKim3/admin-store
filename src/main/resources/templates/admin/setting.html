@@ -16,6 +16,7 @@
                 <i class="fas fa-cog"></i>
                 <span>Setting</span>
                 <p>February 7th 2021 - Sunday</p>
+                <div class="setting__weather"></div>
             </header>
             <div class="setting__content">
                 <div class="setting__box">
@@ -48,25 +49,37 @@
                     <div class="setting__inner">
                         <i class="fas fa-unlock"></i>
                         <p>Privacy</p>
-                        <span></span>
+                        <label class="setting__switch">
+                            <input type="checkbox" name="input-privacy"/>
+                            <span data-type="on" class="slider"></span>
+                            <span class="slider-text">Off</span>
+                        </label>
                     </div>
                 </div>
                 <div class="setting__box">
                     <div class="setting__inner">
                         <i class="fas fa-globe"></i>
-                        <p>Langauge</p>
-                        <span class="setting__inner--text">English</span>
+                        <p>Language</p>
+                        <label class="setting__switch">
+                            <input type="checkbox" name="input-language"/>
+                            <span data-type="on" class="slider"></span>
+                            <span class="slider-text">En</span>
+                        </label>
                     </div>
                     <div class="setting__inner">
 <!--                        <i class="far fa-sun"></i>-->
                         <i class="far fa-moon"></i>
                         <p>Dark Mode</p>
-                        <span class="setting__inner--text">On</span>
+                        <label class="setting__switch">
+                            <input type="checkbox" name="input-mode"/>
+                            <span data-type="on" class="slider"></span>
+                            <span class="slider-text">Off</span>
+                        </label>
                     </div>
                     <div class="setting__inner">
                         <i class="far fa-question-circle"></i>
                         <p>Help</p>
-                        <span></span>
+                        <button class="help-btn">Go</button>
                     </div>
                 </div>
             </div>
