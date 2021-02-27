@@ -1,11 +1,14 @@
+<!DOCTYPE html>
 <html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<script type="text/javascript" th:src="@{/js/nav.js}"></script>
     <nav class="common-nav">
         <div class="nav-logo">
-            <img src="/img/flower.jpg" />
-        </div>
-        <a th:href="@{'/mypage/' + ${#authentication.name}}">
             <div class="nav-profile">Profile</div>
-        </a>
+            <a th:href="@{'/mypage/' + ${#authentication.name}}">
+                <span th:text="${#authentication.name}"></span>
+<!--                <img th:src="@{'/images/' + ${member?.email} + '.' + ${member?.files?.getFileOriName()}}">-->
+            </a>
+        </div>
         <div class="nav-menu">
             <ul>
                 <a href="/admin"><li>DashBoard</li></a>
@@ -15,5 +18,4 @@
             </ul>
         </div>
     </nav>
-    <script type="text/javascript" th:src="@{/js/nav.js}"></script>
 </html>

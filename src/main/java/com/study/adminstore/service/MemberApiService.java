@@ -17,8 +17,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -144,6 +146,13 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
 
     public Member findByEmail(final String email) {
         final Member member = memberRepository.findByEmail(email);
+        return member;
+    }
+
+    public Member findByAuth() {
+        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("profileMember: " + auth);
+        final Member member = memberRepository.findByEmail(auth.getName());
         return member;
     }
 

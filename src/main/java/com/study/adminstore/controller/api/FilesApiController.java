@@ -26,6 +26,6 @@ public class FilesApiController {
     public String fileInsert(final HttpServletRequest request, @RequestPart final MultipartFile files) throws Exception {
         logger.info("files : " + files);
         filesApiService.save(files);
-        return "redirect:/mypage";
+        return "redirect:/";
     }
 }
