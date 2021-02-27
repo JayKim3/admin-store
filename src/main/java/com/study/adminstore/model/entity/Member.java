@@ -1,5 +1,6 @@
 package com.study.adminstore.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
@@ -51,5 +52,6 @@ public class Member {
 
     // Files : Member -> 1 : 1
     @OneToOne(mappedBy="member")
+    @JsonIgnore
     private Files files;
 }
