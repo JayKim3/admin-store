@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
+<script type="text/javascript" th:src="@{/js/header.js}"></script>
 <head>
     <meta charset="UTF-8">
 </head>
@@ -17,7 +18,7 @@
         </div>
     </div>
     <div class="main-header__right">
-        <div class="main-header__right--clock">clock</div>
+        <div class="main-header__right--clock"></div>
         <button class="main-header__right--category-btn" sec:authorize="hasAuthority('ROLE_MASTER')">카테고리 추가</button>
         <button class="main-header__right--store-btn" sec:authorize="hasAuthority('ROLE_MASTER')">파트너 추가</button>
         <div class="main-header__right--sign">
