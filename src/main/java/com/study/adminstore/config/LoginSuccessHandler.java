@@ -23,10 +23,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
     VisitorApiService visitorApiService;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Override
-    public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws ServletException, IOException {
+    public void onAuthenticationSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException {
         visitorApiService.save(request, authentication);
         response.sendRedirect("/");
     }

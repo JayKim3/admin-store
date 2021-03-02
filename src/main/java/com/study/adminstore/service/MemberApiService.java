@@ -4,9 +4,11 @@ import com.study.adminstore.ifs.CrudInterface;
 import com.study.adminstore.model.domain.Role;
 import com.study.adminstore.model.entity.Category;
 import com.study.adminstore.model.entity.Member;
+import com.study.adminstore.model.entity.Visitor;
 import com.study.adminstore.model.network.request.MemberApiRequest;
 import com.study.adminstore.model.network.response.MemberApiResponse;
 import com.study.adminstore.repository.MemberRepository;
+import com.study.adminstore.repository.VisitorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,8 +17,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,6 +28,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +39,9 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private VisitorRepository visitorRepository;
 
     public ResponseEntity<MemberApiResponse> create(final MemberApiRequest memberApiRequest) {
         final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -132,8 +140,19 @@ public class MemberApiService implements UserDetailsService, CrudInterface<Membe
         return memberRepository.findCurrentYearlyUser();
     }
 
+    public ArrayList<String> currentCountryUser() {return visitorRepository.findCurrentCountryUser();}
+
+    public ArrayList<Integer> currrentContinueTime() {return visitorRepository.findLoginContinueTime();}
+
     public Member findByEmail(final String email) {
         final Member member = memberRepository.findByEmail(email);
+        return member;
+    }
+
+    public Member findByAuth() {
+        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("profileMember: " + auth);
+        final Member member = memberRepository.findByEmail(auth.getName());
         return member;
     }
 

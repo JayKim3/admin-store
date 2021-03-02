@@ -7,43 +7,13 @@ main {
     box-sizing: border-box;
 }
 
-main nav {
-    width: 20%;
-    height: 100vh;
-    background-color: #2D2C3F;
-}
-
-main nav .nav-logo {
-    width: 100%;
-    height: 200px;
-    background-color: red;
-}
-
-main nav .nav-profile {
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
-    width: 100%;
-    height: 100px;
-    background-color: orange;
-}
-
-main nav .nav-menu ul li {
-    padding-left: 30px;
-    height: 30px;
-    margin: 20px 0;
-    color: #5A5869;
-    outline : none;
-    cursor: pointer;
-}
-
 .dashboard {
     width: 100%;
     padding: 40px 80px;
 }
 
-.dashboard header {
-    margin: 20px 0;
+.dashboard .dashboard__header {
+    margin-bottom: 20px;
 }
 
 .dashboard .dashboard__header svg {

@@ -27,7 +27,6 @@ public class CategoryApiController implements CrudInterface<CategoryApiRequest, 
     @Override
     @GetMapping("{id}")
     public ResponseEntity<CategoryApiResponse> read(@PathVariable final Long id) {
-        System.out.println("id" + id);
         return categoryApiService.read(id);
     }
 
@@ -45,7 +44,6 @@ public class CategoryApiController implements CrudInterface<CategoryApiRequest, 
 
     @GetMapping("/findAll")
     public List<Category> findAll() {
-//        if(pageable == null) pageable = 5;
         return categoryApiService.findAll();
     }
 }

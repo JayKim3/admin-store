@@ -23,9 +23,12 @@ public class FilesApiService {
     @Autowired
     MemberRepository memberRepository;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     public void save(final MultipartFile requestFile) throws IOException {
 
         final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         final Member member = memberRepository.findByEmail(auth.getName());
 
         final String sourceFileName = requestFile.getOriginalFilename();
