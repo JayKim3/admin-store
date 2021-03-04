@@ -25,8 +25,8 @@ public class EmailApiService {
     @Autowired
     JavaMailSender javaMailSender;
 
-    private static final String FROM_ADDRESS = "ksj@admin.com";
-
+//    private static final String FROM_ADDRESS = "ksj@admin.com";
+    private static final String FROM_ADDRESS = "nomadjin6706@gmail.com";
 
     public Mail createMailAndChangePassword(final String email){
         final String str = getTempPassword();

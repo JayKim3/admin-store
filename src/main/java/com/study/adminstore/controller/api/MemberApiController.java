@@ -78,7 +78,8 @@ public class MemberApiController {
 
     @PostMapping("/find")
     @ResponseBody
-    public void emailSend(final String email) throws MessagingException {
+    public void emailSend(@RequestParam final String email) throws MessagingException {
+        System.out.println(email);
         final Mail mail = emailApiService.createMailAndChangePassword(email);
         emailApiService.sendMail(mail);
     }
