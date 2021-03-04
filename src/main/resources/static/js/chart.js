@@ -5,35 +5,9 @@ $(document).ready(function(){
     loadUserActiveData(monthNames);
     loadUserYearlyData(monthNames);
     loadCountryData();
+    loadUserTimeData();
 
-    const timeCtx = document.getElementById('timePieChart').getContext('2d');
     const followerCtx = document.getElementById('followerChart').getContext('2d');
-
-    const timePieChart = new Chart(timeCtx, {
-        type: 'pie',
-        data: {
-            labels: ["More than 1 hour", "Between 30 min and 1 hour", "Less than 30 min"],
-            datasets: [
-                {
-                    data: [64, 21, 15],
-                    backgroundColor: [
-                        'rgba(121, 94, 241, 1.0)',
-                        'rgba(238, 140, 203, 1.0)',
-                        "#36A2EB"
-                    ],
-                }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Time spent per day',
-                fontSize: 20,
-                fontColor: '#ffffff'
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-        }
-    })
 
     const followerChart = new Chart(followerCtx, {
         type: 'doughnut',
@@ -220,21 +194,92 @@ function loadUserYearlyData(monthNames) {
 }
 
 function loadCountryData() {
-    const CountryCtx = document.getElementById('countryChart').getContext('2d');
-    new Chart(CountryCtx, {
-        type: 'horizontalBar',
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/admin/countryUser",
+    }).done(function (data) {
+        const CountryCtx = document.getElementById('countryChart').getContext('2d');
+        const countryLabel = ['KOREA', 'US', 'JAPEN', 'CHINA', "OTHER"];
+        const countryCount = [0, 0, 0, 0, 0];
+        for(let i = 0; i < data.length; i++) {
+            if(data[i] == 'Korea, Republic of') {
+                countryCount[0] += 1;
+            } else if(data[i] == 'United States of America') {
+                countryCount[1] += 1;
+            } else if(data[i] == 'Japen') {
+                countryCount[2] += 1;
+            } else if(data[i] == 'China') {
+                countryCount[3] += 1;
+            } else {
+                countryCount[4] += 1;
+            }
+        }
+
+        new Chart(CountryCtx, {
+            type: 'horizontalBar',
+            data: {
+                labels: countryLabel,
+                datasets: [{
+                    label: "Country Users",
+                    data: countryCount,
+                    backgroundColor: 'rgba(121, 94, 241, 1.0)',
+                    fill: false,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+    })
+}
+
+function loadUserTimeData() {
+
+    $.ajax({
+        type: "GET",
+        contentType: "application/json",
+        url: "/admin/continueTime",
+    }).done(function(data){
+    const timeCtx = document.getElementById('timePieChart').getContext('2d');
+    const timeLabel = ["More than 1 hour", "Between 30 min and 1 hour", "Less than 30 min"];
+    const timeCount = [0, 0, 0];
+
+    for(let i = 0; i < data.length; i++) {
+        if(data[i] >= 3600) {
+            timeCount[0] += 1;
+        } else if(data[i] >= 1800) {
+            timeCount[1] += 1;
+        } else {
+            timeCount[2] += 1;
+        }
+    }
+
+    new Chart(timeCtx, {
+        type: 'pie',
         data: {
-            labels: ['KOREA', 'US', 'JAPEN', 'CHINA', "OTHER"],
-            datasets: [{
-                label: "Users",
-                data: [10, 3, 30, 23, 10],
-                backgroundColor: 'rgba(121, 94, 241, 1.0)',
-                fill: false,
-                borderWidth: 2
-            }]
+            labels: timeLabel,
+            datasets: [
+                {
+                    data: timeCount,
+                    backgroundColor: [
+                        'rgba(121, 94, 241, 1.0)',
+                        'rgba(238, 140, 203, 1.0)',
+                        "#36A2EB"
+                    ],
+                }]
         },
         options: {
+            title: {
+                display: true,
+                text: 'Time spent per day',
+                fontSize: 20,
+                fontColor: '#ffffff'
+            },
             responsive: true,
+            maintainAspectRatio: false,
         }
-    });
+    })
+    })
 }

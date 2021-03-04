@@ -21,18 +21,52 @@
     margin-top: 50px;
 }
 
-.mypage .mypage__content .mypage__profile {
+.mypage .mypage__profile {
     width: 100%;
-    height: 200px;
-    background-color: red;
+    height: 250px;
+    margin-top: 30px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
-.mypage .mypage__content .mypage__profile img {
+.mypage .mypage__profile img {
+    max-width: 100%;
     width: 150px;
     height: 150px;
     border-radius: 50%;
+}
+
+.mypage .mypage__profile form {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mypage .mypage__profile .profile_upload_btn {
+    width: 150px;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: skyblue;
+}
+
+.mypage .mypage__profile label {
+    width: 150px;
+    padding: 10px;
+    margin: 20px 0;
+    color: #ffffff;
+    text-align: center;
+    background-color: red;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.mypage .mypage__profile input[id='profile_image_btn'] {
+    display: none;
 }
 
 .mypage .mypage__content .mypage__inner {
@@ -61,3 +95,4 @@
     width: 300px;
     color: #93929f;
 }
+

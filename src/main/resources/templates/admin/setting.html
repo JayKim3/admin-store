@@ -6,78 +6,84 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="../../static/css/setting.css">
 </head>
 <body>
     <th:block th:include="@{/header}"></th:block>
     <main>
-        <nav>
-            <div class="nav-logo"></div>
-            <div class="nav-profile">Profile</div>
-            <div class="nav-menu">
-                <ul>
-                    <a href="/admin"><li>DashBoard</li></a>
-                    <a href="/admin/user/0"><li>Users</li></a>
-                    <a href="/admin/order"><li>Orders</li></a>
-                    <a href="/admin/setting"><li>Settings</li></a>
-                </ul>
-            </div>
-        </nav>
+        <th:block th:include="@{/nav}"></th:block>
         <div class="setting">
             <header class="setting__header">
                 <i class="fas fa-cog"></i>
                 <span>Setting</span>
                 <p>February 7th 2021 - Sunday</p>
+                <div class="setting__weather"></div>
             </header>
             <div class="setting__content">
                 <div class="setting__box">
                     <div class="setting__inner">
                         <i class="far fa-envelope"></i>
                         <p>Email</p>
-                        <span>testUser1@gmail.com</span>
+                        <span class="setting__inner--text">testUser1@gmail.com</span>
                     </div>
                     <div class="setting__inner">
                         <i class="fas fa-user-circle"></i>
                         <p>Account</p>
-                        <span>testUser1</span>
+                        <span class="setting__inner--text">testUser1</span>
                     </div>
                     <div class="setting__inner">
                         <i class="fas fa-phone"></i>
                         <p>PhoneNumber</p>
-                        <span>010-3574-6706</span>
+                        <span class="setting__inner--text">010-3574-6706</span>
                     </div>
                 </div>
                 <div class="setting__box">
                     <div class="setting__inner">
                         <i class="far fa-bell"></i>
                         <p>Notifications</p>
-                        <span>On</span>
+                        <label class="setting__switch">
+                            <input type="checkbox" name="input-notification"/>
+                            <span data-type="on" class="slider"></span>
+                            <span class="slider-text">Off</span>
+                        </label>
                     </div>
                     <div class="setting__inner">
                         <i class="fas fa-unlock"></i>
                         <p>Privacy</p>
-                        <span></span>
+                        <label class="setting__switch">
+                            <input type="checkbox" name="input-privacy"/>
+                            <span data-type="on" class="slider"></span>
+                            <span class="slider-text">Off</span>
+                        </label>
                     </div>
                 </div>
                 <div class="setting__box">
                     <div class="setting__inner">
                         <i class="fas fa-globe"></i>
-                        <p>Langauge</p>
-                        <span>English</span>
+                        <p>Language</p>
+                        <label class="setting__switch">
+                            <input type="checkbox" name="input-language"/>
+                            <span data-type="on" class="slider"></span>
+                            <span class="slider-text">En</span>
+                        </label>
                     </div>
                     <div class="setting__inner">
 <!--                        <i class="far fa-sun"></i>-->
                         <i class="far fa-moon"></i>
                         <p>Dark Mode</p>
-                        <span>On</span>
+                        <label class="setting__switch">
+                            <input type="checkbox" name="input-mode"/>
+                            <span data-type="on" class="slider"></span>
+                            <span class="slider-text">Off</span>
+                        </label>
                     </div>
                     <div class="setting__inner">
                         <i class="far fa-question-circle"></i>
                         <p>Help</p>
-                        <span></span>
+                        <button class="help-btn">Go</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+    <script type="text/javascript" th:src="@{/js/setting.js}"></script>
 </body>

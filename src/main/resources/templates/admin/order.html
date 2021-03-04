@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Order Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-Order Page...
+    <th:block th:include="@{/header}"></th:block>
+    <main>
+        <th:block th:include="@{/nav}"></th:block>
+        <div class="order">
+            <header class="order__header">
+                <i class="fas fa-cog"></i>
+                <span>Order</span>
+                <p>February 7th 2021 - Sunday</p>
+            </header>
+            <div class="order__content">
+
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" th:src="@{/js/order.js}"></script>
 </body>
 </html>
