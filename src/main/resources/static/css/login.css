@@ -1,4 +1,5 @@
 body {
+    background: linear-gradient(to right, #4568DC, #B06AB3);
     box-sizing: border-box;
 }
 
@@ -49,7 +50,7 @@ body {
 .sign-wrapper__hr {
     border: none;
     height: 1px;
-    background: linear-gradient(to right,  #4568DC, #B06AB3);
+    background: linear-gradient(to right, #4568DC, #B06AB3);
 }
 
 .sign-wrapper__input input {
@@ -86,7 +87,7 @@ body {
 }
 
 .sign-wrapper__remember input,
-.sign-wrapper__remember label{
+.sign-wrapper__remember label {
     cursor: pointer;
 }
 
@@ -111,7 +112,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right,  #4568DC, #B06AB3);
+    background: linear-gradient(to right, #4568DC, #B06AB3);
     color: #fff;
     font-size: 20px;
     cursor: pointer;
