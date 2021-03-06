@@ -23,7 +23,7 @@ public class FilesApiController {
     FilesApiService filesApiService;
 
     @PostMapping
-    public String fileInsert(final HttpServletRequest request, @RequestPart final MultipartFile files) throws Exception {
+    public String create(final HttpServletRequest request, @RequestPart final MultipartFile files) throws Exception {
         logger.info("files : " + files);
         filesApiService.save(files);
         return "redirect:/";

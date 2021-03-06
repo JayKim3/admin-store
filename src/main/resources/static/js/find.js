@@ -3,8 +3,8 @@ $(document).ready(function() {
         e.preventDefault();
         const email = jQuery('input[name=email]').val();
 
-        const token = $("meta[name='_csrf']").attr("content");
-        const header = $("meta[name='_csrf_header']").attr("content");
+        // const token = $("meta[name='_csrf']").attr("content");
+        // const header = $("meta[name='_csrf_header']").attr("content");
 
         if(!email) {
             swal('메일을 다시 확인해주세요.');
@@ -25,13 +25,10 @@ $(document).ready(function() {
                             $.ajax({
                                 type: "POST",
                                 url: "/find",
-                                data: {
-                                    "email": email
-                                },
-
-                                beforeSend: function(xhr) {
-                                    xhr.setRequestHeader(header, token);
-                                },
+                                data: { email: email },
+                                // beforeSend: function(xhr) {
+                                //     xhr.setRequestHeader(header, token);
+                                // },
                             })
                         }
                     });
