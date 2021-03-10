@@ -1,24 +1,18 @@
 package com.study.adminstore.controller;
 
 import com.study.adminstore.model.entity.Member;
-import com.study.adminstore.model.entity.Visitor;
-import com.study.adminstore.model.network.request.MemberApiRequest;
+import com.study.adminstore.model.network.request.MemberModifyApiRequest;
 import com.study.adminstore.model.network.response.MemberApiResponse;
+import com.study.adminstore.model.network.response.MemberModifyApiResponse;
 import com.study.adminstore.service.CategoryApiService;
 import com.study.adminstore.service.MemberApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.PostConstruct;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,16 +74,10 @@ public class AdminController {
 
     // 실제로 정보 수정 후 modify 버튼 누를 시 동작되는 api
     @PutMapping("/user")
-    public ResponseEntity update(@RequestBody MemberApiRequest memberApiRequest) {
-        ResponseEntity<MemberApiResponse> member = memberApiService.update(memberApiRequest);
+    public ResponseEntity update(@RequestBody MemberModifyApiRequest memberModifyApiRequest) {
+        ResponseEntity<MemberModifyApiResponse> member = memberApiService.update(memberModifyApiRequest);
+        System.out.println(member);
         return new ResponseEntity<>(member, HttpStatus.OK);
-    }
-
-    @GetMapping("/")
-    public void loadUserProfile(Model model) {
-        System.out.println("loadUserProfile");
-        Member member = memberApiService.findByAuth();
-        model.addAttribute("member", member);
     }
 }
 
