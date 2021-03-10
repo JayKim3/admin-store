@@ -52,16 +52,16 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
                 .updatedBy("KSJ")
                 .build();
 
-        storeRepository.save(store);
+        Store newStore = storeRepository.save(store);
 
-        return new ResponseEntity<StoreApiResponse>(response(store), HttpStatus.OK);
+        return new ResponseEntity(response(newStore), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<StoreApiResponse> read(final Long id) {
         Optional<Store> optional = storeRepository.findById(id);
         return optional.map(store-> {
-            return new ResponseEntity(store, HttpStatus.OK);
+            return new ResponseEntity(response(store), HttpStatus.OK);
         })
                 .orElseGet(()->ResponseEntity.notFound().build());
     }
@@ -81,7 +81,7 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
                .setUpdatedBy("KSJ");
           return store;
         }).map(newStore-> storeRepository.save(newStore))
-                .map(newStore-> new ResponseEntity(newStore, HttpStatus.OK))
+                .map(newStore-> new ResponseEntity(response(newStore), HttpStatus.OK))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -90,7 +90,7 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
         Optional<Store> optional = storeRepository.findById(id);
         return optional.map(store->{
             storeRepository.delete(store);
-            return new ResponseEntity(store, HttpStatus.OK);
+            return new ResponseEntity(response(store), HttpStatus.OK);
         })
                 .orElseGet(()->ResponseEntity.notFound().build());
     }
@@ -102,6 +102,7 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
 
     private StoreApiResponse response(final Store store) {
         final StoreApiResponse storeApiResponse = StoreApiResponse.builder()
+                .id(store.getId())
                 .account(store.getAccount())
                 .password(store.getPassword())
                 .name(store.getName())

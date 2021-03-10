@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class StoreApiResponse {
+    private Long id;
+
     private String account;
 
     private String password;
