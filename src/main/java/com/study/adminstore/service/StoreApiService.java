@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiResponse>, CountInterface {
@@ -32,7 +33,6 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
         final String ceoName = storeApiRequest.getCeoName();
 
         if(account.equals("") || password.equals("") || name.equals("") || status.equals("") || address.equals("") || businessNumber.equals("") || ceoName.equals("")) {
-//            return Header.ERROR("data not fill");
             System.out.println("data not fill");
         }
 
@@ -59,17 +59,40 @@ public class StoreApiService implements CrudInterface<StoreApiRequest, StoreApiR
 
     @Override
     public ResponseEntity<StoreApiResponse> read(final Long id) {
-        return null;
+        Optional<Store> optional = storeRepository.findById(id);
+        return optional.map(store-> {
+            return new ResponseEntity(store, HttpStatus.OK);
+        })
+                .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @Override
     public ResponseEntity<StoreApiResponse> update(final StoreApiRequest req) {
-        return null;
+        StoreApiRequest storeApiRequest = req;
+        Optional<Store> optional = storeRepository.findById(storeApiRequest.getId());
+
+        return optional.map(store -> {
+          store.setAccount(storeApiRequest.getAccount())
+               .setName(storeApiRequest.getName())
+               .setAddress(storeApiRequest.getAddress())
+               .setBusinessNumber(storeApiRequest.getBusinessNumber())
+               .setCeoName(storeApiRequest.getCeoName())
+               .setUpdatedAt(LocalDateTime.now())
+               .setUpdatedBy("KSJ");
+          return store;
+        }).map(newStore-> storeRepository.save(newStore))
+                .map(newStore-> new ResponseEntity(newStore, HttpStatus.OK))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
     public ResponseEntity<StoreApiResponse> delete(final Long id) {
-        return null;
+        Optional<Store> optional = storeRepository.findById(id);
+        return optional.map(store->{
+            storeRepository.delete(store);
+            return new ResponseEntity(store, HttpStatus.OK);
+        })
+                .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @Override
