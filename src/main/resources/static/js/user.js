@@ -81,8 +81,6 @@ $(document).ready(function() {
     $('.user-modifty-btn').on('click', function(e) {
         e.preventDefault();
         const data = {};
-        const id = $('input[name=user-info-id]').val();
-        const password = $('input[name=user-info-password]').val();
         const email = $('.user-info-email').text();
         const account = $('input[name=user-info-account]').val();
         const auth = $('input[name=user-info-auth]').val();
@@ -90,8 +88,6 @@ $(document).ready(function() {
 
         // 방어코드 구현
 
-        data.id = id;
-        data.password = password;
         data.email = email;
         data.account = account;
         data.auth = auth;
