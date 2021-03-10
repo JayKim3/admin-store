@@ -86,12 +86,11 @@ $(document).ready(function() {
         const auth = $('input[name=user-info-auth]').val();
         const phoneNumber = $('input[name=user-info-phoneNumber]').val();
 
-        // 방어코드 구현
-
         data.email = email;
         data.account = account;
         data.auth = auth;
         data.phone_number = phoneNumber;
+
 
         $.ajax({
             type: "PUT",

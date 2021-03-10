@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -50,7 +50,11 @@
                 <tr class="user-tr" th:each="member : ${members}">
                     <td th:text="${member.id}"></td>
                     <td>
-                        <img src="/img/iu3.jpg">
+                        <img th:if="${member?.files != null}"
+                             th:src="@{'/images/' + ${member?.email} + '.' + ${member?.files?.getFileOriName()}}"
+                             class="profile_image"/>
+                        <img th:unless="${member?.files != null}"
+                             th:src="@{'/img/no-profile.jpg'}" class="profile_image"/>
                     </td>
                     <td th:text="${member.email}"></td>
                     <td th:text="${member.account}"></td>

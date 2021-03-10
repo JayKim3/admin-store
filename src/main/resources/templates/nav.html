@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <script type="text/javascript" th:src="@{/js/nav.js}"></script>
-    <nav class="common-nav">
-        <div class="nav-logo">
-            <div class="nav-profile">Profile</div>
-            <a th:href="@{'/mypage/' + ${#authentication.name}}">
-                <span th:text="${#authentication.name}"></span>
-<!--                <img th:src="@{'/images/' + ${member?.email} + '.' + ${member?.files?.getFileOriName()}}">-->
-            </a>
+<nav class="common-nav">
+    <div class="nav-logo">
+        <div class="nav-profile">Profile</div>
+        <a th:href="@{'/mypage/' + ${#authentication.name}}">
+            <span th:text="${#authentication.name}" class="nav-email-text"></span>
+            <!--                <img th:if="${member?.files != null}"-->
+            <!--                     th:src="@{'/images/' + ${member?.email} + '.' + ${member?.files?.getFileOriName()}}"-->
+            <!--                     class="profile_image"/>-->
+            <!--                <img th:unless="${member?.files != null}"-->
+            <!--                     th:src="@{'/img/no-profile.jpg'}" class="profile_image"/>-->
+        </a>
         </div>
         <div class="nav-menu">
             <ul>
