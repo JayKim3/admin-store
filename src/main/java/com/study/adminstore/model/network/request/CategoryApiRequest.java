@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CategoryApiRequest {
-    private Long id;
-
     private String parentType;
 
     private String type;

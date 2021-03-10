@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class MemberApiRequest {
-    private Long id;
     private String email;
     private String account;
     private String password;

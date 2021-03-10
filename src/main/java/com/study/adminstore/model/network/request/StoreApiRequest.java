@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 @Builder
 public class StoreApiRequest {
 
-    private Long id;
-
     private String account;
 
     private String password;
