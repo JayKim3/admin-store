@@ -12,35 +12,36 @@ $(document).ready(function() {
     // 삭제 버튼 클릭 시 체크박스 개수 가져와서 ajax 통신
     $('#delete-btn').on('click', function() {
         const cnt = $('input[name=user_checkbox]:checked').length;
-        if(cnt == 0) {
+        if (cnt == 0) {
             swal('1개 이상 선택해주세요.');
             return;
         }
         const deleteUserArray = new Array();
 
-        $('input[name=user_checkbox]').each(function(){
-            if($(this).prop("checked")) {
+        $('input[name=user_checkbox]').each(function () {
+            if ($(this).prop("checked")) {
                 deleteUserArray.push(parseInt($(this).prop("id")));
             }
         });
 
         $.ajax({
-            type: 'GET',
-            url: "/admin/user/delete",
+            type: 'DELETE',
+            url: "/admin/user",
             data: {
-                "deleteUserArray" : deleteUserArray
+                "deleteUserArray": deleteUserArray
             },
-            success: function(data) {
-                if(data === 1 ) {
+            success: function (data) {
+                if (data === 1) {
                     swal("성공적으로 삭제 되었습니다.");
-                    setTimeout(function(){
-                        window.location.href= "/admin/user/0"}, 2000);
+                    setTimeout(function () {
+                        window.location.href = "/admin/user/0"
+                    }, 2000);
                 } else {
                     swal("예기치 못한 에러 발생");
-                    window.location.href= "/"
+                    window.location.href = "/"
                 }
             },
-            error: function(e) {
+            error: function (e) {
                 console.log("ERROR: ", e);
             }
         })
@@ -61,7 +62,7 @@ $(document).ready(function() {
             type: "GET",
             contentType: "application/json",
             url: "/admin/user/modify/" + id,
-            success: function(data) {
+            success: function (data) {
                 const user = data.body;
                 // 전달받은 데이터 동적으로 화면 그려주기.
                 $('.user-info-email').text(user.email);
@@ -71,7 +72,7 @@ $(document).ready(function() {
                 $('input[name=user-info-auth]').val(user.auth);
                 $('input[name=user-info-phoneNumber]').val(user.phone_number);
             },
-            error: function(e) {
+            error: function (e) {
                 console.log("ERROR : ", e);
             }
         });
@@ -80,8 +81,6 @@ $(document).ready(function() {
     $('.user-modifty-btn').on('click', function(e) {
         e.preventDefault();
         const data = {};
-        const id = $('input[name=user-info-id]').val();
-        const password = $('input[name=user-info-password]').val();
         const email = $('.user-info-email').text();
         const account = $('input[name=user-info-account]').val();
         const auth = $('input[name=user-info-auth]').val();
@@ -89,8 +88,6 @@ $(document).ready(function() {
 
         // 방어코드 구현
 
-        data.id = id;
-        data.password = password;
         data.email = email;
         data.account = account;
         data.auth = auth;
@@ -99,12 +96,12 @@ $(document).ready(function() {
         $.ajax({
             type: "PUT",
             contentType: "application/json",
-            url: "/admin/user/modify/",
+            url: "/admin/user",
             data: JSON.stringify(data),
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
-                if(data) {
-                    setTimeout(function (){
+                if (data) {
+                    setTimeout(function () {
                         swal("성공적으로 변경하였습니다.");
                         $('.user-popup-wrapper').css('display', 'none');
                     }, 1000);
