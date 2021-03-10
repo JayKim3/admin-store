@@ -32,8 +32,6 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
         final String parentType = categoryApiRequest.getParentType();
         final String type = categoryApiRequest.getType();
         final String title = categoryApiRequest.getTitle();
-
-        System.out.println(categoryApiRequest);
         
         if(parentType.equals("") || type.equals("") || title.equals("")) System.out.println("failed");
 
@@ -56,8 +54,11 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
 
     @Override
     public ResponseEntity<CategoryApiResponse> read(final Long id) {
-        final Optional<Category> category = categoryRepository.findById(id);
-        return new ResponseEntity<CategoryApiResponse>(CategoryApiResponse.builder().build(), HttpStatus.OK);
+        final Optional<Category> optional = categoryRepository.findById(id);
+        return optional.map(category-> {
+            return new ResponseEntity(category, HttpStatus.OK);
+        })
+                .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @Override
@@ -73,7 +74,7 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
                     .setCreatedBy("KSJ");
             return category;
         }).map(newCategory-> categoryRepository.save(newCategory))
-                .map(newCategory-> new ResponseEntity<CategoryApiResponse>(CategoryApiResponse.builder().build(), HttpStatus.OK))
+                .map(newCategory-> new ResponseEntity(newCategory, HttpStatus.OK))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -83,7 +84,7 @@ public class CategoryApiService implements CrudInterface<CategoryApiRequest, Cat
 
         return optional.map(category-> {
             categoryRepository.delete(category);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity(category, HttpStatus.OK);
         })
                 .orElseGet(()->ResponseEntity.notFound().build());
     }

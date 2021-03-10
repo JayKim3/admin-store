@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CategoryApiResponse {
-    private Long id;
-
     private String parentType;
 
     private String type;

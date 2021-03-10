@@ -1,5 +1,6 @@
 package com.study.adminstore.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,6 +43,7 @@ public class Category {
                 joinColumns = @JoinColumn(name = "CATEGORY_ID"),
                 inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
     )
+    @JsonIgnore
 
     private List<Item> items = new ArrayList<>();
 
