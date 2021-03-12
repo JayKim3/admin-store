@@ -8,7 +8,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer {
 
     // 요청 - 뷰 연결
-    public void addViewControllers(final ViewControllerRegistry registry) {
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("admin");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/signup").setViewName("signup");
@@ -16,6 +17,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/mypage").setViewName("mypage");
         registry.addViewController("/admin").setViewName("admin");
         registry.addViewController("/admin/user").setViewName("admin/user");
+        registry.addViewController("/admin/item").setViewName("admin/item");
         registry.addViewController("/admin/order").setViewName("admin/order");
         registry.addViewController("/admin/setting").setViewName("admin/setting");
         registry.addViewController("/master").setViewName("master");

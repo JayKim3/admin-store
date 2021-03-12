@@ -1,0 +1,28 @@
+/******************** Admin Item ***********************/
+.item {
+    width: 100%;
+    padding: 40px 80px;
+}
+
+.item .item__header svg {
+    font-size: 30px;
+    margin-right: 20px;
+    color: #ffffff;
+}
+
+.item .item__header span {
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.item .item__header p {
+    margin-top: 15px;
+    color: #636170;
+}
+
+.item .item__content {
+    width: 100%;
+    color: #ffffff;
+    text-align: left;
+    margin-top: 50px;
+}
