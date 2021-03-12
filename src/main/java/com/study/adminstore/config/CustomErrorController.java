@@ -13,7 +13,7 @@ import java.util.Date;
 @Controller
 public class CustomErrorController implements ErrorController {
 
-    private final String ERROR_PATH = "/error    /";
+    private final String ERROR_PATH = "/error/";
 
     @RequestMapping(value = "/error")
     public String handleError(HttpServletRequest request, Model model) {
