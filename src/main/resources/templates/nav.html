@@ -6,20 +6,24 @@
         <div class="nav-profile">Profile</div>
         <a th:href="@{'/mypage/' + ${#authentication.name}}">
             <span th:text="${#authentication.name}" class="nav-email-text"></span>
-            <!--                <img th:if="${member?.files != null}"-->
-            <!--                     th:src="@{'/images/' + ${member?.email} + '.' + ${member?.files?.getFileOriName()}}"-->
-            <!--                     class="profile_image"/>-->
-            <!--                <img th:unless="${member?.files != null}"-->
-            <!--                     th:src="@{'/img/no-profile.jpg'}" class="profile_image"/>-->
+            <img class="nav_profile_image"/>
         </a>
-        </div>
-        <div class="nav-menu">
-            <ul>
-                <a href="/admin"><li>DashBoard</li></a>
-                <a href="/admin/user/0"><li>Users</li></a>
-                <a href="/admin/order"><li>Orders</li></a>
-                <a href="/admin/setting"><li>Settings</li></a>
-            </ul>
-        </div>
-    </nav>
+    </div>
+    <div class="nav-menu">
+        <ul>
+            <a href="/">
+                <li>DashBoard</li>
+            </a>
+            <a href="/admin/user/0">
+                <li>Users</li>
+            </a>
+            <a href="/admin/order">
+                <li>Orders</li>
+            </a>
+            <a href="/admin/setting">
+                <li>Settings</li>
+            </a>
+        </ul>
+    </div>
+</nav>
 </html>

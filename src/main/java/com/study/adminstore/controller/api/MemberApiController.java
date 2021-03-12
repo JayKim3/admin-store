@@ -31,6 +31,14 @@ public class MemberApiController {
     @Autowired
     private EmailApiService emailApiService;
 
+    @GetMapping("/nav")
+    @ResponseBody
+    public String loadMainPage(String email) {
+        Member member = memberApiService.findByEmail(email);
+        if (member == null || member.equals("")) return "Not Found";
+        else return member.getFiles().getFileOriName();
+    }
+
     @GetMapping("/emailCheck")
     @ResponseBody
     public String emailCheck(String email) {
