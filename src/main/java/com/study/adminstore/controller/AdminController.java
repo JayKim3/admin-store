@@ -27,7 +27,7 @@ public class AdminController {
     private MemberApiService memberApiService;
 
     @GetMapping("/user/{page}")
-    public String userload(@PathVariable int page, Model model) {
+    public String userPageLoad(@PathVariable int page, Model model) {
         model.addAttribute("members", memberApiService.findAll(page));
         model.addAttribute("pages", 10);
         return "admin/user";
