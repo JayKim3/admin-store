@@ -35,8 +35,9 @@ public class MemberApiController {
     @ResponseBody
     public String loadMainPage(String email) {
         Member member = memberApiService.findByEmail(email);
-        if (member == null || member.equals("")) return "Not Found";
-        else return member.getFiles().getFileOriName();
+        if (member.getFiles() == null || member.getFiles().equals("")) return "Not Found";
+        else
+            return member.getFiles().getFileOriName();
     }
 
     @GetMapping("/emailCheck")
