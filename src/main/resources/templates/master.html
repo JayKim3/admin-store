@@ -2,91 +2,16 @@
 <html lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Master Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"> </script>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
-<script>
-$(document).ready(function(){
-    const parentCategoryUl = $('.parent-category ul');
-
-    $('#category-add').on('click', function(){
-        // Validation
-        // 해당 카테고리 이미 존재한 카테고리인지 ?
-
-        const parentType = $('.selected-category-option').val();
-        const type = $('input[name=type]').val();
-        const title = $('input[name=title]').val();
-
-        const token = $("meta[name='_csrf']").attr("content");
-        const header = $("meta[name='_csrf_header']").attr("content");
-
-        const data = {};
-
-        if (parentType === "" || type === "" || title === "") {
-            alert("type or title input plz");
-            return;
-        }
-
-        else {
-            data.parent_type = parentType;
-            data.type = type;
-            data.title = title;
-        }
-
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: "/category",
-            data: JSON.stringify(data),
-
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader(header, token);
-            },
-
-            success: function (data) {
-                if(data) {
-                    const parentType = data.parent_type;
-                    const type = data .type;
-                    alert(parentType +'[' + type + ']가 성공적으로 추가 되었습니다.');
-                    // setTimeout 설정해주기
-                    window.location.href= "/";
-                }
-            },
-            error: function (e) {
-                console.log("ERROR : ", e);
-            }
-        });
-    });
-
-    $('.selected-category-option').on('click', function() {
-        if(parentCategoryUl.hasClass('hide')) {
-            parentCategoryUl.removeClass('hide');
-            parentCategoryUl.addClass('show');
-        } else {
-            parentCategoryUl.addClass('hide');
-            parentCategoryUl.removeClass('show');
-        }
-    });
-
-    $('.parent-category ul li').on('click', function() {
-        parentCategoryUl.removeClass('show');
-        parentCategoryUl.addClass('hide');
-        $('.selected-category-option').html($(this).text());
-        $('.selected-category-option').val($(this).text());
-    });
-
-})
-</script>
 <body>
     <th:block th:include="@{/header}"></th:block>
     <div class="overlay">
         <th:block th:include="@{/popup/store-popup}"></th:block>
-        <th:block th:include="@{/popup/category-popup}"></th:block>
     </div>
     <main>
         <th:block th:include="@{/nav}"></th:block>
