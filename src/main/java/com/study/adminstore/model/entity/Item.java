@@ -1,5 +1,6 @@
 package com.study.adminstore.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,20 +21,16 @@ import java.util.List;
 public class Item {
     @Id
     @GeneratedValue
-    @Column(name = "ITEM_ID")
+    @Column(name = "item_id")
     private Long id;
 
     private String status;
 
     private String name;
 
-    private String title;
-
     private String content;
 
     private int price;
-
-    private String brandName;
 
     private LocalDateTime registeredAt;
 
@@ -48,6 +45,10 @@ public class Item {
     private String updatedBy;
 
     @ManyToMany(mappedBy = "items")
+    @JsonIgnore
     private List<Category> categories = new ArrayList<>();
 
+    @OneToOne(mappedBy = "item")
+    @JsonIgnore
+    private Files files;
 }
