@@ -11,36 +11,11 @@ $(document).ready(function() {
         $('.store-popup-wrapper').css('display', 'block');
     });
 
-    $('.main-header__right--category-btn').on("click", function() {
-        $('.overlay').css({'backgroundColor':'rgba(0,0,0,0.5)','zIndex' : 99});
-        $('.category-popup-wrapper').css('display', 'block');
-    })
-
     $('.category-total').on('click', function(){
         $('.overlay').css({'backgroundColor':'rgba(0,0,0,0.5)','zIndex' : 99});
         $('.category-result-popup-wrapper').css('display', 'block');
     });
 });
-
-function categoryUpdate() {
-    console.log("1234ß");
-}
-
-function categoryDelete(id) {
-    $.ajax({
-        type: "DELETE",
-        url: "/category/" + id,
-        success: function(data) {
-            if(data) {
-                alert("삭제되었습니다.");
-                window.location.href= "/";
-            }
-        },
-        error: function(e) {
-            console.log("ERROR : ", e);
-        }
-    });
-}
 
 function storeValueCheck() {
     const appStoreName = jQuery('input[name=app_store]').val();

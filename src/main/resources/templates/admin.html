@@ -10,57 +10,59 @@
     <script type="text/javascript" th:src="@{/js/chart.js}"></script>
 </head>
 <body>
-    <th:block th:include="@{/header}"></th:block>
-    <main>
-        <th:block th:include="@{/nav}"></th:block>
-        <div class="dashboard">
-            <header class="dashboard__header">
-                <i class="fas fa-chart-line"></i>
-                <span>DashBoard</span>
-                <p>February 7th 2021 - Sunday</p>
-            </header>
-            <div class="card-wrapper">
-                <div class="card">
-                    <canvas id="activeChart" width="400" height="300"></canvas>
-                </div>
-                <div class="big-card-row">
-                    <span class="card-title">By Country</span>
-                    <canvas id="countryChart" width="350" height="100"></canvas>
-                </div>
+<th:block th:include="@{/header}"></th:block>
+<div class="overlay"></div>
+<th:block th:include="@{/popup/category-popup}"></th:block>
+<main>
+    <th:block th:include="@{/nav}"></th:block>
+    <div class="dashboard">
+        <header class="dashboard__header">
+            <i class="fas fa-chart-line"></i>
+            <span>DashBoard</span>
+            <p>February 7th 2021 - Sunday</p>
+        </header>
+        <div class="card-wrapper">
+            <div class="card">
+                <canvas id="activeChart" width="400" height="300"></canvas>
             </div>
-            <div class="card-wrapper margin-top20">
-                <div class="big-card-column">
-                    <canvas id="timePieChart" width="400" height="300"></canvas>
-                </div>
-                <div style="display: flex; flex-direction: column">
-                    <div class="card-wrapper">
-                        <div class="small-card-row">
-                            <span class="card-title">New Followers</span>
-                            <div class="small-card-row__new">
-                                <div>
-                                    <span>191K</span>
-                                </div>
-                                <canvas id="followerChart" height="80"></canvas>
+            <div class="big-card-row">
+                <span class="card-title">By Country</span>
+                <canvas id="countryChart" width="350" height="100"></canvas>
+            </div>
+        </div>
+        <div class="card-wrapper margin-top20">
+            <div class="big-card-column">
+                <canvas id="timePieChart" width="400" height="300"></canvas>
+            </div>
+            <div style="display: flex; flex-direction: column">
+                <div class="card-wrapper">
+                    <div class="small-card-row">
+                        <span class="card-title">New Followers</span>
+                        <div class="small-card-row__new">
+                            <div>
+                                <span>191K</span>
                             </div>
-                        </div>
-                        <div class="small-card-row">
-                            <span class="card-title">New Users</span>
-                            <div class="small-card-row__new">
-                                <div>
-                                    <span class="user-count"></span>
-                                </div>
-                                <canvas id="newUserChart" height="80"></canvas>
-                            </div>
+                            <canvas id="followerChart" height="80"></canvas>
                         </div>
                     </div>
-                    <div class="card-wrapper margin-top20">
-                        <div class="big-card-row">
-                            <canvas id="YearlyChart" height="100"></canvas>
+                    <div class="small-card-row">
+                        <span class="card-title">New Users</span>
+                        <div class="small-card-row__new">
+                            <div>
+                                <span class="user-count"></span>
+                            </div>
+                            <canvas id="newUserChart" height="80"></canvas>
                         </div>
+                    </div>
+                </div>
+                <div class="card-wrapper margin-top20">
+                    <div class="big-card-row">
+                        <canvas id="YearlyChart" height="100"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 </body>
 </html>
