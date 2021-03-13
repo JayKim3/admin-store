@@ -1,10 +1,18 @@
 /******************** Admin Item ***********************/
 .item {
     width: 100%;
-    padding: 40px 80px;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding: 0 80px
 }
 
-.item .item__header svg {
+.item .item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item .item__header .item__title-wrapper svg {
     font-size: 30px;
     margin-right: 20px;
     color: #ffffff;
@@ -25,4 +33,185 @@
     color: #ffffff;
     text-align: left;
     margin-top: 50px;
+}
+
+.item .item__header .item__button-wrapper {
+    display: flex;
+}
+
+.item .item__header .item__button-wrapper button {
+    width: 130px;
+    height: 40px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    color: #0095ff;
+    cursor: pointer;
+}
+
+.item .item__header .item__button-wrapper button svg {
+    margin-right: 20px;
+}
+
+.item .item__header .item__button-wrapper button:hover {
+    background-color: #8f9bb3;
+}
+
+.item table {
+    width: 100%;
+    color: #ffffff;
+    text-align: left;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.item table th {
+    height: 50px;
+    font-size: 20px;
+}
+
+.item table .item-tr {
+    width: 100%;
+    height: 75px;
+    margin: 50px;
+}
+
+.item table .item-tr:hover {
+    background-color: #e9fbff;
+    cursor: pointer;
+}
+
+.item table .item-tr td {
+    vertical-align: middle;
+    color: #636170;
+}
+
+.item table .item-tr td img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.pagination-wrapper .pagination__ul {
+    display: flex;
+}
+
+.pagination-wrapper .pagination__ul li {
+    margin: 0 20px;
+    cursor: pointer;
+}
+
+/******************** Admin Item Popup ***********************/
+
+.item-popup-wrapper {
+    /*display: none;*/
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0 0 30px 5px black;
+    z-index: 99;
+}
+
+.item-create-form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.item-popup-btn-wrapper {
+    display: flex;
+    height: 90px;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-popup-btn-wrapper button {
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+}
+
+.item-popup-btn-wrapper .item-create-btn {
+    margin-right: 20px;
+    background-color: skyblue;
+}
+
+.item-popup-btn-wrapper .item-cancel-btn {
+    background-color: red;
+}
+
+.item-popup-btn-wrapper .item-create-btn:hover,
+.item-popup-btn-wrapper .item-cancel-btn:hover {
+    opacity: .6;
+}
+
+.item-category {
+    position: relative;
+}
+
+.item-category .selected-category-option {
+    border-radius: 4px;
+    border: 1px solid black;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.item-category ul {
+    position: absolute;
+    width: 230px;
+    border-radius: 4px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.item-category ul li {
+    padding: 10px 0 10px 10px;
+    cursor: pointer;
+}
+
+.item-category ul li:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.item-popup-wrapper .item_profile_image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.item-popup-wrapper label[for='item_image_btn'] {
+    width: 150px;
+    padding: 10px;
+    color: #ffffff;
+    text-align: center;
+    background-color: red;
+    border-radius: 4px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.item-popup-wrapper input[id='item_image_btn'] {
+    display: none;
 }
