@@ -23,27 +23,27 @@ public class FilesApiService {
     @Autowired
     MemberRepository memberRepository;
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    public void save(final MultipartFile requestFile) throws IOException {
+    public void save(MultipartFile requestFile) throws IOException {
 
-        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        final Member member = memberRepository.findByEmail(auth.getName());
+        Member member = memberRepository.findByEmail(auth.getName());
 
-        final String sourceFileName = requestFile.getOriginalFilename();
-        final String fileUrl = "/Users/jaykim/IdeaProjects/admin-store/src/main/resources/static/images/";
-        final String destinationFileName;
+        String sourceFileName = requestFile.getOriginalFilename();
+        final String fileUrl = "/Users/sjk/IdeaProjects/admin-store/src/main/resources/static/images/";
+        String destinationFileName;
 
         destinationFileName = member.getEmail() + "." + sourceFileName;
-        final File destinationFile = new File(fileUrl + destinationFileName);
+        File destinationFile = new File(fileUrl + destinationFileName);
 
         destinationFile.getParentFile().mkdirs();
         requestFile.transferTo(destinationFile); // 업로드할 파일 destinationFile로 지정
 
-        final Files profile = filesRepository.findByMemberId(member.getId());
+        Files profile = filesRepository.findByMemberId(member.getId());
 
-        if(profile != null) {
+        if (profile != null) {
             profile.setFilename(destinationFileName);
             profile.setFileOriName(sourceFileName);
             profile.setFileurl(fileUrl);
@@ -51,13 +51,13 @@ public class FilesApiService {
 
             filesRepository.save(profile);
         } else {
-            final Files files = new Files();
-            files.setFilename(destinationFileName);
-            files.setFileOriName(sourceFileName);
-            files.setFileurl(fileUrl);
-            files.setMember(member);
+            Files userImage = new Files();
+            userImage.setFilename(destinationFileName);
+            userImage.setFileOriName(sourceFileName);
+            userImage.setFileurl(fileUrl);
+            userImage.setMember(member);
 
-            filesRepository.save(files);
+            filesRepository.save(userImage);
         }
     }
 }

@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class Files {
 
     @Id
-    @Column(name = "files")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -17,8 +16,12 @@ public class Files {
     private String fileOriName;
     private String fileurl;
 
-    // Files : Member -> 1 : 1
+
     @OneToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private Member member;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "item_id")
+    private Item item;
 }
