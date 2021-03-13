@@ -1,0 +1,71 @@
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<div class="item-popup-wrapper">
+    <form th:action="@{/item}" method="post" class="item-create-form" enctype="multipart/form-data">
+        <div class="popup-row">
+            <div class="popup-row__left">
+                <i class="fas fa-sort"></i>
+                <span>Category</span>
+            </div>
+            <div class="popup-row__right">
+                <img class="item_profile_image" src="/img/no-profile.jpg"/>
+                <label for="item_image_btn">Image</label>
+                <input type="file" id="item_image_btn" name="file">
+            </div>
+        </div>
+        <div class="popup-row">
+            <div class="popup-row__left">
+                <i class="fas fa-sort"></i>
+                <span>Category</span>
+            </div>
+            <div class="popup-row__right">
+                <div class="popup-row__right item-category">
+                    <input type="hidden" name="category"/>
+                    <div value="" class="selected-category-option">카테고리 선택</div>
+                    <ul class="hide">
+                        <li>홈데코</li>
+                        <li>가구</li>
+                        <li>침구</li>
+                        <li>가전</li>
+                        <li>생활용품</li>
+                        <li>반려동물</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="popup-row">
+            <div class="popup-row__left">
+                <i class="fas fa-user"></i>
+                <span>Name</span>
+            </div>
+            <div class="popup-row__right">
+                <input name="name" class="item-info-name" required/>
+            </div>
+        </div>
+        <div class="popup-row">
+            <div class="popup-row__left">
+                <i class="fas fa-store"></i>
+                <span>Content</span>
+            </div>
+            <div class="popup-row__right">
+                <input name="content" class="item-info-content" required/>
+            </div>
+        </div>
+        <div class="popup-row">
+            <div class="popup-row__left">
+                <i class="fas fa-phone"></i>
+                <span>Price</span>
+            </div>
+            <div class="popup-row__right">
+                <input name="price" class="item-info-price" required/>
+            </div>
+        </div>
+        <div class="item-popup-btn-wrapper">
+            <button type="submit" class="item-create-btn">Create</button>
+            <button type="button" class="item-cancel-btn">Cancel</button>
+        </div>
+    </form>
+</div>
+</html>
