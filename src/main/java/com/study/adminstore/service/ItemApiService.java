@@ -7,6 +7,10 @@ import com.study.adminstore.model.network.response.ItemApiResponse;
 import com.study.adminstore.repository.FilesRepository;
 import com.study.adminstore.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ItemApiService {
@@ -63,6 +68,13 @@ public class ItemApiService {
         imageFiles.setFileurl(fileUrl);
         imageFiles.setItem(item);
         filesRepository.save(imageFiles);
+    }
+
+    public List<Item> findAll(int page) {
+        Pageable pageable = PageRequest.of(page, 8, Sort.by(Sort.Direction.ASC, "id"));
+        Page<Item> all = itemRepository.findAll(pageable);
+        List<Item> items = all.getContent();
+        return items;
     }
 
     private ItemApiResponse response(Item item) {

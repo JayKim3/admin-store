@@ -5,6 +5,7 @@ import com.study.adminstore.model.network.request.MemberModifyApiRequest;
 import com.study.adminstore.model.network.response.MemberApiResponse;
 import com.study.adminstore.model.network.response.MemberModifyApiResponse;
 import com.study.adminstore.service.CategoryApiService;
+import com.study.adminstore.service.ItemApiService;
 import com.study.adminstore.service.MemberApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,16 +22,26 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    CategoryApiService categoryApiService;
+    private CategoryApiService categoryApiService;
 
     @Autowired
     private MemberApiService memberApiService;
+
+    @Autowired
+    private ItemApiService itemApiService;
 
     @GetMapping("/user/{page}")
     public String userPageLoad(@PathVariable int page, Model model) {
         model.addAttribute("members", memberApiService.findAll(page));
         model.addAttribute("pages", 10);
         return "admin/user";
+    }
+
+    @GetMapping("/item/{page}")
+    public String myPage(@PathVariable int page, Model model) {
+        model.addAttribute("items", itemApiService.findAll(page));
+        model.addAttribute("pages", 10);
+        return "admin/item";
     }
 
     @GetMapping("/monthlyUser")
