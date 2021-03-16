@@ -99,6 +99,8 @@ public class MemberApiService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Member member = memberRepository.findByEmail(email);
 
+        if (member == null) throw new UsernameNotFoundException(email);
+
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         if (("admin@gmail.com").equals(email)) authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getAuth()));
